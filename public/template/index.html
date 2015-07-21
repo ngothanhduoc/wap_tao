@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Multi-page template</title>
+        <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="./css/style.default.css" type="text/css" />
+        <!--<link rel="shortcut icon" href="../favicon.ico">-->
+        <script src="./js/jquery.js"></script>
+        <script src="./js/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+
+    <body>
+        <div class="content-wap">
+            <div>
+
+                <div data-role="header">
+                    <div data-role="navbar">
+                        <ul>
+                            <li>
+                                <h1 id="title-wap">Game Mobile</h1>
+                            </li>
+                            <li>
+                                <form class="ui-filterable">
+                                    <input id="autocomplete-input" data-type="search" placeholder="Search cars...">
+                                </form>
+<!--                                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
+                                    <li><a href="#">Acura</a></li>
+                                </ul>-->
+                            </li>
+                        </ul>
+                    </div><!-- /navbar -->
+
+
+                </div><!-- /header -->
+                <div data-role="tabs" id="tabs">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#one" data-ajax="false">Game</a></li>
+                            <li><a href="#two" data-ajax="false">App</a></li>
+                            <li><a href="ajax-content-ignore.html" data-ajax="false">Video</a></li>
+                            <li><a href="ajax-content-ignore.html" data-ajax="false">News</a></li>
+                        </ul>
+                    </div>
+                    <div id="one">
+                        <div class="ui-grid-d">
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
+                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+                            <div class="ui-block-d"><div class="ui-bar ui-bar-a" style="height:60px">Block D</div></div>
+                            <div class="ui-block-e"><div class="ui-bar ui-bar-a" style="height:60px">Block E</div></div>
+
+                        </div><!-- /grid-c -->
+                    </div>
+                    <div id="two">
+                        <div class="ui-grid-d">
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
+                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+                        </div><!-- /grid-c -->
+                    </div>
+                </div>
+
+
+
+
+                <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
+                    <li>
+                        <a href="#">
+                            <img src="./_assets/img/album-hc.jpg">
+                            <h2>Warning</h2>
+                            <p>Hot Chip</p>
+                        </a>
+                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./_assets/img/album-p.jpg">
+                            <h2>Wolfgang Amadeus Phoenix</h2>
+                            <p>Phoenix</p>
+                        </a>
+                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                    </li>
+                </ul>
+                <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                        <h3>Purchase Album?</h3>
+                    <p>Your download will begin immediately on your mobile device when you purchase.</p>
+                        <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy: $10.99</a>
+                        <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+                </div>
+
+                <!-- /content -->
+
+                <div data-role="footer">
+                    <h4>Footer content</h4>
+                </div><!-- /footer -->
+
+            </div><!-- /page -->
+
+        </div>
+    </body>
+</html>

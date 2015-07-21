@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 21, 2015, 11:27:42 PM
+    Author     : Thanh Duoc
+*/
+
+.content-wap{
+    max-width: 640px;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+#title-wap{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 1em;
+    margin-top: 1em;
+}
+div.ui-header ul li.ui-block-a{
+    width: 38%;
+}
+div.ui-header ul li.ui-block-b{
+    width: 60%;
+}
