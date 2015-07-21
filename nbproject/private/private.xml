@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/core/MY_Model.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/controllers/admincp/admin_game.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/models/m_backend.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/views/admincp/introapp/index.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/public/admin/assets/js/backend/backend.game.category.js</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/public/admin/assets/js/backend/backend.game.input.js</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/controllers/admincp/admin_ajax.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/config/database.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/config/routes.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/controllers/admincp/category.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/views/admincp/category/list_category.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/application/controllers/admincp/album.php</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/public/admin/assets/js/backend/backend.category.js</file>
+            <file>file:/D:/xampp/htdocs/wap_tao/public/admin/assets/js/backend/backend.game.js</file>
+        </group>
+    </open-files>
+</project-private>
