@@ -16,15 +16,15 @@
         <div class="content-wap">
             <div>
 
-                <div data-role="header">
+                <div data-role="header" id="header">
                     <div data-role="navbar">
                         <ul>
                             <li>
-                                <h1 id="title-wap">Game Mobile</h1>
+                                <h1 id="title-wap"><img src="./image/logo.png"/></h1>
                             </li>
                             <li>
-                                <form class="ui-filterable">
-                                    <input id="autocomplete-input" data-type="search" placeholder="Search cars...">
+                                <form class="ui-filterable" id="form-search">
+                                    <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
                                 </form>
 <!--                                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
                                     <li><a href="#">Acura</a></li>
@@ -36,29 +36,42 @@
 
                 </div><!-- /header -->
                 <div data-role="tabs" id="tabs">
-                    <div data-role="navbar">
+                    <div data-role="navbar" id="menu-wap">
                         <ul>
-                            <li><a href="#one" data-ajax="false">Game</a></li>
-                            <li><a href="#two" data-ajax="false">App</a></li>
-                            <li><a href="ajax-content-ignore.html" data-ajax="false">Video</a></li>
-                            <li><a href="ajax-content-ignore.html" data-ajax="false">News</a></li>
+                            <li><a href="#one" data-ajax="false" class="ui-btn-active"> 
+                                    <img src="image/ico_game_up.png" />
+                                    Game
+                                </a>
+                            </li>
+                            <li><a href="#two" data-ajax="false">
+                                    <img src="image/ico_app_up.png" />
+                                    App
+                                </a></li>
+                            <li><a href="ajax-content-ignore.html" data-ajax="false">
+                                    <img src="image/ico_video_up.png" />
+                                    Video
+                                </a></li>
+                            <li><a href="ajax-content-ignore.html" data-ajax="false">
+                                    <img src="image/ico_news_up.png" />
+                                    News
+                                </a></li>
                         </ul>
                     </div>
                     <div id="one">
                         <div class="ui-grid-d">
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
-                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
-                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
-                            <div class="ui-block-d"><div class="ui-bar ui-bar-a" style="height:60px">Block D</div></div>
-                            <div class="ui-block-e"><div class="ui-bar ui-bar-a" style="height:60px">Block E</div></div>
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Block A</div></div>
+                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="height-menu-child">Block B</div></div>
+                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="height-menu-child">Block C</div></div>
+                            <div class="ui-block-d"><div class="ui-bar ui-bar-a" id="height-menu-child">Block D</div></div>
+                            <div class="ui-block-e"><div class="ui-bar ui-bar-a" id="height-menu-child">Block E</div></div>
 
                         </div><!-- /grid-c -->
                     </div>
                     <div id="two">
                         <div class="ui-grid-d">
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
-                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
-                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Block A</div></div>
+                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="height-menu-child">Block B</div></div>
+                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="height-menu-child">Block C</div></div>
                         </div><!-- /grid-c -->
                     </div>
                 </div>
