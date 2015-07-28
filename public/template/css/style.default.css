@@ -87,5 +87,59 @@ div#header {
 }
 .ui-btn-active img{
     background-image: url('../image/ico_app_down.png');
-    
+
+}
+#menu-wap .image-menu{
+    text-align: center;
+    margin: auto;
+    display: inline-table;
+    position: relative;
+    top: 2px;
+}
+#menu-wap .menu-game{
+    background-image: url('../image/ico_game_up.png');
+    width: 22px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-game{
+    background-image: url('../image/ico_game_down.png');
+    width: 22px;
+    height: 14px;
+}
+#menu-wap .menu-app{
+    background-image: url('../image/ico_app_up.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-app{
+    background-image: url('../image/ico_app_down.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .menu-video{
+    background-image: url('../image/ico_video_up.png');
+    width: 16px;
+    height: 16px;
+}
+#menu-wap .ui-btn-active .menu-video{
+    background-image: url('../image/ico_video_down.png');
+    width: 16px;
+    height: 16px;
+}
+#menu-wap .menu-news{
+    background-image: url('../image/ico_news_up.png');
+    width: 16px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-news{
+    background-image: url('../image/ico_news_down.png');
+    width: 16px;
+    height: 14px;
+}
+#tabs .ui-bar-a{
+    border: 0px;
+}
+#tabs #height-menu-child{
+    color: #9a9a9a;
+    font-weight: normal;
 }

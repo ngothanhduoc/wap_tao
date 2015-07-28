@@ -7,9 +7,30 @@
         <title>Multi-page template</title>
         <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" href="./css/style.default.css" type="text/css" />
+        <link rel="stylesheet" href="./owl-carousel/owl.carousel.css" type="text/css" />
+        <link rel="stylesheet" href="./owl-carousel/owl.theme.css" type="text/css" />
+        <link rel="stylesheet" href="./owl-carousel/owl.transitions.css" type="text/css" />
         <!--<link rel="shortcut icon" href="../favicon.ico">-->
         <script src="./js/jquery.js"></script>
         <script src="./js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="./owl-carousel/owl.carousel.min.js"></script>
+
+        <!--Start of Zopim Live Chat Script-->
+        <script>
+            $(document).ready(function() {
+
+                var owl = $("#slide-game-menu");
+
+                owl.owlCarousel({
+                    singleItem: true,
+                    // Responsive 
+                    responsive: true,
+                    responsiveRefreshRate: 200,
+                    responsiveBaseWidth: window,
+                });
+
+            });
+        </script>
     </head>
 
     <body>
@@ -26,9 +47,9 @@
                                 <form class="ui-filterable" id="form-search">
                                     <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
                                 </form>
-<!--                                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
-                                    <li><a href="#">Acura</a></li>
-                                </ul>-->
+                                <!--                                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
+                                                                    <li><a href="#">Acura</a></li>
+                                                                </ul>-->
                             </li>
                         </ul>
                     </div><!-- /navbar -->
@@ -39,39 +60,39 @@
                     <div data-role="navbar" id="menu-wap">
                         <ul>
                             <li><a href="#one" data-ajax="false" class="ui-btn-active"> 
-                                    <img src="image/ico_game_up.png" />
+                                    <div class="image-menu menu-game"></div>
                                     Game
                                 </a>
                             </li>
                             <li><a href="#two" data-ajax="false">
-                                    <img src="image/ico_app_up.png" />
+                                    <div class="image-menu menu-app"></div>
                                     App
                                 </a></li>
                             <li><a href="ajax-content-ignore.html" data-ajax="false">
-                                    <img src="image/ico_video_up.png" />
+                                    <div class="image-menu menu-video"></div>
                                     Video
                                 </a></li>
                             <li><a href="ajax-content-ignore.html" data-ajax="false">
-                                    <img src="image/ico_news_up.png" />
+                                    <div class="image-menu menu-news"></div>
                                     News
                                 </a></li>
                         </ul>
                     </div>
                     <div id="one">
-                        <div class="ui-grid-d">
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Block A</div></div>
-                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="height-menu-child">Block B</div></div>
-                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="height-menu-child">Block C</div></div>
-                            <div class="ui-block-d"><div class="ui-bar ui-bar-a" id="height-menu-child">Block D</div></div>
-                            <div class="ui-block-e"><div class="ui-bar ui-bar-a" id="height-menu-child">Block E</div></div>
+                        <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Nhập Vai</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Khác</div></div>
 
                         </div><!-- /grid-c -->
                     </div>
                     <div id="two">
                         <div class="ui-grid-d">
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Block A</div></div>
-                            <div class="ui-block-b"><div class="ui-bar ui-bar-a" id="height-menu-child">Block B</div></div>
-                            <div class="ui-block-c"><div class="ui-bar ui-bar-a" id="height-menu-child">Block C</div></div>
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Hệ Thống</div></div>
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Âm Nhạc</div></div>
+                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Văn Phòng</div></div>
                         </div><!-- /grid-c -->
                     </div>
                 </div>
