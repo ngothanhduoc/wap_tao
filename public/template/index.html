@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Multi-page template</title>
         <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
-        <link rel="stylesheet" href="./css/style.default.css" type="text/css" />
+        <!--<link rel="stylesheet" href="./css/style.default.css" type="text/css" />-->
         <link rel="stylesheet" href="./owl-carousel/owl.carousel.css" type="text/css" />
         <link rel="stylesheet" href="./owl-carousel/owl.theme.css" type="text/css" />
         <link rel="stylesheet" href="./owl-carousel/owl.transitions.css" type="text/css" />
+        <link rel="stylesheet" href="./css/style.default.css" type="text/css" />
         <!--<link rel="shortcut icon" href="../favicon.ico">-->
         <script src="./js/jquery.js"></script>
         <script src="./js/jquery.mobile-1.4.5.min.js"></script>
@@ -17,18 +18,21 @@
 
         <!--Start of Zopim Live Chat Script-->
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
 
                 var owl = $("#slide-game-menu");
-
                 owl.owlCarousel({
-                    singleItem: true,
-                    // Responsive 
-                    responsive: true,
-                    responsiveRefreshRate: 200,
-                    responsiveBaseWidth: window,
+                    pagination: false,
                 });
 
+                var owl_app = $("#slide-app-menu");
+                owl_app.owlCarousel({
+                    pagination: false,
+                });
+                var owl_app = $("#game-fav");
+                owl_app.owlCarousel({
+                    pagination: false,
+                });
             });
         </script>
     </head>
@@ -80,7 +84,8 @@
                     </div>
                     <div id="one">
                         <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
-                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></div>
+
+                            <div class="ui-block-a item active-item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></div>
                             <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Nhập Vai</div></div>
                             <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
                             <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
@@ -89,35 +94,213 @@
                         </div><!-- /grid-c -->
                     </div>
                     <div id="two">
-                        <div class="ui-grid-d">
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Hệ Thống</div></div>
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Âm Nhạc</div></div>
-                            <div class="ui-block-a"><div class="ui-bar ui-bar-a" id="height-menu-child">Văn Phòng</div></div>
+                        <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Hệ Thống</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Âm Nhạc</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Văn Phòng</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
+                            <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Khác</div></div>
                         </div><!-- /grid-c -->
                     </div>
                 </div>
 
 
+                <div class="content name-block">
+                    <span>GAME YÊU THÍCH</span>
+                </div>
+                <div class="ui-grid-d owl-carousel owl-theme" id="game-fav">
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/1.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official ac as duoc</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
 
+                    </div>
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/4.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
 
-                <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
-                    <li>
-                        <a href="#">
-                            <img src="./_assets/img/album-hc.jpg">
-                            <h2>Warning</h2>
-                            <p>Hot Chip</p>
-                        </a>
-                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="./_assets/img/album-p.jpg">
-                            <h2>Wolfgang Amadeus Phoenix</h2>
-                            <p>Phoenix</p>
-                        </a>
-                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/5.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
+
+                    </div>
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/2.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
+
+                    </div>
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/3.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
+
+                    </div>
+                    <div class="ui-block-a item">
+                        <div class="ui-bar ui-bar-a" id="block-game-item">
+                            <img src="./image/4.jpg" />
+                            <span class="name-game-item">Iron Man 3 - The Official</span>
+                            <span class="des-game-item">Get ready to soil </span>
+                        </div>
+
+                    </div>
+                    
+                </div><!-- /grid-c -->
+                <div class="content view-orther-block">
+                    <span>XEM THÊM</span>
+                </div>
+                <!------------------------------------------------------------->
+
+                <div class="content name-block">
+                    <span>GAME MỚI</span>
+                </div>
+                <div class="content">
+                    <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
+                        <li>
+                            <a href="#">
+                                <img src="./image/4.jpg">
+                                <h2>Iron Man 3 - The Official</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/3.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/1.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/5.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content view-orther-block">
+                    <span>XEM THÊM</span>
+                </div>
+                <!------------------------------------------------------------->
+
+                <div class="content name-block">
+                    <span>APP</span>
+                </div>
+                <div class="content">
+                    <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
+                        <li>
+                            <a href="#">
+                                <img src="./image/4.jpg">
+                                <h2>Iron Man 3 - The Official</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/3.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/1.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/5.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                <p id="info-game">50 tải | 350kb</p>
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content view-orther-block">
+                    <span>XEM THÊM</span>
+                </div>
+                <!------------------------------------------------------------->
+
+                <div class="content name-block">
+                    <span>TIN TỨC</span>
+                </div>
+                <div class="content">
+                    <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-news-video">
+                        <li>
+                            <a href="#">
+                                <img src="./image/6.jpg">
+                                <h2>Iron Man 3 - The Official</h2>
+                                
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./image/7.jpg">
+                                <h2>Wolfgang Amadeus Phoenix</h2>
+                                
+                                <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
+                            </a>
+                            <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="content view-orther-block">
+                    <span>XEM THÊM</span>
+                </div>
+                <!------------------------------------------------------------->
+
+                <div class="content name-block">
+                    <span>VIDEO</span>
+                </div>
+
+                <div class="content view-orther-block">
+                    <span>XEM THÊM</span>
+                </div>
+                <!------------------------------------------------------------->
+                
                 <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
                         <h3>Purchase Album?</h3>
                     <p>Your download will begin immediately on your mobile device when you purchase.</p>

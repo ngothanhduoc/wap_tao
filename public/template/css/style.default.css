@@ -13,6 +13,8 @@ and open the template in the editor.
     height: 100%;
     margin: auto;
     overflow: hidden;
+    background-color: #fff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
 }
 #title-wap{
     text-align: left;
@@ -118,13 +120,13 @@ div#header {
 }
 #menu-wap .menu-video{
     background-image: url('../image/ico_video_up.png');
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 #menu-wap .ui-btn-active .menu-video{
     background-image: url('../image/ico_video_down.png');
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 #menu-wap .menu-news{
     background-image: url('../image/ico_news_up.png');
@@ -142,4 +144,113 @@ div#header {
 #tabs #height-menu-child{
     color: #9a9a9a;
     font-weight: normal;
+}
+.owl-item{
+    width: auto !important;
+    cursor: pointer;
+}
+.active-item{
+    border-bottom: 2px solid #098cd6;
+}
+.owl-item .ui-block-a:hover{
+    border-bottom: 2px solid #098cd6;
+}
+.name-block{
+    height: 45px;
+    margin-left: 10px;
+    line-height: 60px;
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 5px;
+    color: #646464;
+}
+.view-orther-block{
+    height: 20px;
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 5px;
+    color: #646464;
+    text-align: center;
+}
+.view-orther-block span{
+    position: relative;
+    display: block;
+    height: 10px;
+    width: 160px;
+    text-align: center;
+    top: 11px;
+    margin: auto;
+    background-color: #fff;
+    cursor: pointer;
+}
+#block-game-item{
+    width: 140px;
+    text-align: center;
+    padding: .4em 0em;
+}
+#block-game-item .name-game-item{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-transform: uppercase;
+    color: #494949;
+    font-weight: normal;
+}
+#block-game-item .des-game-item{
+    font-weight: normal;
+    color: #646464;
+}
+#block-game-item img{
+    width: 70%;
+    border-radius: 20px;
+}
+.list-view{
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: none;
+    border: 0px;
+    margin-top: 15px;
+}
+.list-view li a, .list-view li a img{
+    border: 0px !important;
+    background-color: #fff !important;
+}
+.list-view li a p#descript-game{
+    color: #646464;
+    font-size: .80em;
+}
+.list-view li a h2{
+    margin-top: -10px;
+    text-transform: uppercase;
+    color: #494949;
+
+}
+.list-view li a img{
+    border-radius: 16px;
+}
+.list-view li{
+    margin-top: 15px;
+}
+.list-view.ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
+    min-height: 4.625em;
+    padding-left: 7.25em;
+}
+.list-view.ui-listview .ui-li-has-thumb>img:first-child, .ui-listview .ui-li-has-thumb>.ui-btn>img:first-child, .ui-listview .ui-li-has-thumb .ui-li-thumb{
+    max-height: 6em;
+    max-width: 6em;
+}
+.list-view.ui-listview>li p {
+    white-space: normal;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+}
+.list-view .ui-icon-gear:after{
+    background-image: url(../image/ico_down.png);
+    background-color: #FFF;
+}
+.list-view #info-game{
+    color: #c9c9c9;
+}
+.list-view-news-video .ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
+    min-height: 4.625em;
+    padding-left: 7.25em;
 }
