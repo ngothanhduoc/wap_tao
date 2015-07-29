@@ -7,7 +7,14 @@ and open the template in the editor.
     Created on : Jul 21, 2015, 11:27:42 PM
     Author     : Thanh Duoc
 */
-
+a{
+    text-decoration: none;
+    box-shadow: none !important;
+}
+ul{
+    list-style: none;
+    text-decoration: none;
+}
 .content-wap{
     max-width: 640px;
     height: 100%;
@@ -22,6 +29,18 @@ and open the template in the editor.
     font-size: 1em;
     margin-top: 1em;
 }
+.list-app ul{
+    top: 5px;
+}
+.list-app ul li a{
+    padding: 0;
+}
+#header ul li a{
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    border: 0px;
+}
 div.ui-header ul li.ui-block-a{
     width: 38%;
 }
@@ -34,6 +53,7 @@ div.ui-header ul li.ui-block-b{
 }
 div#header {
     background-color: #098cd6;
+    height: 60px;
 }
 #title-wap img{
     width: 90%;
@@ -152,7 +172,7 @@ div#header {
 .active-item{
     border-bottom: 2px solid #098cd6;
 }
-.owl-item .ui-block-a:hover{
+#slide-game-menu .ui-block-a:hover{
     border-bottom: 2px solid #098cd6;
 }
 .name-block{
@@ -180,6 +200,8 @@ div#header {
     margin: auto;
     background-color: #fff;
     cursor: pointer;
+    color: #646464;
+
 }
 #block-game-item{
     width: 140px;
@@ -300,4 +322,126 @@ div#header {
     height: 0px;
     background: #252626;
     border-bottom: 1px solid #252626;
+}
+.list-app ul li.ui-block-a h1{
+    color: #fff;
+    font-weight: normal;
+    font-size: 22px;
+    position: relative;
+    width: auto;
+    float: left;
+    margin: 0;
+}
+.list-app ul li.ui-block-a img{
+    float: left;
+    position: relative;
+    top: 6px;
+}
+.list-app ul li.ui-block-a img, .list-app ul li.ui-block-a h1{
+    margin-left: 10px;
+    margin-top: 11px;
+}
+.list-app #form-search div:first-child{
+    margin-top: -7px;
+}
+li.header-game a.ui-btn img{
+    max-width: 100% !important;
+    max-height: 100% !important;;
+}
+.detail-app-games .list-view h2{
+    position: relative;
+    margin:0;
+    /*    text-overflow: ellipsis;
+        overflow: hidden;*/
+    white-space: initial;
+    top: -13px;
+    font-size: 20px;
+}
+.detail-app-games .list-view p{
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: -10px;
+}
+.detail-app-games .list-view a{
+    margin: 0;
+    display: block;
+    position: relative;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 10.25em !important;
+    min-height: 125px !important;
+}
+.header-game{
+    height: 145px;
+    top: 10px;
+}
+.header-game a div{
+    background-color: #f95e00 !important;
+    border: 0;
+    color: #fff !important;
+    font-weight: normal;
+    width: 30%;
+    float: right;
+    border-radius: 8.3125em !important;
+    padding: 1em 1em !important;
+}
+.header-game a div input{
+    color: #fff;
+}
+li.slide-game.ui-li-static.ui-body-inherit.ui-last-child {
+    border: 0;
+    margin: 0px;
+    padding-left: 0;
+}
+li.slide-game.ui-li-static.ui-body-inherit.ui-last-child .owl-item{
+    width:  200px;
+}
+#block-game-item-slide img{
+    border-radius: 0px;
+    width: 100%;
+}
+#block-game-item-slide{
+    width: 200px;
+}
+li.slide-game .owl-item{
+    width: 200px !important;
+}
+li.slide-game .owl-item a{
+    padding-left: 0px !important;
+}
+.header-game-content{
+    text-align: justify;
+    line-height: 22px;
+    padding-top: 25px !important;
+    border-bottom: 0px !important;
+}
+.slide-game{
+    margin-top: 20px !important;
+}
+li.header-game-content.ui-li-static, .slide-game.ui-li-static, .comment-game.ui-li-static{
+    padding: .7em 0em;
+}
+.comment-game{
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.comment-game li a{
+    background-color: #fff !important;
+}
+.comment-game li a img{
+    border-radius: 50% !important;
+    top: 15px !important;
+}
+.comment-game li a #date-comment{
+    color: #cdcdcd;
+}
+.comment-game li a #content-comment{
+    color: #646464;
+    font-size: 15px;
+    white-space: initial;
 }
