@@ -1,0 +1,459 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 21, 2015, 11:27:42 PM
+    Author     : Thanh Duoc
+*/
+a{
+    text-decoration: none;
+    box-shadow: none !important;
+}
+ul{
+    list-style: none;
+    text-decoration: none;
+}
+
+.content-wap{
+    max-width: 640px;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #fff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+}
+a.logo-wap{
+    padding: 0;
+}
+#title-wap{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 1em;
+    margin-top: 1em;
+}
+.list-app ul li a{
+    padding: 0;
+}
+.list-app ul{
+    top: 5px;
+}
+.list-app ul li a{
+    padding: 0;
+}
+#header ul li a{
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    border: 0px;
+    padding: 0;
+}
+div.ui-header ul li.ui-block-a{
+    width: 38%;
+}
+div.ui-header ul li.ui-block-b{
+    width: 60%;
+}
+#menu-wap .ui-btn{
+    color: #9a9a9a;
+    padding: 1.2em 1em;
+}
+div#header {
+    background-color: #098cd6;
+    height: 60px;
+}
+#title-wap img{
+    width: 90%;
+}
+#form-search{
+    margin-top: 14px;
+}
+#form-search div:first-child{
+    border-radius: 20px;
+    border: none;
+}
+#form-search div.ui-input-search:after{
+    right: .3125em;
+    left: auto;
+    width: 30px;
+}
+#form-search a{
+    display: none;
+}
+#menu-wap .ui-btn-active{
+    background-color: #FFF;
+    border-color: #FFF;
+    color: #098CD6;
+    text-shadow: none;
+}
+#menu-wap .ui-btn:focus{
+    box-shadow: 0px 0px #FFF;
+}
+.ui-tabs{
+    padding: 0px;
+}
+.ui-navbar li .ui-btn{
+    border-top: 0;
+    border-bottom: 0;
+    border-bottom-width: 0px;
+}
+.ui-bar-a{
+    background-color: #FFFFFF;
+    border-color: #FFF;
+}
+#height-menu-child{
+    height: 34px;
+    text-align: left;
+    line-height: 38px;
+    color: #098CD6;
+    text-shadow: 0 0 #fff;
+}
+.ui-grid-d>.ui-block-a, .ui-grid-d>.ui-block-b, .ui-grid-d>.ui-block-c, .ui-grid-d>.ui-block-d, .ui-grid-d>.ui-block-e{
+    width: auto;
+}
+.ui-block-a:hover, .ui-block-b:hover, .ui-block-c:hover, .ui-block-d:hover, .ui-block-e:hover{
+    border-bottom: 2px #098cd6;
+}
+.ui-btn-active img{
+    background-image: url('../image/ico_app_down.png');
+
+}
+#menu-wap .image-menu{
+    text-align: center;
+    margin: auto;
+    display: inline-table;
+    position: relative;
+    top: 2px;
+}
+#menu-wap .menu-game{
+    background-image: url('../image/ico_game_up.png');
+    width: 22px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-game{
+    background-image: url('../image/ico_game_down.png');
+    width: 22px;
+    height: 14px;
+}
+#menu-wap .menu-app{
+    background-image: url('../image/ico_app_up.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-app{
+    background-image: url('../image/ico_app_down.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .menu-video{
+    background-image: url('../image/ico_video_up.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-video{
+    background-image: url('../image/ico_video_down.png');
+    width: 14px;
+    height: 14px;
+}
+#menu-wap .menu-news{
+    background-image: url('../image/ico_news_up.png');
+    width: 16px;
+    height: 14px;
+}
+#menu-wap .ui-btn-active .menu-news{
+    background-image: url('../image/ico_news_down.png');
+    width: 16px;
+    height: 14px;
+}
+#tabs .ui-bar-a{
+    border: 0px;
+}
+#tabs #height-menu-child{
+    color: #9a9a9a;
+    font-weight: normal;
+}
+.owl-item{
+    width: auto !important;
+    cursor: pointer;
+}
+.active-item{
+    border-bottom: 2px solid #098cd6;
+}
+#slide-game-menu .ui-block-a:hover{
+    border-bottom: 2px solid #098cd6;
+}
+.name-block{
+    height: 45px;
+    margin-left: 10px;
+    line-height: 60px;
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 5px;
+    color: #646464;
+}
+.view-orther-block{
+    height: 20px;
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 5px;
+    color: #646464;
+    text-align: center;
+}
+.view-orther-block span{
+    position: relative;
+    display: block;
+    height: 10px;
+    width: 160px;
+    text-align: center;
+    top: 11px;
+    margin: auto;
+    background-color: #fff;
+    cursor: pointer;
+    color: #646464;
+    font-weight: normal;
+}
+#block-game-item{
+    width: 140px;
+    text-align: center;
+    padding: .4em 0em;
+}
+#block-game-item .name-game-item{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-transform: uppercase;
+    color: #494949;
+    font-weight: normal;
+}
+#block-game-item .des-game-item{
+    font-weight: normal;
+    color: #646464;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+#block-game-item img{
+    width: 70%;
+    border-radius: 20px;
+}
+.list-view{
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: none;
+    border: 0px;
+    margin-top: 15px;
+}
+.list-view li a, .list-view li a img{
+    border: 0px !important;
+    background-color: #fff !important;
+}
+.list-view li a p#descript-game{
+    color: #848484;
+    font-size: .80em;
+}
+.list-view li a h2{
+    margin-top: -10px;
+    text-transform: uppercase;
+    color: #494949;
+    font-weight: normal;
+}
+.list-view li a img{
+    border-radius: 16px;
+}
+
+.list-view li{
+    margin-top: 15px;
+}
+.list-view.ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
+    min-height: 4.625em;
+    padding-left: 7.25em;
+}
+
+.list-view.ui-listview .ui-li-has-thumb>img:first-child, .ui-listview .ui-li-has-thumb>.ui-btn>img:first-child, .ui-listview .ui-li-has-thumb .ui-li-thumb{
+    max-height: 6em;
+    max-width: 6em;
+}
+.list-view.ui-listview>li p {
+    white-space: normal;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+}
+.list-view .ui-icon-gear:after{
+    background-image: url(../image/ico_down.png);
+    background-color: #FFF;
+}
+.list-view #info-game{
+    color: #c9c9c9;
+}
+.list-view-news-video .ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
+    min-height: 4.625em;
+    padding-left: 7.25em;
+}
+.list-view-news-video li a img{
+    max-width: 140px !important;
+    border-radius: 0 !important;
+}
+.list-view-news-video.ui-listview>li.ui-first-child, .ui-listview>li.ui-first-child>a.ui-btn{
+    border-top-left-radius: initial !important;
+}
+.list-view-news-video>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
+    min-height: 4.625em;
+    padding-left: 9.25em !important;
+    padding-right: 0;
+}
+.list-view-news-video .ui-icon-carat-r:after{
+    background: none;
+    display: none;
+}
+#footer{
+    margin-top: 30px;
+    background-color: #1c1f21;
+}
+#footer ul{
+    margin-left: -28px;
+    list-style: none;
+    color: #7b8083;
+    line-height: 30px;
+}
+#footer ul li a{
+    color: #7b8083;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: normal;
+}
+#footer ul li a img{
+    position: relative;
+    top: -2px;
+    margin-right: 5px;
+}
+#footer ul li a:hover{
+    color: #fff;
+}
+#footer .view-orther-block{
+    height: 0px;
+    background: #252626;
+    border-bottom: 1px solid #252626;
+}
+.list-app ul li.ui-block-a h1{
+    color: #fff;
+    font-weight: normal;
+    font-size: 22px;
+    position: relative;
+    width: auto;
+    float: left;
+    margin: 0;
+}
+.list-app ul li.ui-block-a img{
+    float: left;
+    position: relative;
+    top: 6px;
+}
+.list-app ul li.ui-block-a img, .list-app ul li.ui-block-a h1{
+    margin-left: 10px;
+    margin-top: 11px;
+}
+.list-app #form-search div:first-child{
+    margin-top: -7px;
+}
+li.header-game a.ui-btn img{
+    max-width: 100% !important;
+    max-height: 100% !important;;
+}
+.detail-app-games .list-view h2{
+    position: relative;
+    margin:0;
+    /*    text-overflow: ellipsis;
+        overflow: hidden;*/
+    white-space: initial;
+    top: -13px;
+    font-size: 20px;
+}
+.detail-app-games .list-view p{
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: -10px;
+}
+.detail-app-games .list-view a{
+    margin: 0;
+    display: block;
+    position: relative;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 10.25em !important;
+    min-height: 125px !important;
+}
+.header-game{
+    height: 145px;
+    top: 10px;
+}
+.header-game a div{
+    background-color: #f95e00 !important;
+    border: 0;
+    color: #fff !important;
+    font-weight: normal;
+    width: 30%;
+    float: right;
+    border-radius: 8.3125em !important;
+    padding: 1em 1em !important;
+}
+.header-game a div input{
+    color: #fff;
+}
+li.slide-game.ui-li-static.ui-body-inherit.ui-last-child {
+    border: 0;
+    margin: 0px;
+    padding-left: 0;
+}
+li.slide-game.ui-li-static.ui-body-inherit.ui-last-child .owl-item{
+    width:  200px;
+}
+#block-game-item-slide img{
+    border-radius: 0px;
+    width: 100%;
+}
+#block-game-item-slide{
+    width: 200px;
+}
+li.slide-game .owl-item{
+    width: 200px !important;
+}
+li.slide-game .owl-item a{
+    padding-left: 0px !important;
+}
+.header-game-content{
+    text-align: justify;
+    line-height: 22px;
+    padding-top: 25px !important;
+    border-bottom: 0px !important;
+}
+.slide-game{
+    margin-top: 20px !important;
+}
+li.header-game-content.ui-li-static, .slide-game.ui-li-static, .comment-game.ui-li-static{
+    padding: .7em 0em;
+}
+.comment-game{
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.comment-game li a{
+    background-color: #fff !important;
+}
+.comment-game li a img{
+    border-radius: 50% !important;
+    top: 15px !important;
+}
+.comment-game li a #date-comment{
+    color: #cdcdcd;
+}
+.comment-game li a #content-comment{
+    color: #646464;
+    font-size: 15px;
+    white-space: initial;
+}

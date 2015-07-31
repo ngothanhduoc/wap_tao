@@ -42,12 +42,24 @@ if (!defined('BASEPATH'))
  */
 
 //$route['default_controller'] = "website/home/index";
-$route['default_controller'] = "admincp/login/index";
+$route['default_controller'] = "home/index";
 $route['404_override'] = '';
 /*----------- Create SiteMap ------------ */
 //$route['ajax/auto_create_sitemap_news'] = "website/home/auto_create_sitemap_news";
 //$route['ajax/auto_create_sitemap_tag'] = "website/home/auto_create_sitemap_tag";
 /* --------End frontend------- */
+$route['danh-sach-game.html'] = "home/game";
+$route['game/(:any)'] = "home/game_detail/$1";
+$route['game/danh-muc/(:any)'] = "home/game_cate/$1";
+$route['ung-dung.html'] = "home/app";
+$route['ung-dung/(:any)'] = "home/app_detail/$1";
+$route['ung-dung/danh-sach/(:any)'] = "home/app_cate/$1";
+$route['videos.html'] = "home/video";
+$route['tin-tuc.html'] = "home/news";
+$route['videos/(:any)'] = "home/video/$1";
+$route['tin-tuc/(:any)'] = "home/video/$1";
+
+
 /* --------route admincp------------------------------ */
 $route['admincp'] = "admincp/login/index";
 $route['backend/welcome'] = "welcome";

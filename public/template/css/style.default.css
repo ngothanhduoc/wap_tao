@@ -15,6 +15,7 @@ ul{
     list-style: none;
     text-decoration: none;
 }
+
 .content-wap{
     max-width: 640px;
     height: 100%;
@@ -22,6 +23,9 @@ ul{
     overflow: hidden;
     background-color: #fff;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+}
+a.logo-wap{
+    padding: 0;
 }
 #title-wap{
     text-align: left;

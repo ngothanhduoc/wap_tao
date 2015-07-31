@@ -17,28 +17,26 @@
         <script src="./owl-carousel/owl.carousel.min.js"></script>
 
         <!--Start of Zopim Live Chat Script-->
-        <script>
-            $(document).ready(function () {
-
-                var owl = $("#slide-game-detail");
-                owl.owlCarousel({
-                    pagination: false,
-                });
-
-
-            });
-        </script>
+        
     </head>
 
     <body>
         <div class="content-wap">
+            <script>
+            $(document).ready(function () {
+                var owl = $("#slide-game-detail");
+                owl.owlCarousel({
+                    pagination: false,
+                });
+            });
+        </script>
             <div>
 
                 <div data-role="header" id="header" class="list-app">
                     <div data-role="navbar">
                         <ul>
                             <li>
-                                <a href="./">
+                                <a href="./"  data-direction="reverse">
                                     <img src="./image/ico_back.png"/>
                                     <h1>Detail</h1>
                                 </a>
