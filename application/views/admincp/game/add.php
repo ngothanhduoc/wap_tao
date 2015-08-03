@@ -115,15 +115,15 @@ if (empty($slide_image) === FALSE) {
     $arrSlide = array();
 }
 $package_name = @$data['package_name'];
-if(empty($package_name) === FALSE){
+if (empty($package_name) === FALSE) {
     $arrPackage = json_decode($package_name, true);
-}else{
+} else {
     $arrPackage = array();
 }
 ?>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#jqxDropdownlist').on('checkChange', function(event) {
+    $(document).ready(function () {
+        $('#jqxDropdownlist').on('checkChange', function (event) {
             if (event.args) {
                 var item = event.args.item;
                 if (item) {
@@ -143,7 +143,7 @@ if(empty($package_name) === FALSE){
                             $('#temp-download').find('input[type="text"]').attr('id', '');
                             $('#temp-download').find('span').attr('id', '');
                             $('#temp-download').find('span').html('');
-                            
+
                             //package
                             $('#temp-package').find('input[type="text"]').attr('name', 'package_name[' + item.label + ']');
                             $('#temp-package').find('input[type="text"]').attr('id', item.label + '_package');
@@ -158,22 +158,49 @@ if(empty($package_name) === FALSE){
                             $('#temp-package').find('input[type="text"]').attr('name', '');
                             $('#temp-package').find('input[type="text"]').attr('id', '');
                             $('#temp-package').find('span').attr('id', '');
-                            $('#temp-package').find('span').html('');
+//                            $('#temp-package').find('div').attr('id', '');
+//                            $('#temp-package').find('div').html('');
                         }
+                        
                     } else {
                         if ($('#' + item.value).length > 0) {
                             $('#' + item.value).remove();
+                            $('#label-' + item.value).next().remove();
                             $('#label-' + item.value).remove();
                             
                             //package
                             $('#' + item.value + '_package').remove();
                             $('#label-package-' + item.value).remove();
                         }
-                    }               
+                    }
 
                 }
             }
         });
+        $('.cate_game_app').on('change', function (event) {
+            if (event.args) {
+                var item = event.args.item;
+                $.ajax({
+                    url: '/backend/ajax/get_cat?type=' + item.label,
+                    type: "GET",
+                    processData: false, // Don't process the files
+                    contentType: false,
+                    beforeSend: BACKEND.startLoadingg,
+                    complete: BACKEND.topLoadingg,
+//                    dataType: "json"
+                }).done(function (data) {
+                    $(".content_cate").html(data);
+
+//                var arrPlatform = data.split(',');
+//                for (var i = 0; i < arrPlatform.length; i++) {
+//                    $(".content_cate").jqxDropDownList('checkItem', arrPlatform[i]);
+//                }
+//                console.log(data);
+                });
+            }
+            ;
+        });
+
     });
 </script>
 <div class="pageheader notab" style="border-bottom: none">
@@ -187,7 +214,7 @@ if(empty($package_name) === FALSE){
 <div id="contentwrapper" class="contentwrapper lineheight21">
     <div id="info-game" class="subcontent" style="display: block">
         <form class="stdform stdform2" id="frm-add-game" role="form" action="" method="POST" enctype="multipart/form-data">
-                        
+
             <p style="border-top: #ddd solid 1px; border-bottom: none">
                 <label for="name">Tên <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
@@ -203,8 +230,13 @@ if(empty($package_name) === FALSE){
             <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Loại <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
-                    <div id="jqxDropdownlistType" name="type"></div>
+                    <div id="jqxDropdownlistType" class="cate_game_app" name="type"></div>
                     <div id="type" style="color: #ff0000"></div>
+                </span>
+            </div> 
+            <div style="border: #ddd solid 1px; border-bottom: none">
+                <label>Loại <span style="color:#ff0000">(*)</span></label>
+                <span class="field content_cate">
                 </span>
             </div> 
             <p style="border-top: #ddd solid 1px; border-bottom: none">
@@ -213,7 +245,7 @@ if(empty($package_name) === FALSE){
                     <input type="text" placeholder="" id="size" name="size" class="smallinput" value="<?php echo @$data['size'] ?>">
                 </span>
             </p>
-           <div style="border: #ddd solid 1px; border-bottom: none">
+            <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Platform <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
                     <div id="jqxDropdownlist" name="platform"></div>
@@ -242,12 +274,12 @@ if(empty($package_name) === FALSE){
                     ?>
                 </span>
                 <span id="temp-download" style="display: none">
-                    <input type="text" placeholder="" id="" name="" class="mediuminput" value="" style="margin-bottom: 10px"><span id="">Android</span>
+                    <input type="text" placeholder="" id="link" name=""  class="mediuminput link_download" value="" style="margin-bottom: 10px"><span id="">Android</span> <div onclick="openKCFinderByPath($(this).prev().prev(), 'files');"  id="add" style="color: red; font-weight: bold; cursor: pointer">ADD FILE</div> 
                 </span>
 
             </div>
-            
-            
+
+
             <div style="border: #ddd solid 1px; border-top: none">
                 <label for="code_game">Package name</label>
                 <span class="field" id="field-package">
@@ -274,16 +306,16 @@ if(empty($package_name) === FALSE){
                 </span>
 
             </div>
-            
+
             <p>
                 <label for="count_download">Đặt số Download <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
                     <input type="text" placeholder="" id="count_download" name="count_download" class="smallinput" value="<?php echo @$data['count_download'] ?>">
                 </span>
             </p>
-            
-            
-            
+
+
+
             <p>
                 <label for="icon">Icon <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
@@ -294,47 +326,47 @@ if(empty($package_name) === FALSE){
                 <label for="code_game">Slile Ảnh Game<span style="color:#ff0000">(*)</span></label>
                 <span class="field " id="field-package">
                     <div class="field-slide-image">
-                    <?php
-                    if (empty($arrSlide) === FALSE) {
-                        ?>    
                         <?php
-                        foreach ($arrSlide as $key => $val) {
+                        if (empty($arrSlide) === FALSE) {
+                            ?>    
+                            <?php
+                            foreach ($arrSlide as $key => $val) {
+                                ?>
+                                <input type="text" placeholder="" id="<?php echo $key ?>_slide" name="slide[<?php echo $key ?>]" class="mediuminput" onclick="openKCFinderByPath('#<?php echo $key ?>_slide', 'images')"  value="<?php echo $val ?>" style="margin-bottom: 10px">
+                                <?php
+                            }
                             ?>
-                            <input type="text" placeholder="" id="<?php echo $key ?>_slide" name="slide[<?php echo $key ?>]" class="mediuminput" onclick="openKCFinderByPath('#<?php echo $key ?>_slide', 'images')"  value="<?php echo $val ?>" style="margin-bottom: 10px">
+                            <?php
+                        } else {
+                            ?>    
+                            <input type="text" placeholder="" id="1_slide" name="slide[1]" class="mediuminput input-slide" onclick="openKCFinderByPath('#1_slide', 'images')"  value="" style="margin-bottom: 10px"> 
+
                             <?php
                         }
                         ?>
-                        <?php
-                    } else {
-                        ?>    
-                            <input type="text" placeholder="" id="1_slide" name="slide[1]" class="mediuminput input-slide" onclick="openKCFinderByPath('#1_slide', 'images')"  value="" style="margin-bottom: 10px"> 
-                        
-                        <?php
-                    }
-                    ?>
                     </div>
                     <div class="addslide" style="cursor: pointer">Thêm Hình</div>
-                        <script>
-                            $(function(){
-                                $i = 2;
-                                $(".addslide").click(function(){
-                                    $('.field-slide-image').append('<input type="text" placeholder="" id="'+$i+'_slide" name="slide['+$i+']" class="mediuminput input-slide"  onclick="openKCFinderByPath(\'#'+$i+'_slide\', \'images\')"  value="" style="margin-bottom: 10px"> <span style="cursor: pointer" class="delete-slide"> Xóa </span>   ');
-                                    $i++;
-                                    $('span.delete-slide').click(function(){
-                                        $(this).prev().remove();
-                                        $(this).remove();
-                                    });
-                                })
-                                
+                    <script>
+                        $(function () {
+                            $i = 2;
+                            $(".addslide").click(function () {
+                                $('.field-slide-image').append('<input type="text" placeholder="" id="' + $i + '_slide" name="slide[' + $i + ']" class="mediuminput input-slide"  onclick="openKCFinderByPath(\'#' + $i + '_slide\', \'images\')"  value="" style="margin-bottom: 10px"> <span style="cursor: pointer" class="delete-slide"> Xóa </span>   ');
+                                $i++;
+                                $('span.delete-slide').click(function () {
+                                    $(this).prev().remove();
+                                    $(this).remove();
+                                });
                             })
-                        </script>
+
+                        })
+                    </script>
                 </span>
                 <span id="temp-package" style="display: none">
                     <input type="text" placeholder="" id="" name="" class="mediuminput" value="" style="margin-bottom: 10px"><span id="">Android</span>
                 </span>
 
             </div>
-            
+
             <p>
                 <label for="description">Description</label>
                 <span class="field">
@@ -356,7 +388,7 @@ if(empty($package_name) === FALSE){
             <p>
                 <label for="order">Order</label>
                 <span class="field">
-                    <input type="text" placeholder="" id="order" name="order" class="smallinput" value="<?php echo (int)@$data['order'] ?>">
+                    <input type="text" placeholder="" id="order" name="order" class="smallinput" value="<?php echo (int) @$data['order'] ?>">
                 </span>
             </p>
             <p class="stdformbutton">

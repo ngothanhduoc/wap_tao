@@ -35,6 +35,7 @@ class Admin_Game extends MY_Controller {
         $data = array();     
         //get platform
         $list = $this->m_backend->jqxGets('platform');
+        
         $arrPlatform = array();
         foreach($list as $v){
             $arrPlatform[$v['id_platform']] = trim(str_replace(' ','',$v['alias']));

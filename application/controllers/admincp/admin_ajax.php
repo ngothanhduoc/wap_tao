@@ -1,4 +1,5 @@
 <?php
+
 date_default_timezone_set('Asia/Bangkok');
 //session_start();
 ini_set("display_errors", '1');
@@ -40,8 +41,8 @@ class Admin_Ajax extends MY_Controller {
             //"where" => "where id_game IN (" . $str . ")",
             "order_by" => "ORDER BY id_game_app DESC",
         );
-        
-        
+
+
         $list = $this->m_backend->jqxBinding();
 //        die(json_encode($list));
         foreach ($list['rows'] as $key => $value) {
@@ -51,37 +52,37 @@ class Admin_Ajax extends MY_Controller {
         echo $_GET['callback'] . '(' . json_encode($list) . ');';
         exit();
     }
-    
+
     public function listnews() {
         $this->m_backend->datatables_config = array(
             "table" => 'news_video',
             "where" => "where type= 'news' ",
             "order_by" => "ORDER BY id_news_video DESC",
         );
-        
-        
+
+
         $list = $this->m_backend->jqxBinding();
 //        die(json_encode($list));
-        
+
         echo $_GET['callback'] . '(' . json_encode($list) . ');';
         exit();
     }
+
     public function listvideo() {
         $this->m_backend->datatables_config = array(
             "table" => 'news_video',
             "where" => "where type= 'video' ",
             "order_by" => "ORDER BY id_news_video DESC",
         );
-        
-        
+
+
         $list = $this->m_backend->jqxBinding();
 //        die(json_encode($list));
-        
+
         echo $_GET['callback'] . '(' . json_encode($list) . ');';
         exit();
     }
-    
-    
+
     public function listhistory($table) {
         $arrParam = $this->input->get(NULL, TRUE);
         if ($table == 'history_rotation') {
@@ -216,24 +217,24 @@ class Admin_Ajax extends MY_Controller {
     public function updatestatusgame($ctr, $act, $table = '', $field = '') {
         $response['code'] = -1;
         $response['message'] = 'Dữ liệu không hợp lệ 1';
-        
+
         if ($this->session->userdata['user_info']['name'] != 'admin') {
             $response['message'] = 'Bạn không có quyền sử dụng tính năng này!';
             goto end;
         }
-        
-        
+
+
 
         $ctr = $this->check_security($ctr);
         $act = $this->check_security($act);
         $table = $this->check_security($table);
         $field = $this->check_security($field);
-        
+
         //-- Check user have permission to delete ------------------------------
         if (!isset($_SESSION[$ctr . '::' . $act . '::' . $table])) {
             exit;
         }
-        
+
         $id = (!empty($_GET['id']) ? ($this->input->get('id', TRUE)) : 0);
         $st = (!empty($_GET['st']) ? ($this->input->get('st', TRUE)) : 0);
 
@@ -448,7 +449,7 @@ class Admin_Ajax extends MY_Controller {
         $response['message']['platform'] = '';
         $response['message']['system'] = '';
         $response['message']['id_game'] = 0;
-        
+
         $response['message']['order'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -486,14 +487,14 @@ class Admin_Ajax extends MY_Controller {
                 $Params['download_url'] = json_encode($this->security->xss_clean($arrParam['url_download']));
                 $Params['package_name'] = json_encode($this->security->xss_clean($arrParam['package_name']));
                 $Params['size'] = json_encode($this->security->xss_clean($arrParam['size']));
-                
+
                 $Params['description'] = $this->security->xss_clean($arrParam['description']);
                 $Params['type'] = $this->security->xss_clean($arrParam['type']);
                 $Params['icon'] = $this->security->xss_clean($arrParam['icon']);
                 $Params['slide_image'] = json_encode($this->security->xss_clean($arrParam['slide']));
-                
+
                 $Params['count_download'] = $arrParam['count_download'];
-                
+
                 $Params['order'] = $arrParam['order'];
                 $user_info = $this->session->userdata("user_info");
 
@@ -524,10 +525,10 @@ class Admin_Ajax extends MY_Controller {
                     $Params['status'] = 'active';
                     $Params['create_time'] = date('Y-m-d H:i:s');
                     $Params['create_user'] = $this->session->userdata['user_info']['username'];
-                    
+
                     $id_game = $this->m_backend->jqxInsertId('game_app', $Params);
                     $id_forkey = $id_game;
-                    
+
                     $response['code'] = 0;
                     $response['message']['id_game'] = $id_game;
                 } else {
@@ -794,37 +795,37 @@ class Admin_Ajax extends MY_Controller {
         $this->load->library('form_validation');
         $response['code'] = -1;
         $response['redirect'] = '/backend/category/list_category';
-        
+
         $response['message']['title'] = '';
         $response['message']['type'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arrParam = $this->input->post(NULL, TRUE);
             $Id = $arrParam['id'];
-            
 
 
 
-            
+
+
 
             $this->form_validation->set_rules('title', 'title', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('type', 'type', 'callback_xss_check');
             $this->form_validation->set_message('required', 'Không được rỗng');
             if ($this->form_validation->run() == TRUE) {
 
-                
+
 
                 $Params = array();
                 $Params['title'] = $this->security->xss_clean($arrParam['title']);
                 $Params['type'] = $this->security->xss_clean($arrParam['type']);
-               
+
                 if (empty($Id) === TRUE) {
                     $this->load->library('session');
                     $user_info = $this->session->userdata('user_info');
                     $Params['alias'] = utf8_to_ascii($Params['title']);
                     $Params['create_time'] = date('Y-m-d H:i:s');
-                    
-                    
+
+
                     $this->m_backend->jqxInsert('cate', $Params);
                 } else {
                     $this->m_backend->jqxUpdate('cate', 'id_cate', $Id, $Params);
@@ -1992,8 +1993,6 @@ class Admin_Ajax extends MY_Controller {
         echo json_encode($response);
         exit;
     }
-
-   
 
     public function getgamebypublisher() {
         $arrr = array();
@@ -3654,20 +3653,20 @@ class Admin_Ajax extends MY_Controller {
         echo json_encode($response);
         exit();
     }
-    
+
     public function addnews() {
         $this->load->library('form_validation');
         $response['code'] = -1;
         $response['redirect'] = '/backend/news_video/index_news';
-        
+
         $response['message']['name'] = '';
 //        $response['message']['type'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arrParam = $this->input->post(NULL, TRUE);
-            
+
             $Id = @$arrParam['id'];
-                       
+
 
             $this->form_validation->set_rules('name', 'name', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('image', 'image', 'callback_xss_check|trim|required');
@@ -3682,12 +3681,12 @@ class Admin_Ajax extends MY_Controller {
                 $Params['type'] = 'news';
                 $Params['content'] = $arrParam['content'];
                 $Params['description'] = $this->security->xss_clean($arrParam['description']);
-                
+
                 if (empty($Id) === TRUE) {
                     $this->load->library('session');
                     $user_info = $this->session->userdata('user_info');
                     $Params['create_time'] = date('Y-m-d H:i:s');
-                    
+
                     $this->m_backend->jqxInsert('news_video', $Params);
                 } else {
                     $this->m_backend->jqxUpdate('news_video', 'id_news_video', $Id, $Params);
@@ -3706,19 +3705,20 @@ class Admin_Ajax extends MY_Controller {
         echo json_encode($response);
         exit;
     }
-    public function addvideo() { 
+
+    public function addvideo() {
         $this->load->library('form_validation');
         $response['code'] = -1;
         $response['redirect'] = '/backend/news_video/index_video';
-        
+
         $response['message']['name'] = '';
 //        $response['message']['type'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arrParam = $this->input->post(NULL, TRUE);
-            
+
             $Id = @$arrParam['id'];
-                       
+
 
             $this->form_validation->set_rules('name', 'name', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('image', 'image', 'callback_xss_check|trim|required');
@@ -3734,12 +3734,12 @@ class Admin_Ajax extends MY_Controller {
                 $Params['type'] = 'video';
                 $Params['content'] = $arrParam['content'];
                 $Params['description'] = $this->security->xss_clean($arrParam['description']);
-                
+
                 if (empty($Id) === TRUE) {
                     $this->load->library('session');
                     $user_info = $this->session->userdata('user_info');
                     $Params['create_time'] = date('Y-m-d H:i:s');
-                    
+
                     $this->m_backend->jqxInsert('news_video', $Params);
                 } else {
                     $this->m_backend->jqxUpdate('news_video', 'id_news_video', $Id, $Params);
@@ -3757,6 +3757,20 @@ class Admin_Ajax extends MY_Controller {
         end:
         echo json_encode($response);
         exit;
+    }
+
+    function ajax_get_cat() {
+        $arrParam = $this->input->get(NULL, TRUE);
+        $id = @$arrParam['type'];
+        $data = $this->m_backend->jqxGetId('cate', 'type', strtolower($id));
+        $result = "<select name='cate'>";
+        if(!empty($data))
+            foreach ($data as $key => $value) {
+                $result .= '<option value="'.$value['id_cate'].'">'.$value['title'].'</option>';
+            }
+       $result .= "</option>";
+       echo $result;
+        die();
     }
 
 }

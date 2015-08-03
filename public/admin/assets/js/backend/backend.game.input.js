@@ -19,6 +19,12 @@ var BACKEND = {
     AJAX_URL_COMMIT_IMAGE: '/backend/ajax/addgameimage',
     AJAX_URL_COMMIT_IMAGE_WAP: '/backend/ajax/addgameimagewap',
     AJAX_URL_COMMIT_RATING: '/backend/ajax/addrating',
+    load_cate : function (){
+      $('.cate_game_app').change(function(){
+          val = $(this).children().first().val();
+          alert(val);
+      })
+    },
     commit: function() {
         $('#frm-add-game').submit(function(e) {
             e.preventDefault();
@@ -315,6 +321,7 @@ var BACKEND = {
 
         if (data != '') {
             $("#jqxDropdownlistType").jqxDropDownList('selectItem', data);
+            
         }
 
     },

@@ -167,6 +167,8 @@ $route['backend/news_video/index_video'] = "admincp/admin_news_video/index_video
 $route['backend/listvideo'] = "admincp/admin_ajax/listvideo";
 $route['backend/ajax/addvideo'] = "admincp/admin_ajax/addvideo";
 
+$route['backend/ajax/get_cat'] = "admincp/admin_ajax/ajax_get_cat/";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
