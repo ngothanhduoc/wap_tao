@@ -1,8 +1,5 @@
 <?php
 
-set_time_limit(10000000);
-ini_set("memory_limit", "1024M");
-ini_set("display_errors", '1');
 
 /**
  * Description of admin

@@ -1,9 +1,5 @@
 <?php
 
-set_time_limit(10000000);
-ini_set("memory_limit", "1024M");
-ini_set("display_errors", '1');
-
 /**
  * Description of admin
  *
@@ -71,8 +67,17 @@ class M_wap extends MY_Model {
 
     function jqxGetId($table, $where, $select, $limit = '', $offset = '') {
         $this->db_slave->select($select);
-        if(!empty($limit))
-            $this->db_slave->limit ($limit, $offset);
+        if (!empty($limit))
+            $this->db_slave->limit($limit, $offset);
+        if ($table == 'game_app') {
+            $this->db_slave->order_by('order', 'DESC');
+            $this->db_slave->order_by('id_game_app', 'DESC');
+        }
+        
+        if ($table == 'news_video') {
+            $this->db_slave->order_by('order', 'DESC');
+            $this->db_slave->order_by('id_news_video', 'DESC');
+        }
         $sql = $this->db_slave->get_where($table, $where);
         if (is_object($sql)) {
             return $sql->result_array();
@@ -258,7 +263,7 @@ class M_wap extends MY_Model {
         $rs = $this->db_slave->update($table, $param);
         return $rs;
     }
-    
+
     public function jqxCheckcardpublic($card_id) {
         $sql = $this->db_slave->select()
                 ->from('card_sms')
@@ -267,25 +272,27 @@ class M_wap extends MY_Model {
                 ->get();
         return $sql->result_array();
     }
-	public function jqxGetTotalPlatform($table, $arrParam){
-        if($table == 'user_app'){
-        $sql = $this->db_slave->select("count(*) total, platform")
-                ->from($table)
-                ->where("date(create_time) >= '".$arrParam['start_time']."'")
-                ->where("date(create_time) <= '".$arrParam['end_time']."'") 
-                ->group_by("platform")
-                ->get();
-        }else{
-        $sql = $this->db_slave->select("count(*) total, platform")
-                ->from($table)
-                ->where('user_name',$arrParam['id_user_app'])
-                ->where("date(create_time) >= '".$arrParam['start_time']."'")
-                ->where("date(create_time) <= '".$arrParam['end_time']."'") 
-                ->group_by("platform")
-                ->get();
+
+    public function jqxGetTotalPlatform($table, $arrParam) {
+        if ($table == 'user_app') {
+            $sql = $this->db_slave->select("count(*) total, platform")
+                    ->from($table)
+                    ->where("date(create_time) >= '" . $arrParam['start_time'] . "'")
+                    ->where("date(create_time) <= '" . $arrParam['end_time'] . "'")
+                    ->group_by("platform")
+                    ->get();
+        } else {
+            $sql = $this->db_slave->select("count(*) total, platform")
+                    ->from($table)
+                    ->where('user_name', $arrParam['id_user_app'])
+                    ->where("date(create_time) >= '" . $arrParam['start_time'] . "'")
+                    ->where("date(create_time) <= '" . $arrParam['end_time'] . "'")
+                    ->group_by("platform")
+                    ->get();
         }
         return $sql->result_array();
     }
+
     function jqxBinding() {
         //$method = $this->security->xss_clean($_REQUEST);
         $method = $this->security->xss_clean($_GET);

@@ -267,3 +267,9 @@ function get_like_share_count(){
     $data_link_share = json_decode($data_link_share, TRUE);
     return $data_link_share;
 }
+
+function check_id($params){
+    $data = explode('.html', $params);
+    $id = explode('-', $data[0]);
+    return $id[count($id)-1];
+}

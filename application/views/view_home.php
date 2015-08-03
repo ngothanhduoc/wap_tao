@@ -1,3 +1,21 @@
+<script>
+    $(document).ready(function () {
+
+        var owl = $("#slide-game-menu");
+        owl.owlCarousel({
+            pagination: false,
+        });
+
+        var owl_app = $("#slide-app-menu");
+        owl_app.owlCarousel({
+            pagination: false,
+        });
+        var owl_app = $("#game-fav");
+        owl_app.owlCarousel({
+            pagination: false,
+        });
+    });
+</script>
 <div>
 
     <div data-role="header" id="header">
@@ -33,11 +51,11 @@
                         <div class="image-menu menu-app"></div>
                         App
                     </a></li>
-                <li><a href="ajax-content-ignore.html" data-ajax="false">
+                <li><a href="#three" data-ajax="false">
                         <div class="image-menu menu-video"></div>
                         Video
                     </a></li>
-                <li><a href="ajax-content-ignore.html" data-ajax="false">
+                <li><a href="#four" data-ajax="false">
                         <div class="image-menu menu-news"></div>
                         News
                     </a></li>
@@ -46,7 +64,7 @@
         <div id="one">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
 
-                <div class="ui-block-a item active-item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></div>
+                <div class="ui-block-a item active-item"><a href="<?php echo base_url(); ?>danh-sach-game.html"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></a></div>
                 <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Nhập Vai</div></div>
                 <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
                 <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
@@ -171,7 +189,7 @@
     <!------------------------------------------------------------->
 
     <div class="content name-block">
-        <span>VIDEO</span>
+        <span>VIDEOS</span>
     </div>
     <div class="content">
         <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-news-video">

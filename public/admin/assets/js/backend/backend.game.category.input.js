@@ -79,7 +79,7 @@ var BACKEND = {
         }
     },
     initDropdownlistType: function(data) {
-        var source = ["Game", "App", "Picture", "Music"];
+        var source = ["Game", "App", "News", "Videos"];
         $("#jqxDropdownlistType").jqxDropDownList({checkboxes: true, source: source, selectedIndex: 1, width: '100%', height: '25', theme: THEME, placeHolder: "Vui lòng chọn"});
 
         var arr = data.split(',');

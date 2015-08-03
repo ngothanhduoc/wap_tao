@@ -72,7 +72,7 @@ var BACKEND = {
             //theme: 'summer',
             columns: [
                 {text: 'STT', cellsrenderer: BACKEND.sttcolumnrender, width: 40, filterable: false},
-                {text: 'ID', datafield: 'idCopy', width: 50},
+//                {text: 'ID', datafield: 'idCopy', width: 50},
 		{text: 'Name', datafield: 'title'},
 		{text: 'TYPE', datafield: 'type'},
 		{text: 'ORDER', cellsrenderer: BACKEND.ordercolumnrender, datafield: 'idOrder', width: 100, filterable: false, sortable: false},

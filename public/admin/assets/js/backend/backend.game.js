@@ -21,12 +21,14 @@ var BACKEND = {
                 {name: 'id_game_app', type: 'int'},
                 {name: 'name', type: 'string'},
                 {name: 'platform', type: 'string'},
+                {name: 'type', type: 'string'},
                 {name: 'code_game', type: 'string'},                
                 {name: 'status', type: 'string'},
                 {name: 'create_user', type: 'string'},
                 {name: 'count_download', type: 'int'}, 
                 {name: 'count_install', type: 'int'}, 
-                {name: 'set_slide', type: 'string'},
+                {name: 'set_new', type: 'string'},
+                {name: 'favorite', type: 'string'},
                 {name: 'order', type: 'int'},
             ],
             url: BACKEND.API_URL_LIST,
@@ -49,7 +51,8 @@ var BACKEND = {
                     records[i].idStatus = records[i].id_game_app + ',' + records[i].status;
                     records[i].idDown = records[i].id_game_app + ',' + records[i].count_download;
                     records[i].idInstall = records[i].id_game_app + ',' + records[i].count_install;
-                    records[i].idSlide = records[i].id_game_app + ',' + records[i].set_slide;
+                    records[i].idSlide = records[i].id_game_app + ',' + records[i].set_new;
+                    records[i].idFavorite = records[i].id_game_app + ',' + records[i].favorite;
                     records[i].idOrder = records[i].id_game_app + ',' + records[i].order;
                     
                 }
@@ -94,6 +97,14 @@ var BACKEND = {
         }
         return str;
     },
+    favcolumnrender: function(row, datafield, value) {
+        var res = value.split(",");
+        var str = '<a href="javascript:void(0)" onclick="BACKEND.favunset(' + res[0] + ');"><span class="data-status enable" title="Đã set slide">&nbsp;</span></a>';
+        if (res[1] == 'block') {
+            str = '<a href="javascript:void(0)" onclick="BACKEND.fav(' + res[0] + ');"><span class="data-status disable" title="Chưa set slide">&nbsp;</span></a>';
+        }
+        return str;
+    },
     ordercolumnrender: function(row, datafield, value) {
         var res = value.split(",");
         
@@ -112,9 +123,11 @@ var BACKEND = {
                 {text: 'Stt', cellsrenderer: BACKEND.sttcolumnrender, width: 40, filterable: false},
                 {text: 'NAME', datafield: 'name'},
                 {text: 'PLATFORM', datafield: 'platform'},
+                {text: 'TYPE', datafield: 'type'},
                 {text: 'SET DOWNLOAD', cellsrenderer: BACKEND.sharecolumnrender, datafield: 'idDown', filterable: false, sortable: false, width: 150},
                 {text: 'COUNT DOWNLOAD', datafield: 'count_install', width: 120},
-                {text: 'SET SLIDE', datafield: 'idSlide', cellsrenderer: BACKEND.slidecolumnrender, width: 70, filterable: false, sortable: false},
+                {text: 'SET GAME MỚI', datafield: 'idSlide', cellsrenderer: BACKEND.slidecolumnrender, width: 70, filterable: false, sortable: false},
+                {text: 'SET YÊU THÍCH', datafield: 'idFavorite', cellsrenderer: BACKEND.favcolumnrender, width: 70, filterable: false, sortable: false},
                 {text: 'ORDER', cellsrenderer: BACKEND.ordercolumnrender, datafield: 'idOrder', width: 100, filterable: false, sortable: false},
                 {text: 'STATUS', datafield: 'idStatus', cellsrenderer: BACKEND.statuscolumnrender, width: 50, filterable: false, sortable: false},
                 {text: 'Công cụ', datafield: 'id_game_app', cellsalign: 'center', align: 'center', cellsrenderer: BACKEND.toolscolumnrender, width: 80, sortable: false, filterable: false},
@@ -195,7 +208,24 @@ var BACKEND = {
     },
     unslide: function(id) {
         $.ajax({
-            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=block&field=set_slide',
+            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=block&field=set_new',
+            type: 'GET',
+            dataType: 'JSON',
+            data: {}
+        }).done(function(response) {
+            console.log(response);
+            if (response.code != 0) {
+                alert(response.message);
+            } else {
+                BACKEND.resetGrid();
+            }
+        }).fail(function() {
+            alert('Có lỗi ! Không kết nối đến dữ liệu được.');
+        });
+    },
+    favunset: function(id) {
+        $.ajax({
+            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=block&field=favorite',
             type: 'GET',
             dataType: 'JSON',
             data: {}
@@ -212,7 +242,24 @@ var BACKEND = {
     },
     slide: function(id) {
         $.ajax({
-            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=active&field=set_slide',
+            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=active&field=set_new',
+            type: 'GET',
+            dataType: 'JSON',
+            data: {}
+        }).done(function(response) {
+            console.log(response);
+            if (response.code != 0) {
+                alert(response.message);
+            } else {
+               BACKEND.resetGrid();
+            }
+        }).fail(function() {
+            alert('Có lỗi ! Không kết nối đến dữ liệu được.');
+        });
+    },
+    fav: function(id) {
+        $.ajax({
+            url: BACKEND.AJAX_URL_UPDATE + '?id=' + id + '&st=active&field=favorite',
             type: 'GET',
             dataType: 'JSON',
             data: {}

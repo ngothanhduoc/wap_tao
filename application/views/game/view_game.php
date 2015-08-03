@@ -5,7 +5,7 @@
             <ul>
                 <li>
                     <a href="./" data-direction="reverse">
-                        <img src="./image/ico_back.png"/>
+                        <img src="<?php echo base_url(); ?>wap/image/ico_back.png"/>
                         <h1>GAME</h1>
                     </a>
                 </li>
@@ -22,42 +22,20 @@
 
     <div class="content">
         <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
-            <li>
-                <a href="./detail.html">
-                    <img src="./image/4.jpg">
-                    <h2>Iron Man 3 - The Official</h2>
-                    <p id="info-game">50 tải | 350kb</p>
-                    <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="./image/3.jpg">
-                    <h2>Wolfgang Amadeus Phoenix</h2>
-                    <p id="info-game">50 tải | 350kb</p>
-                    <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-            </li>
-            <li>
-                <a href="./detail.html">
-                    <img src="./image/1.jpg">
-                    <h2>Wolfgang Amadeus Phoenix</h2>
-                    <p id="info-game">50 tải | 350kb</p>
-                    <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-            </li>
-            <li>
-                <a href="./detail.html">
-                    <img src="./image/5.jpg">
-                    <h2>Wolfgang Amadeus Phoenix</h2>
-                    <p id="info-game">50 tải | 350kb</p>
-                    <p id="descript-game">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-            </li>
+            <?php
+            if (!empty($game))
+                foreach ($game as $key => $value) {
+                    ?>
+                    <li>
+                        <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
+                            <img src="<?php echo base_url($value['icon']); ?>" />
+                            <h2><?php echo $value['name'] ?></h2>
+                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
+                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                        </a>
+                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                    </li>
+                <?php } ?>
         </ul>
     </div>
     <div class="content view-orther-block">

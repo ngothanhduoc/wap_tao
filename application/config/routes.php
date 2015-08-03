@@ -56,8 +56,8 @@ $route['ung-dung/(:any)'] = "home/app_detail/$1";
 $route['ung-dung/danh-sach/(:any)'] = "home/app_cate/$1";
 $route['videos.html'] = "home/video";
 $route['tin-tuc.html'] = "home/news";
-$route['videos/(:any)'] = "home/video/$1";
-$route['tin-tuc/(:any)'] = "home/video/$1";
+$route['videos/(:any)'] = "home/video_detail/$1";
+$route['tin-tuc/(:any)'] = "home/news_detail/$1";
 
 
 /* --------route admincp------------------------------ */
@@ -154,7 +154,18 @@ $route['backend/album/add_list_album/(:any)'] = "admincp/album/add_list_album";
 $route['backend/album/add_list_album'] = "admincp/album/add_list_album";
 $route['backend/album/list_album'] = "admincp/album/list_album";
 
+$route['backend/news_video/add_news/(:any)'] = "admincp/admin_news_video/add_news/$1";
+$route['backend/news_video/add_news'] = "admincp/admin_news_video/add_news";
+$route['backend/news_video/index_news'] = "admincp/admin_news_video/index_news";
+$route['backend/listnews'] = "admincp/admin_ajax/listnews";
+$route['backend/ajax/addnews'] = "admincp/admin_ajax/addnews";
 
+
+$route['backend/news_video/add_video/(:any)'] = "admincp/admin_news_video/add_video/$1";
+$route['backend/news_video/add_video'] = "admincp/admin_news_video/add_video";
+$route['backend/news_video/index_video'] = "admincp/admin_news_video/index_video";
+$route['backend/listvideo'] = "admincp/admin_ajax/listvideo";
+$route['backend/ajax/addvideo'] = "admincp/admin_ajax/addvideo";
 
 
 /* End of file routes.php */

@@ -1,8 +1,4 @@
 <?php
-
-set_time_limit(10000000);
-ini_set("memory_limit", "1024M");
-ini_set("display_errors", '1');
 date_default_timezone_set('Asia/Bangkok');
 //session_start();
 ini_set("display_errors", '1');
@@ -55,7 +51,37 @@ class Admin_Ajax extends MY_Controller {
         echo $_GET['callback'] . '(' . json_encode($list) . ');';
         exit();
     }
-
+    
+    public function listnews() {
+        $this->m_backend->datatables_config = array(
+            "table" => 'news_video',
+            "where" => "where type= 'news' ",
+            "order_by" => "ORDER BY id_news_video DESC",
+        );
+        
+        
+        $list = $this->m_backend->jqxBinding();
+//        die(json_encode($list));
+        
+        echo $_GET['callback'] . '(' . json_encode($list) . ');';
+        exit();
+    }
+    public function listvideo() {
+        $this->m_backend->datatables_config = array(
+            "table" => 'news_video',
+            "where" => "where type= 'video' ",
+            "order_by" => "ORDER BY id_news_video DESC",
+        );
+        
+        
+        $list = $this->m_backend->jqxBinding();
+//        die(json_encode($list));
+        
+        echo $_GET['callback'] . '(' . json_encode($list) . ');';
+        exit();
+    }
+    
+    
     public function listhistory($table) {
         $arrParam = $this->input->get(NULL, TRUE);
         if ($table == 'history_rotation') {
@@ -422,8 +448,7 @@ class Admin_Ajax extends MY_Controller {
         $response['message']['platform'] = '';
         $response['message']['system'] = '';
         $response['message']['id_game'] = 0;
-        $response['message']['icoin_download'] = '';
-        $response['message']['icoin_share'] = '';
+        
         $response['message']['order'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -440,31 +465,35 @@ class Admin_Ajax extends MY_Controller {
             $this->form_validation->set_rules('platform', 'platform', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('type', 'type', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('description', 'description', 'callback_xss_check');
-            $this->form_validation->set_rules('icoin_download', 'icoin_download', 'callback_num_check|trim|required');
-            $this->form_validation->set_rules('icoin_share', 'icoin_share', 'callback_num_check|trim|required');
             $this->form_validation->set_rules('order', 'order', 'callback_num_check|trim');
 
             $this->form_validation->set_message('required', 'Không được rỗng');
             if ($this->form_validation->run() == TRUE) {
                 $Params = array();
-                if (isset($arrParam['set_slide'])) {
-                    $Params['set_slide'] = $arrParam['set_slide'];
+                if (isset($arrParam['set_new'])) {
+                    $Params['set_new'] = $arrParam['set_new'];
                 } else {
-                    $Params['set_slide'] = 'block';
+                    $Params['set_new'] = 'block';
+                }
+                if (isset($arrParam['favorite'])) {
+                    $Params['favorite'] = $arrParam['favorite'];
+                } else {
+                    $Params['favorite'] = 'block';
                 }
                 $Params['name'] = $this->security->xss_clean($arrParam['name']);
-                //$Params['code_game'] = $this->security->xss_clean($arrParam['code_game']);
+                $Params['code_game'] = $this->security->xss_clean($arrParam['code_game']);
                 $Params['platform'] = json_encode(explode(',', $this->security->xss_clean($arrParam['platform'])));
                 $Params['download_url'] = json_encode($this->security->xss_clean($arrParam['url_download']));
                 $Params['package_name'] = json_encode($this->security->xss_clean($arrParam['package_name']));
-                $Params['icon'] = json_encode($this->security->xss_clean($arrParam['icon']));
+                $Params['size'] = json_encode($this->security->xss_clean($arrParam['size']));
+                
                 $Params['description'] = $this->security->xss_clean($arrParam['description']);
                 $Params['type'] = $this->security->xss_clean($arrParam['type']);
                 $Params['icon'] = $this->security->xss_clean($arrParam['icon']);
-                $Params['banner'] = $this->security->xss_clean($arrParam['banner']);
-                $Params['code_game'] = $this->security->xss_clean($arrParam['code_game']);
-                $Params['icoin_download'] = $arrParam['icoin_download'];
-                $Params['icoin_share'] = $arrParam['icoin_share'];
+                $Params['slide_image'] = json_encode($this->security->xss_clean($arrParam['slide']));
+                
+                $Params['count_download'] = $arrParam['count_download'];
+                
                 $Params['order'] = $arrParam['order'];
                 $user_info = $this->session->userdata("user_info");
 
@@ -495,11 +524,10 @@ class Admin_Ajax extends MY_Controller {
                     $Params['status'] = 'active';
                     $Params['create_time'] = date('Y-m-d H:i:s');
                     $Params['create_user'] = $this->session->userdata['user_info']['username'];
-                    $Params['icoin_download'] = 0;
-                    $Params['icoin_share'] = 0;
+                    
                     $id_game = $this->m_backend->jqxInsertId('game_app', $Params);
                     $id_forkey = $id_game;
-
+                    
                     $response['code'] = 0;
                     $response['message']['id_game'] = $id_game;
                 } else {
@@ -1965,161 +1993,7 @@ class Admin_Ajax extends MY_Controller {
         exit;
     }
 
-    public function addvideo() {
-        $this->load->library('form_validation');
-        $response['code'] = -1;
-        $response['message']['title'] = '';
-        $response['message']['game_name'] = '';
-        $response['message']['category_name'] = '';
-        $response['message']['id_youtube'] = '';
-        $response['message']['description'] = '';
-        $response['message']['id_video_scan'] = 0;
-        $response['redirect'] = '/backend/newsevent/video';
-        $user_info = $this->session->userdata("user_info");
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $arrParam = $this->input->post(NULL, TRUE);
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('game_name', 'Game', 'trim|required');
-            $this->form_validation->set_rules('category_name', 'Category', 'trim|required');
-            $this->form_validation->set_rules('id_youtube', 'id_youtube', 'trim|required');
-            $this->form_validation->set_rules('description', 'description', 'trim|required');
-            $this->form_validation->set_message('required', 'Không được rỗng');
-            if ($this->form_validation->run() == TRUE) {
-                $Id = $arrParam['id_video'];
-                $Params['title'] = $this->security->xss_clean($arrParam['title']);
-                //$Params['content'] = $arrParam['content'];
-                $game = $this->m_backend->jqxGetgamename($this->security->xss_clean($arrParam['game_name']));
-                $Params['id_game'] = $game['id_game'];
-
-                $this->m_backend->_table = 'news_category';
-                $arr_category = explode('-', $this->security->xss_clean($arrParam['category_name']));
-                $id_category = $arr_category[count($arr_category) - 1];
-                //$cat = $this->m_backend->jqxGet('news_category','id_category', $id_category);
-                $Params['id_category'] = $id_category;
-                $Params['status'] = $this->security->xss_clean($arrParam['status']);
-                $Params['id_youtube'] = $this->security->xss_clean($arrParam['id_youtube']);
-                $Params['description'] = $this->security->xss_clean($arrParam['description']);
-                $Params['description_detail'] = $this->input->post('description_detail');
-                $Params['is_ytimage'] = $this->security->xss_clean($arrParam['is_ytimage']);
-                $Params['active_slide'] = $this->security->xss_clean($arrParam['active_slide']);
-                $Params['hot_video'] = $this->security->xss_clean($arrParam['hot_video']);
-                $Params['display_download'] = $this->security->xss_clean($arrParam['display_download']);
-
-                $keyword = $this->security->xss_clean($arrParam['seo_keyword']);
-                if ($arrParam['seo_keyword'] != '') {
-                    $arrKeyword = explode(",", $arrParam['seo_keyword']);
-                    $Params['seo_keyword'] = json_encode($arrKeyword);
-                    $badchars = array('#', '\\');
-                    for ($i = 0; $i < count($arrKeyword); $i++) {
-                        $key_exist = $this->m_backend->jqxGet('keywords_primary', 'name', $arrKeyword[$i]);
-                        if (empty($key_exist) === TRUE) {
-                            $key_params['name'] = trim(str_replace($badchars, '', $arrKeyword[$i]));
-                            $key_params['create_time'] = date('Y-m-d H:i:s');
-                            $key_params['update_time'] = date('Y-m-d H:i:s');
-                            $key_params['create_by'] = $this->session->userdata['user_info']['id_admin'];
-                            $key_params['update_by'] = $this->session->userdata['user_info']['id_admin'];
-                            $key_params['alias'] = utf8_to_ascii($key_params['name']);
-                            $this->m_backend->jqxInsert('keywords_primary', $key_params);
-                        }
-                    }
-                }
-
-                //$JSON = @file_get_contents("https://gdata.youtube.com/feeds/api/videos/" . $Params['id_youtube'] . "?v=2&alt=jsonc");
-                $this->load->library('convertytduration');
-                $viewCount = 0;
-                $JSON = @file_get_contents("https://www.googleapis.com/youtube/v3/videos?id=" . $Params['id_youtube'] . "&key=AIzaSyCz42hwrdvelmgbgkUYJfIWnfub9laIq9A&part=snippet,contentDetails,statistics");
-                if (empty($JSON) === FALSE) {
-                    $JSON_Data = json_decode($JSON, true);
-
-                    $duration = ((empty($JSON_Data['items'][0]['contentDetails']['duration']) === FALSE) ? $JSON_Data['items'][0]['contentDetails']['duration'] : '');
-                    $duration = $this->convertytduration->index($duration);
-                    $image = ((empty($JSON_Data['items'][0]['snippet']['thumbnails']['high']['url']) === FALSE) ? $JSON_Data['items'][0]['snippet']['thumbnails']['high']['url'] : '');
-                    $viewCount = ((empty($JSON_Data['items'][0]['statistics']['viewCount']) === FALSE) ? $JSON_Data['items'][0]['statistics']['viewCount'] : 0);
-
-                    $Params['duration'] = $duration;
-
-                    if ($Params['is_ytimage'] == 1) {
-                        $Params['image'] = $image;
-                    } else {
-                        $Params['image'] = $this->security->xss_clean($arrParam['image']);
-                    }
-                    //$Params['view_count'] = $viewCount;
-                } else {
-                    $Params['duration'] = '';
-                    //$Params['view_count'] = '0';
-                    $Params['image'] = $this->security->xss_clean($arrParam['image']);
-                }
-                $info = $this->session->userdata('user_info');
-                if (empty($Id) === FALSE && is_numeric($Id)) {
-                    $id_forkey = $Id;
-                    $Params['update_user'] = $info['username'];
-                    $this->m_backend->jqxUpdate('videos', 'id_video', $Id, $Params);
-                } else {
-                    $Params['view_count'] = $viewCount;
-                    $Params['create_time'] = date('Y-m-d H:i:s');
-                    $Params['create_user'] = $info['username'];
-                    if (@$arrParam['timer'] != '')
-                        $Params['timer'] = date('Y-m-d H:i:s', strtotime($this->security->xss_clean($arrParam['timer'])));
-                    else
-                        $Params['timer'] = date('Y-m-d H:i:s');
-
-                    if ($Params['status'] == 1) {
-                        $this->load->library('cache');
-
-                        //$cache = $this->cache->load('file', 'monitor');
-                        $cache = @$this->cache->load('memcache', 'system_info');
-
-                        $arrTimer = $cache->get('timepublic_videos');
-                        if (empty($arrTimer) === TRUE) {
-                            $arrTimer = array();
-                        }
-                        $arrTimer[strtotime($Params['timer'])] = strtotime($Params['timer']);
-                        ksort($arrTimer);
-                        $timeout = 60 * 60 * 360;
-                        //$cache->save('timepublic_videos', $arrTimer, $timeout);
-                        $cache->save('timepublic_videos', $arrTimer);
-                    }
-
-                    $id_video = $this->m_backend->jqxInsertId('videos', $Params);
-                    $id_forkey = $id_video;
-                }
-                $solrUpdate = $this->m_backend->addVideointoSolrDocument($id_forkey);
-
-                $response['code'] = 0;
-                $response['message']['id_video_scan'] = $id_forkey;
-                $arrKeyword = explode(',', $keyword);
-
-                if (empty($arrKeyword) === FALSE) {
-                    $this->m_backend->jqxDeleteKeyWord('keywords', $id_forkey, 'video');
-                    $this->m_backend->deleteKeywordsintoSolrDocument($id_forkey, 'video');
-                    $badchars = array('#', '\\');
-                    for ($i = 0; $i < count($arrKeyword); $i++) {
-                        $paramsKw['name'] = trim(str_replace($badchars, '', $arrKeyword[$i]));
-                        $paramsKw['create_time'] = date('Y-m-d H:i:s');
-                        $paramsKw['update_time'] = date('Y-m-d H:i:s');
-                        $paramsKw['update_by'] = (empty($user_info) !== TRUE) ? $user_info['id_admin'] : NULL;
-                        $paramsKw['create_by'] = (empty($user_info) !== TRUE) ? $user_info['id_admin'] : NULL;
-                        $paramsKw['alias'] = utf8_to_ascii($arrKeyword[$i]);
-                        $paramsKw['type'] = 'video';
-                        $paramsKw['id_news'] = $id_forkey;
-
-                        $kwID = $this->m_backend->jqxInsertId('keywords', $paramsKw);
-                        $this->m_backend->addKeywordsintoSolrDocument($kwID, $paramsKw['name'], $paramsKw['alias'], 0, $id_forkey, 'video');
-                    }
-                }
-            } else {
-                $response['message']['title'] = $this->form_validation->error('title', ' ', ' ');
-                $response['message']['game_name'] = $this->form_validation->error('game_name', ' ', ' ');
-                $response['message']['category_name'] = $this->form_validation->error('category_name', ' ', ' ');
-                $response['message']['id_youtube'] = $this->form_validation->error('id_youtube', ' ', ' ');
-                $response['message']['description'] = $this->form_validation->error('description', ' ', ' ');
-                $response['code'] = 1;
-            }
-        }
-        end:
-        echo json_encode($response);
-        exit;
-    }
+   
 
     public function getgamebypublisher() {
         $arrr = array();
@@ -3779,6 +3653,110 @@ class Admin_Ajax extends MY_Controller {
         end:
         echo json_encode($response);
         exit();
+    }
+    
+    public function addnews() {
+        $this->load->library('form_validation');
+        $response['code'] = -1;
+        $response['redirect'] = '/backend/news_video/index_news';
+        
+        $response['message']['name'] = '';
+//        $response['message']['type'] = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $arrParam = $this->input->post(NULL, TRUE);
+            
+            $Id = @$arrParam['id'];
+                       
+
+            $this->form_validation->set_rules('name', 'name', 'callback_xss_check|trim|required');
+            $this->form_validation->set_rules('image', 'image', 'callback_xss_check|trim|required');
+//            $this->form_validation->set_rules('type', 'type', 'callback_xss_check');
+            $this->form_validation->set_rules('description', 'description', 'callback_xss_check');
+            $this->form_validation->set_message('required', 'Không được rỗng');
+            if ($this->form_validation->run() == TRUE) {
+//                die(json_encode($arrParam));
+                $Params = array();
+                $Params['name'] = $this->security->xss_clean($arrParam['name']);
+                $Params['image'] = $this->security->xss_clean($arrParam['image']);
+                $Params['type'] = 'news';
+                $Params['content'] = $arrParam['content'];
+                $Params['description'] = $this->security->xss_clean($arrParam['description']);
+                
+                if (empty($Id) === TRUE) {
+                    $this->load->library('session');
+                    $user_info = $this->session->userdata('user_info');
+                    $Params['create_time'] = date('Y-m-d H:i:s');
+                    
+                    $this->m_backend->jqxInsert('news_video', $Params);
+                } else {
+                    $this->m_backend->jqxUpdate('news_video', 'id_news_video', $Id, $Params);
+                }
+
+                $response['code'] = 0;
+            } else {
+                $badchars = array('<p>', '</p>');
+                $response['message']['title'] = trim(str_replace($badchars, '', form_error('title')));
+                $response['message']['type'] = trim(str_replace($badchars, '', form_error('type')));
+                $response['code'] = 1;
+            }
+        }
+
+        end:
+        echo json_encode($response);
+        exit;
+    }
+    public function addvideo() { 
+        $this->load->library('form_validation');
+        $response['code'] = -1;
+        $response['redirect'] = '/backend/news_video/index_video';
+        
+        $response['message']['name'] = '';
+//        $response['message']['type'] = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $arrParam = $this->input->post(NULL, TRUE);
+            
+            $Id = @$arrParam['id'];
+                       
+
+            $this->form_validation->set_rules('name', 'name', 'callback_xss_check|trim|required');
+            $this->form_validation->set_rules('image', 'image', 'callback_xss_check|trim|required');
+            $this->form_validation->set_rules('youtube_id', 'youtube_id', 'callback_xss_check');
+            $this->form_validation->set_rules('description', 'description', 'callback_xss_check');
+            $this->form_validation->set_message('required', 'Không được rỗng');
+            if ($this->form_validation->run() == TRUE) {
+//                die(json_encode($arrParam));
+                $Params = array();
+                $Params['name'] = $this->security->xss_clean($arrParam['name']);
+                $Params['youtube_id'] = $this->security->xss_clean($arrParam['youtube_id']);
+                $Params['image'] = $this->security->xss_clean($arrParam['image']);
+                $Params['type'] = 'video';
+                $Params['content'] = $arrParam['content'];
+                $Params['description'] = $this->security->xss_clean($arrParam['description']);
+                
+                if (empty($Id) === TRUE) {
+                    $this->load->library('session');
+                    $user_info = $this->session->userdata('user_info');
+                    $Params['create_time'] = date('Y-m-d H:i:s');
+                    
+                    $this->m_backend->jqxInsert('news_video', $Params);
+                } else {
+                    $this->m_backend->jqxUpdate('news_video', 'id_news_video', $Id, $Params);
+                }
+
+                $response['code'] = 0;
+            } else {
+                $badchars = array('<p>', '</p>');
+                $response['message']['title'] = trim(str_replace($badchars, '', form_error('title')));
+                $response['message']['type'] = trim(str_replace($badchars, '', form_error('type')));
+                $response['code'] = 1;
+            }
+        }
+
+        end:
+        echo json_encode($response);
+        exit;
     }
 
 }

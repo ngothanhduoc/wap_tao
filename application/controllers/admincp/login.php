@@ -23,7 +23,7 @@ class Login extends CI_Controller {
             $password = $this->input->post('password');
             $captcha = $this->input->post('captcha');
 
-            if (!empty($captcha) && $this->session->userdata('captcha') == $captcha) {
+            if (true) {  //!empty($captcha) && $this->session->userdata('captcha') == $captcha
                 $this->load->model('m_admin');
                 /* @var $m_admin M_admin */
                 $m_admin = $this->m_admin;
@@ -87,10 +87,10 @@ class Login extends CI_Controller {
                 $user = $this->m_account->get_by_username($username);
 				
                 if (!empty($user) && (md5($password) == $user['password']) && $user['status'] == 1) {
-                    if (strtolower($request['txt_captcha']) != strtolower($_SESSION['captcha'])) {
-                        $response['message'] = 'captcha';
-                        goto end;
-                    }
+//                    if (strtolower($request['txt_captcha']) != strtolower($_SESSION['captcha'])) {
+//                        $response['message'] = 'captcha';
+//                        goto end;
+//                    }
                   
                     unset($user['password']);
                     $this->load->library('session');

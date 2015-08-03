@@ -108,6 +108,12 @@ if (empty($url_download) === FALSE) {
 } else {
     $arrDownload = array();
 }
+$slide_image = @$data['slide_image'];
+if (empty($slide_image) === FALSE) {
+    $arrSlide = json_decode($slide_image, true);
+} else {
+    $arrSlide = array();
+}
 $package_name = @$data['package_name'];
 if(empty($package_name) === FALSE){
     $arrPackage = json_decode($package_name, true);
@@ -200,7 +206,13 @@ if(empty($package_name) === FALSE){
                     <div id="jqxDropdownlistType" name="type"></div>
                     <div id="type" style="color: #ff0000"></div>
                 </span>
-            </div>            
+            </div> 
+            <p style="border-top: #ddd solid 1px; border-bottom: none">
+                <label for="size">Dung lượng<span style="color:#ff0000">(*)</span></label>
+                <span class="field">
+                    <input type="text" placeholder="" id="size" name="size" class="smallinput" value="<?php echo @$data['size'] ?>">
+                </span>
+            </p>
            <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Platform <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
@@ -264,18 +276,13 @@ if(empty($package_name) === FALSE){
             </div>
             
             <p>
-                <label for="icoin_download">Icoin download <span style="color:#ff0000">(*)</span></label>
+                <label for="count_download">Đặt số Download <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
-                    <input type="text" placeholder="" id="icoin_download" name="icoin_download" class="smallinput" value="<?php echo @$data['icoin_download'] ?>">
+                    <input type="text" placeholder="" id="count_download" name="count_download" class="smallinput" value="<?php echo @$data['count_download'] ?>">
                 </span>
             </p>
             
-            <p>
-                <label for="icoin_share">Icoin share <span style="color:#ff0000">(*)</span></label>
-                <span class="field">
-                    <input type="text" placeholder="" id="icoin_share" name="icoin_share" class="smallinput" value="<?php echo @$data['icoin_share'] ?>">
-                </span>
-            </p>
+            
             
             <p>
                 <label for="icon">Icon <span style="color:#ff0000">(*)</span></label>
@@ -283,12 +290,50 @@ if(empty($package_name) === FALSE){
                     <input type="text" placeholder="" id="icon" name="icon" class="mediuminput" value="<?php echo @$data['icon'] ?>" onclick="openKCFinderByPath('#icon', 'images')" readonly>
                 </span>
             </p>
-            <p>
-                <label for="banner">Banner</label>
-                <span class="field">
-                    <input type="text" placeholder="" id="banner" name="banner" class="mediuminput" value="<?php echo @$data['banner'] ?>" onclick="openKCFinderByPath('#banner', 'images')" readonly>
+            <div style="border: #ddd solid 1px; border-top: none">
+                <label for="code_game">Slile Ảnh Game<span style="color:#ff0000">(*)</span></label>
+                <span class="field " id="field-package">
+                    <div class="field-slide-image">
+                    <?php
+                    if (empty($arrSlide) === FALSE) {
+                        ?>    
+                        <?php
+                        foreach ($arrSlide as $key => $val) {
+                            ?>
+                            <input type="text" placeholder="" id="<?php echo $key ?>_slide" name="slide[<?php echo $key ?>]" class="mediuminput" onclick="openKCFinderByPath('#<?php echo $key ?>_slide', 'images')"  value="<?php echo $val ?>" style="margin-bottom: 10px">
+                            <?php
+                        }
+                        ?>
+                        <?php
+                    } else {
+                        ?>    
+                            <input type="text" placeholder="" id="1_slide" name="slide[1]" class="mediuminput input-slide" onclick="openKCFinderByPath('#1_slide', 'images')"  value="" style="margin-bottom: 10px"> 
+                        
+                        <?php
+                    }
+                    ?>
+                    </div>
+                    <div class="addslide" style="cursor: pointer">Thêm Hình</div>
+                        <script>
+                            $(function(){
+                                $i = 2;
+                                $(".addslide").click(function(){
+                                    $('.field-slide-image').append('<input type="text" placeholder="" id="'+$i+'_slide" name="slide['+$i+']" class="mediuminput input-slide"  onclick="openKCFinderByPath(\'#'+$i+'_slide\', \'images\')"  value="" style="margin-bottom: 10px"> <span style="cursor: pointer" class="delete-slide"> Xóa </span>   ');
+                                    $i++;
+                                    $('span.delete-slide').click(function(){
+                                        $(this).prev().remove();
+                                        $(this).remove();
+                                    });
+                                })
+                                
+                            })
+                        </script>
                 </span>
-            </p>
+                <span id="temp-package" style="display: none">
+                    <input type="text" placeholder="" id="" name="" class="mediuminput" value="" style="margin-bottom: 10px"><span id="">Android</span>
+                </span>
+
+            </div>
             
             <p>
                 <label for="description">Description</label>

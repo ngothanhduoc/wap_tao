@@ -2,7 +2,7 @@
     	<div class="loginboxinner">
         	
             <div class="logo">
-            	<h1><span>APP.</span>ICOIN</h1>
+            	<h1><span>ADMIN.</span>SITE</h1>
             </div><!--logo-->
                       
             <div class="nousername">
@@ -23,18 +23,19 @@
                     </div>
                 </div>
 				
-				<div class="password">
+<!--				<div class="password">
                 	<div class="passwordinner">
                     	<input type="text" name="txt_captcha" id="txt_captcha" placeholder="Captcha" autocomplete="off" />
                     </div>
-                </div>
+                </div>-->
                 
 				<div class="password">
                 	<div style="text-align: center; padding: 10px 0px 0px 0px; background: #f8f8f8; position: relative">
-						<img class="captcha-img" alt="" id="siimage" src="/captcha/index.php">
+                            <div class="g-recaptcha" data-sitekey="6LcKpAoTAAAAAJWFyhrug1zFqKg68XLTH5e_kjn0"></div>
+<!--						<img class="captcha-img" alt="" id="siimage" src="/captcha/index.php">
 						<a tabindex="-1" style="border-style: none; display: inline-flex" id="refresh-captcha" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = '/captcha/index.php?sid=' + Math.random();
 						this.blur();
-						return false"><i class="entypo-cw"></i></a>
+						return false"><i class="entypo-cw"></i></a>-->
 					</div>
                 </div>
 				

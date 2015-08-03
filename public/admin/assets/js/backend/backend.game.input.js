@@ -61,18 +61,18 @@ var BACKEND = {
                         var c = $("#description").position().top;
                         $('body,html').animate({scrollTop: c}, 800);
                     }
-                    if (m.icoin_share != "") {
-                        $('#icoin_share').val('');
-                        $('#icoin_share').attr('placeholder', m.icoin_share);
-                        var c = $("#icoin_share").position().top;
-                        $('body,html').animate({scrollTop: c}, 800);
-                    }
-                    if (m.icoin_download != "") {
-                        $('#icoin_download').val('');
-                        $('#icoin_download').attr('placeholder', m.icoin_download);
-                        var c = $("#icoin_download").position().top;
-                        $('body,html').animate({scrollTop: c}, 800);
-                    }
+//                    if (m.icoin_share != "") {
+//                        $('#icoin_share').val('');
+//                        $('#icoin_share').attr('placeholder', m.icoin_share);
+//                        var c = $("#icoin_share").position().top;
+//                        $('body,html').animate({scrollTop: c}, 800);
+//                    }
+//                    if (m.icoin_download != "") {
+//                        $('#icoin_download').val('');
+//                        $('#icoin_download').attr('placeholder', m.icoin_download);
+//                        var c = $("#icoin_download").position().top;
+//                        $('body,html').animate({scrollTop: c}, 800);
+//                    }
                     if (m.platform != "") {
                         $('#platform').html(m.platform);
                         var c = $("#platform").position().top;
@@ -135,37 +135,19 @@ var BACKEND = {
                 } else {
 
                     var m = data.message;
-                    /*		
-                     if (m.image_slide_game!= "") {
-                     $('#image_slide_game').val('');
-                     $('#image_slide_game').attr('placeholder', m.image_slide_game);
-                     var c = $("#image_slide_game").position().top;
-                     $('body,html').animate({scrollTop: c}, 800);
-                     }1
-                     if (m.background_game!= "") {
-                     $('#background_game').val('');
-                     $('#background_game').attr('placeholder', m.background_game);
-                     var c = $("#background_game").position().top;
+                    		
+                     if (m.slide_image!= "") {
+                     $('#slide_image').val('');
+                     $('#slide_image').attr('placeholder', m.image_slide_game);
+                     var c = $("#slide_image").position().top;
                      $('body,html').animate({scrollTop: c}, 800);
                      }
                      
-                     if (m.home_image!= "") {
-                     $('#home_image').val('');
-                     $('#home_image').attr('placeholder', m.home_image);
-                     var c = $("#home_image").position().top;
-                     $('body,html').animate({scrollTop: c}, 800);
-                     }
-                     */
-                    if (m.sub_image != "") {
-                        $('#sub_image').val('');
-                        $('#sub_image').attr('placeholder', m.sub_image);
-                        var c = $("#sub_image").position().top;
-                        $('body,html').animate({scrollTop: c}, 800);
-                    }
-                    if (m.logo_game != "") {
-                        $('#logo_game').val('');
-                        $('#logo_game').attr('placeholder', m.logo_game);
-                        var c = $("#logo_game").position().top;
+                    
+                    if (m.icon != "") {
+                        $('#icon').val('');
+                        $('#icon').attr('placeholder', m.logo_game);
+                        var c = $("#icon").position().top;
                         $('body,html').animate({scrollTop: c}, 800);
                     }
 

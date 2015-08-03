@@ -24,24 +24,7 @@
         <script src="<?php echo base_url(); ?>wap/owl-carousel/owl.carousel.min.js"></script>
 
         <!--Start of Zopim Live Chat Script-->
-        <script>
-            $(document).ready(function () {
-
-                var owl = $("#slide-game-menu");
-                owl.owlCarousel({
-                    pagination: false,
-                });
-
-                var owl_app = $("#slide-app-menu");
-                owl_app.owlCarousel({
-                    pagination: false,
-                });
-                var owl_app = $("#game-fav");
-                owl_app.owlCarousel({
-                    pagination: false,
-                });
-            });
-        </script>
+        
     </head>
 
     <body>
