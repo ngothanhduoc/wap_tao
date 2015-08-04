@@ -33,10 +33,8 @@ var BACKEND = {
 				processData: false, // Don't process the files
 				contentType: false, 
 				data: form,
-				
 				beforeSend: BACKEND.startLoading,
 				complete: BACKEND.topLoading,
-				
 				dataType: "JSON"
 			}).done(function(data) {
 				if (data.code == 0) {
@@ -45,12 +43,12 @@ var BACKEND = {
 				} else {
 					var m = data.message;
 						
-					if (m.name!= "") {
-						$('#title').val('');
-						$('#title').attr('placeholder', m.title);
-						var c = $("#title").position().top;
-						$('body,html').animate({scrollTop: c}, 800);
-					}
+//					if (m.name!= "") {
+//						$('#title').val('');
+//						$('#title').attr('placeholder', m.title);
+//						var c = $("#title").position().top;
+//						$('body,html').animate({scrollTop: c}, 800);
+//					}
 					
 				}
 				$('button:submit').attr("disabled", false);

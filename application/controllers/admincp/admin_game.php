@@ -55,11 +55,11 @@ class Admin_Game extends MY_Controller {
 
             if (in_array($this->input->get('id', TRUE), $arr)) {
                 $rs = $this->m_backend->jqxGet('game_app', 'id_game_app', $this->input->get('id', TRUE));
+                $cate = $this->m_backend->jqxGetId('cate', 'type', $rs['type']);
                 
                 if (empty($rs) === FALSE) {
                     $data['platform'] = @implode(',',  @json_decode($rs['platform'],true));
                     $data['type'] = $rs['type']; 
-                    
                     $data['data'] = $rs;
                 }
             } else {
@@ -74,7 +74,7 @@ class Admin_Game extends MY_Controller {
             $data['data']['hot_game'] = 0;
             $data['data']['new_game'] = 0;
         }
-        
+        $data['cate'] = $cate;
         $this->template->write_view('content', 'admincp/game/add', $data);
         $this->template->render();
     }

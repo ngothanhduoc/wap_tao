@@ -161,13 +161,13 @@ if (empty($package_name) === FALSE) {
 //                            $('#temp-package').find('div').attr('id', '');
 //                            $('#temp-package').find('div').html('');
                         }
-                        
+
                     } else {
                         if ($('#' + item.value).length > 0) {
                             $('#' + item.value).remove();
                             $('#label-' + item.value).next().remove();
                             $('#label-' + item.value).remove();
-                            
+
                             //package
                             $('#' + item.value + '_package').remove();
                             $('#label-package-' + item.value).remove();
@@ -228,23 +228,41 @@ if (empty($package_name) === FALSE) {
                 </span>
             </p>
             <div style="border: #ddd solid 1px; border-bottom: none">
-                <label>Loại <span style="color:#ff0000">(*)</span></label>
+                <label for="size">Dung lượng<span style="color:#ff0000">(*)</span></label>
                 <span class="field">
+                    <input type="text" placeholder="" id="size" name="size" class="smallinput" value="<?php echo @$data['size'] ?>">
+                </span>
+            </div>
+            <div style="border: #ddd solid 1px; border-bottom: none">
+                <label>Loại <span style="color:#ff0000">(*)</span></label>
+                <span class="field " >
                     <div id="jqxDropdownlistType" class="cate_game_app" name="type"></div>
                     <div id="type" style="color: #ff0000"></div>
                 </span>
             </div> 
             <div style="border: #ddd solid 1px; border-bottom: none">
-                <label>Loại <span style="color:#ff0000">(*)</span></label>
+                <label>Danh mục <span style="color:#ff0000">(*)</span></label>
                 <span class="field content_cate">
-                </span>
+                <?php
+                if (!empty($data['id_game_app'])) {
+                    $result = "<select name='cate'>"; 
+                    if (!empty($cate))
+                        foreach ($cate as $key => $value) 
+                            if($data['cate'] == $value['id_cate']){
+                                $result .= '<option selected="selected" value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
+                            }else
+                            $result .= '<option value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
+                        
+                    $result .= "</select>";
+                    echo $result;
+                }else{
+                ?>
+                 <input  name="abc" value="" class="smallinput" type="text" readonly="" /> 
+                
+                <?php } ?>
+                 </span>
             </div> 
-            <p style="border-top: #ddd solid 1px; border-bottom: none">
-                <label for="size">Dung lượng<span style="color:#ff0000">(*)</span></label>
-                <span class="field">
-                    <input type="text" placeholder="" id="size" name="size" class="smallinput" value="<?php echo @$data['size'] ?>">
-                </span>
-            </p>
+            
             <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Platform <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
@@ -382,7 +400,7 @@ if (empty($package_name) === FALSE) {
             <p>
                 <label>Set slide</label>
                 <span class="field">
-                    <input type="checkbox" placeholder="" id="set_slide" name="set_slide" class="mediuminput" <?php if (@$data['set_slide'] == 'active') echo "checked='checked'" ?> value="active"> Có
+                    <input type="checkbox" placeholder="" id="set_slide" name="set_new" class="mediuminput" <?php if (@$data['set_new'] == 'active') echo "checked='checked'" ?> value="active"> Có
                 </span>
             </p>
             <p>

@@ -455,7 +455,7 @@ class Admin_Ajax extends MY_Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arrParam = $this->input->post();
             $Id = $arrParam['id'];
-
+//            die(json_encode($arrParam));
             //get publisher
             $this->m_backend->datatables_config = array(
                 "table" => 'publisher',
@@ -467,6 +467,7 @@ class Admin_Ajax extends MY_Controller {
             $this->form_validation->set_rules('type', 'type', 'callback_xss_check|trim|required');
             $this->form_validation->set_rules('description', 'description', 'callback_xss_check');
             $this->form_validation->set_rules('order', 'order', 'callback_num_check|trim');
+            $this->form_validation->set_rules('cate', 'cate', 'callback_num_check|trim');
 
             $this->form_validation->set_message('required', 'Không được rỗng');
             if ($this->form_validation->run() == TRUE) {
@@ -486,7 +487,8 @@ class Admin_Ajax extends MY_Controller {
                 $Params['platform'] = json_encode(explode(',', $this->security->xss_clean($arrParam['platform'])));
                 $Params['download_url'] = json_encode($this->security->xss_clean($arrParam['url_download']));
                 $Params['package_name'] = json_encode($this->security->xss_clean($arrParam['package_name']));
-                $Params['size'] = json_encode($this->security->xss_clean($arrParam['size']));
+                $Params['size'] = ($this->security->xss_clean($arrParam['size']));
+                $Params['cate'] = ($this->security->xss_clean($arrParam['cate']));
 
                 $Params['description'] = $this->security->xss_clean($arrParam['description']);
                 $Params['type'] = $this->security->xss_clean($arrParam['type']);
@@ -551,8 +553,9 @@ class Admin_Ajax extends MY_Controller {
                 $response['code'] = 1;
             }
         }
-
+        
         end:
+            
         echo json_encode($response);
         exit;
     }
@@ -3663,7 +3666,7 @@ class Admin_Ajax extends MY_Controller {
 //        $response['message']['type'] = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $arrParam = $this->input->post(NULL, TRUE);
+            $arrParam = $this->input->post(NULL);
 
             $Id = @$arrParam['id'];
 
@@ -3768,7 +3771,7 @@ class Admin_Ajax extends MY_Controller {
             foreach ($data as $key => $value) {
                 $result .= '<option value="'.$value['id_cate'].'">'.$value['title'].'</option>';
             }
-       $result .= "</option>";
+       $result .= "</select>";
        echo $result;
         die();
     }
