@@ -10,16 +10,15 @@ if (!defined('BASEPATH'))
 
 class Home extends CI_Controller {
 
-
+    public $cate;
 
     public function __construct() {
 
         parent::__construct();
-
         $this->template->set_template('wap');
-
         $this->load->model('m_wap');
-
+        $this->cate['game_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'game', 'status' => 'active'), 'id_cate, title, alias');
+        $this->cate['app_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'app', 'status' => 'active'), 'id_cate, title, alias');
     }
 
 
@@ -35,6 +34,8 @@ class Home extends CI_Controller {
         $data['news'] = $this->m_wap->jqxGetId('news_video', array('set_home' => 'active', 'type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description', 5);
 
         $data['videos'] = $this->m_wap->jqxGetId('news_video', array('set_home' => 'active', 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description', 5);
+        
+        $data['cate'] = $this->cate;
         
         $this->template->write_view('content', 'view_home', $data);
 

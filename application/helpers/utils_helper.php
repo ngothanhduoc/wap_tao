@@ -273,3 +273,10 @@ function check_id($params){
     $id = explode('-', $data[0]);
     return $id[count($id)-1];
 }
+
+function link_copy($link){
+    $temp = explode('/', $link);
+    array_pop($temp);
+    $link = implode('/', $temp).'/';
+    return $link;
+}

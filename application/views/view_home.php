@@ -65,21 +65,27 @@
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
 
                 <div class="ui-block-a item active-item"><a href="<?php echo base_url(); ?>danh-sach-game.html"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></a></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Nhập Vai</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Khác</div></div>
+                <?php 
+                    if (!empty($cate['game_cate'])) {
+                        foreach ($cate['game_cate'] as $key => $value) {
+                            echo '<div class="ui-block-a item"><a href="'.base_url('game/danh-muc/'.$value['alias'].'.html').'"><div class="ui-bar ui-bar-a" id="height-menu-child">'.$value['title'].'</div></a></div>';
+                        }
+                    }
+                ?>
+                
 
             </div><!-- /grid-c -->
         </div>
         <div id="two">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Hệ Thống</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Âm Nhạc</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Văn Phòng</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game 3D</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Causul</div></div>
-                <div class="ui-block-a item"><div class="ui-bar ui-bar-a" id="height-menu-child">Game Khác</div></div>
+                <div class="ui-block-a item active-item"><a href="<?php echo base_url(); ?>ung-dung.html"><div class="ui-bar ui-bar-a" id="height-menu-child">Ứng Dụng</div></a></div>
+                <?php 
+                    if (!empty($cate['app_cate'])) {
+                        foreach ($cate['app_cate'] as $key => $value) {
+                            echo '<div class="ui-block-a item"><a href="'.base_url('ung-dung/danh-sach/'.$value['alias'].'.html').'"><div class="ui-bar ui-bar-a" id="height-menu-child">'.$value['title'].'</div></a></div>';
+                        }
+                    }
+                ?>
             </div><!-- /grid-c -->
         </div>
     </div>

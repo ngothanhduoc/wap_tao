@@ -27,7 +27,7 @@
                 foreach ($app as $key => $value) {
                     ?>
                     <li>
-                        <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
+                        <a href="<?php echo base_url('ung-dung/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
                             <img src="<?php echo base_url($value['icon']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>

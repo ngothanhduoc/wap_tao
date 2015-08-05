@@ -485,7 +485,7 @@ class Admin_Ajax extends MY_Controller {
                 $Params['name'] = $this->security->xss_clean($arrParam['name']);
                 $Params['code_game'] = $this->security->xss_clean($arrParam['code_game']);
                 $Params['platform'] = json_encode(explode(',', $this->security->xss_clean($arrParam['platform'])));
-                $Params['download_url'] = json_encode($this->security->xss_clean($arrParam['url_download']));
+                $Params['download_url'] = ($this->security->xss_clean($arrParam['url_download']));
                 $Params['package_name'] = json_encode($this->security->xss_clean($arrParam['package_name']));
                 $Params['size'] = ($this->security->xss_clean($arrParam['size']));
                 $Params['cate'] = ($this->security->xss_clean($arrParam['cate']));
@@ -519,9 +519,23 @@ class Admin_Ajax extends MY_Controller {
                         }
                     }
                 }
-
+                
                 $Params['content'] = $subject;
-
+                //Xu Ly file Plist
+                if (!empty($Params['download_url']['ios'])) {
+                    $paramsInfo = array(
+                        'client' => 'https://'.$_SERVER['HTTP_HOST'].$Params['download_url']['ios'],
+                        'image' => 'https://'.$_SERVER['HTTP_HOST'].$Params['icon'],
+                        'bundle' => @$arrParam['package_name']['ios'],
+                        'version' => '1.1.0',
+                        'subtitle' => $Params['name'],
+                        'title' => $Params['name'],
+                        'link_copy' => link_copy($Params['download_url']['ios']),
+                    );
+                    $Params['download_url']['plist'] = $this->replaceInfo($paramsInfo);
+                }
+                $Params['download_url'] = json_encode($Params['download_url']);
+                
                 if (empty($Id) === TRUE) {
 
                     $Params['status'] = 'active';
@@ -553,11 +567,35 @@ class Admin_Ajax extends MY_Controller {
                 $response['code'] = 1;
             }
         }
-        
+
         end:
-            
+
         echo json_encode($response);
         exit;
+    }
+
+    public function replaceInfo($paramsInfo = '') {
+        $filename = $_SERVER["DOCUMENT_ROOT"] . "/plist/plist.plist";
+        $content = @file_get_contents($filename);
+
+//        die(json_encode($paramsInfo));
+        $remark = $this->findRemark($content);
+        if (empty($remark) == FALSE) {
+            foreach ($remark as $value) {
+                $content = str_replace('{' . $value . '}', $paramsInfo[$value], $content);
+            }
+        }
+
+        $filename = $_SERVER["DOCUMENT_ROOT"] . "/plist/plist_dl.plist";
+        $path_copy  = $_SERVER["DOCUMENT_ROOT"].$paramsInfo['link_copy'].'plist_dl.plist';
+        file_put_contents($filename, $content);
+        copy($filename, $path_copy);
+        return $paramsInfo['link_copy'].'plist_dl.plist';
+    }
+
+    protected function findRemark($string) {
+        preg_match_all('#\{([a-zA-Z0-9_-]+)\}#ims', $string, $matches);
+        return empty($matches[1]) == FALSE ? $matches[1] : FALSE;
     }
 
     private function _dateFormat($date) {
@@ -3767,12 +3805,12 @@ class Admin_Ajax extends MY_Controller {
         $id = @$arrParam['type'];
         $data = $this->m_backend->jqxGetId('cate', 'type', strtolower($id));
         $result = "<select name='cate'>";
-        if(!empty($data))
+        if (!empty($data))
             foreach ($data as $key => $value) {
-                $result .= '<option value="'.$value['id_cate'].'">'.$value['title'].'</option>';
+                $result .= '<option value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
             }
-       $result .= "</select>";
-       echo $result;
+        $result .= "</select>";
+        echo $result;
         die();
     }
 

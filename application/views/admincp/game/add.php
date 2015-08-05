@@ -243,26 +243,26 @@ if (empty($package_name) === FALSE) {
             <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Danh mục <span style="color:#ff0000">(*)</span></label>
                 <span class="field content_cate">
-                <?php
-                if (!empty($data['id_game_app'])) {
-                    $result = "<select name='cate'>"; 
-                    if (!empty($cate))
-                        foreach ($cate as $key => $value) 
-                            if($data['cate'] == $value['id_cate']){
-                                $result .= '<option selected="selected" value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
-                            }else
-                            $result .= '<option value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
-                        
-                    $result .= "</select>";
-                    echo $result;
-                }else{
-                ?>
-                 <input  name="abc" value="" class="smallinput" type="text" readonly="" /> 
-                
-                <?php } ?>
-                 </span>
+                    <?php
+                    if (!empty($data['id_game_app'])) {
+                        $result = "<select name='cate'>";
+                        if (!empty($cate))
+                            foreach ($cate as $key => $value)
+                                if ($data['cate'] == $value['id_cate']) {
+                                    $result .= '<option selected="selected" value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
+                                } else
+                                    $result .= '<option value="' . $value['id_cate'] . '">' . $value['title'] . '</option>';
+
+                        $result .= "</select>";
+                        echo $result;
+                    }else {
+                        ?>
+                        <input  name="abc" value="" class="smallinput" type="text" readonly="" /> 
+
+                    <?php } ?>
+                </span>
             </div> 
-            
+
             <div style="border: #ddd solid 1px; border-bottom: none">
                 <label>Platform <span style="color:#ff0000">(*)</span></label>
                 <span class="field">
@@ -279,7 +279,7 @@ if (empty($package_name) === FALSE) {
                         <?php
                         foreach ($arrDownload as $key => $val) {
                             ?>
-                            <input type="text" placeholder="" id="<?php echo $key ?>" name="url_download[<?php echo $key ?>]" class="mediuminput" value="<?php echo $val ?>" style="margin-bottom: 10px"><span id="label-<?php echo $key ?>">&nbsp;&nbsp;<?php echo $key ?></span>
+                    <input type="text" placeholder="" id="<?php echo $key ?>" name="url_download[<?php echo $key ?>]" class="mediuminput" value="<?php echo $val ?>" style="margin-bottom: 10px"><span id="label-<?php echo $key ?>">&nbsp;&nbsp;<?php echo $key ?></span> <div onclick="openKCFinderByPath($(this).prev().prev(), 'files');"  id="add" style="color: red; font-weight: bold; cursor: pointer">ADD FILE</div> </br> 
                             <?php
                         }
                         ?>
@@ -292,7 +292,7 @@ if (empty($package_name) === FALSE) {
                     ?>
                 </span>
                 <span id="temp-download" style="display: none">
-                    <input type="text" placeholder="" id="link" name=""  class="mediuminput link_download" value="" style="margin-bottom: 10px"><span id="">Android</span> <div onclick="openKCFinderByPath($(this).prev().prev(), 'files');"  id="add" style="color: red; font-weight: bold; cursor: pointer">ADD FILE</div> 
+                    <input type="text" placeholder="" id="link" name=""  class="mediuminput link_download" value="" style="margin-bottom: 10px"><span id="">Android</span> <div onclick="openKCFinderByPath($(this).prev().prev(), 'files');"  id="add" style="color: red; font-weight: bold; cursor: pointer">ADD FILE</div> </br>
                 </span>
 
             </div>
@@ -350,14 +350,14 @@ if (empty($package_name) === FALSE) {
                             <?php
                             foreach ($arrSlide as $key => $val) {
                                 ?>
-                                <input type="text" placeholder="" id="<?php echo $key ?>_slide" name="slide[<?php echo $key ?>]" class="mediuminput" onclick="openKCFinderByPath('#<?php echo $key ?>_slide', 'images')"  value="<?php echo $val ?>" style="margin-bottom: 10px">
+                                <input type="text" placeholder="" id="<?php echo $key ?>_slide" name="slide[<?php echo $key ?>]" class="mediuminput" onclick="openKCFinderByPath('#<?php echo $key ?>_slide', 'images')"  value="<?php echo $val ?>" style="margin-bottom: 10px"> <span style="cursor: pointer" class="delete-slide"> Xóa </span>
                                 <?php
                             }
                             ?>
                             <?php
                         } else {
                             ?>    
-                            <input type="text" placeholder="" id="1_slide" name="slide[1]" class="mediuminput input-slide" onclick="openKCFinderByPath('#1_slide', 'images')"  value="" style="margin-bottom: 10px"> 
+                            <input type="text" placeholder="" id="1_slide" name="slide[1]" class="mediuminput input-slide" onclick="openKCFinderByPath('#1_slide', 'images')"  value="" style="margin-bottom: 10px"> <span style="cursor: pointer" class="delete-slide"> Xóa </span>
 
                             <?php
                         }
@@ -375,7 +375,10 @@ if (empty($package_name) === FALSE) {
                                     $(this).remove();
                                 });
                             })
-
+                            $('span.delete-slide').click(function () {
+                                $(this).prev().remove();
+                                $(this).remove();
+                            });
                         })
                     </script>
                 </span>
