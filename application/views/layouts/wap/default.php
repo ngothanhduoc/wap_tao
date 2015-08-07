@@ -19,6 +19,17 @@
                    defaultPageTransition: 'slide'
                 });
             });
+            $(document).on('vclick', '[data-rel=back]', function(e) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                // $.mobile.back(e);
+                var back = $.mobile.activePage.prev('[data-role=page]');
+                $.mobile.changePage(back, {
+                    transition: 'slide',
+                    reverse: true,
+                    changeHash: false
+                });
+            });
         </script>
         <script src="<?php echo base_url(); ?>wap/js/jquery.mobile-1.4.5.min.js"></script>
         <script src="<?php echo base_url(); ?>wap/owl-carousel/owl.carousel.min.js"></script>

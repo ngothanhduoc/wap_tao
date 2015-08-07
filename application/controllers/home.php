@@ -158,6 +158,22 @@ class Home extends CI_Controller {
         $this->template->render();
 
     }
+    
+    public function app_cate($params){
+        $id = check_id($params);
+        $data['app'] = $this->m_wap->jqxGetId('game_app', array('cate' => $id, 'type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url', 10);
+        
+        $this->template->write_view('content', 'game/view_app_cate', $data);
+        $this->template->render();
+    }
+    public function game_cate($params){
+        $id = check_id($params);
+        $data['game'] = $this->m_wap->jqxGetId('game_app', array('cate' => $id, 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url', 10);
+        $data['cate'] = $this->m_wap->jqxGetId('cate', array('id_cate' => $id,  'status' => 'active'), 'title');
+        
+        $this->template->write_view('content', 'game/view_game_cate', $data);
+        $this->template->render();
+    }
 
 }
 

@@ -14,18 +14,8 @@
         owl_app.owlCarousel({
             pagination: false,
         });
-        $('li.video-click').click(function () {
-            $('a.click-videos').click();
-        });
-        $('li.news-click').click(function () {
-            $('a.click-news').click();
-        });
-
     });
-    // Fix for back buttons
-
 </script>
-
 <div>
 
     <div data-role="header" id="header">
@@ -45,16 +35,14 @@
                                                     </ul>-->
                 </li>
             </ul>
-        </div>
-        <!-- /navbar -->
+        </div><!-- /navbar -->
 
 
-    </div>
-    <!-- /header -->
+    </div><!-- /header -->
     <div data-role="tabs" id="tabs">
         <div data-role="navbar" id="menu-wap">
             <ul>
-                <li><a href="#one" data-ajax="false" class="ui-btn-active">
+                <li><a href="#one" data-ajax="false" class="ui-btn-active"> 
                         <div class="image-menu menu-game"></div>
                         Game
                     </a>
@@ -63,61 +51,43 @@
                         <div class="image-menu menu-app"></div>
                         App
                     </a></li>
-                <li class="video-click"><a href="#three" data-ajax="false">
+                <li><a href="#three" data-ajax="false">
                         <div class="image-menu menu-video"></div>
                         Video
                     </a></li>
-                <li class="news-click"><a href="#four" data-ajax="false">
+                <li><a href="#four" data-ajax="false">
                         <div class="image-menu menu-news"></div>
                         News
                     </a></li>
-
             </ul>
         </div>
         <div id="one">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
 
-                <div class="ui-block-a item"><a href="<?php echo base_url(); ?>danh-sach-game.html">
-                        <div class="ui-bar ui-bar-a" id="height-menu-child">Game</div>
-                    </a></div>
-                <?php
-                if (!empty($cate['game_cate'])) {
-                    foreach ($cate['game_cate'] as $key => $value) {
-                        echo '<div class="ui-block-a item"><a href="' . base_url('game/danh-muc/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
+                <div class="ui-block-a item active-item"><a href="<?php echo base_url(); ?>danh-sach-game.html"><div class="ui-bar ui-bar-a" id="height-menu-child">Game</div></a></div>
+                <?php 
+                    if (!empty($cate['game_cate'])) {
+                        foreach ($cate['game_cate'] as $key => $value) {
+                            echo '<div class="ui-block-a item"><a href="'.base_url('game/danh-muc/'.$value['alias'].'-'.$value['id_cate'].'.html').'"><div class="ui-bar ui-bar-a" id="height-menu-child">'.$value['title'].'</div></a></div>';
+                        }
                     }
-                }
                 ?>
+                
 
-
-            </div>
-            <!-- /grid-c -->
+            </div><!-- /grid-c -->
         </div>
         <div id="two">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">
-                <div class="ui-block-a item ">
-                    <a href="<?php echo base_url(); ?>ung-dung.html">
-                        <div class="ui-bar ui-bar-a" id="height-menu-child">Ứng Dụng</div>
-                    </a></div>
-                <?php
-                if (!empty($cate['app_cate'])) {
-                    foreach ($cate['app_cate'] as $key => $value) {
-                        echo '<div class="ui-block-a item"><a href="' . base_url('ung-dung/danh-sach/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
+                <div class="ui-block-a item active-item"><a href="<?php echo base_url(); ?>ung-dung.html"><div class="ui-bar ui-bar-a" id="height-menu-child">Ứng Dụng</div></a></div>
+                <?php 
+                    if (!empty($cate['app_cate'])) {
+                        foreach ($cate['app_cate'] as $key => $value) {
+                            echo '<div class="ui-block-a item"><a href="'.base_url('ung-dung/danh-sach/'.$value['alias'].'-'.$value['id_cate'].'.html').'"><div class="ui-bar ui-bar-a" id="height-menu-child">'.$value['title'].'</div></a></div>';
+                        }
                     }
-                }
                 ?>
-            </div>
-            <!-- /grid-c -->
+            </div><!-- /grid-c -->
         </div>
-
-        <div id="three">
-           <a href="./videos.html" hidden class="click-videos">dkasl;dksal;d</a>
-            <!-- /grid-c -->
-        </div>
-        <div id="four">
-           <a href="./tin-tuc.html" hidden class="click-news">dkasl;dksal;d</a>
-            <!-- /grid-c -->
-        </div>
-
     </div>
 
 
@@ -132,7 +102,7 @@
                 <div class="ui-block-a item">
                     <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
                         <div class="ui-bar ui-bar-a" id="block-game-item">
-                            <img src="<?php echo base_url($value['icon']); ?>"/>
+                            <img src="<?php echo base_url($value['icon']); ?>" />
                             <span class="name-game-item"><?php echo $value['name'] ?></span>
                             <span class="des-game-item"><?php echo $value['description'] ?></span>
                         </div>
@@ -140,8 +110,7 @@
                 </div>
             <?php } ?>
 
-    </div>
-    <!-- /grid-c -->
+    </div><!-- /grid-c -->
     <div class="content view-orther-block">
         <a href="<?php echo base_url(); ?>danh-sach-game.html"><span>XEM THÊM</span></a>
     </div>
@@ -158,13 +127,9 @@
                     ?>
                     <li>
                         <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
-                            <img src="<?php echo base_url($value['icon']); ?>"/>
-
+                            <img src="<?php echo base_url($value['icon']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
-
-                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
-                                kb</p>
-
+                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
                             <p id="descript-game"><?php echo $value['description'] ?></p>
                         </a>
                         <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
@@ -188,13 +153,9 @@
                     ?>
                     <li>
                         <a href="<?php echo base_url('ung-dung/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
-                            <img src="<?php echo base_url($value['icon']); ?>"/>
-
+                            <img src="<?php echo base_url($value['icon']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
-
-                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
-                                kb</p>
-
+                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
                             <p id="descript-game"><?php echo $value['description'] ?></p>
                         </a>
                         <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
@@ -211,18 +172,15 @@
         <span>TIN TỨC</span>
     </div>
     <div class="content">
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true"
-            class="list-view list-view-news-video">
+        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-news-video">
             <?php
             if (!empty($news))
                 foreach ($news as $key => $value) {
                     ?>
                     <li>
                         <a href="<?php echo base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
-                            <img src="<?php echo base_url($value['image']); ?>"/>
-
+                            <img src="<?php echo base_url($value['image']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
-
                             <p id="descript-game"><?php echo $value['description'] ?></p>
                         </a>
 
@@ -240,18 +198,15 @@
         <span>VIDEOS</span>
     </div>
     <div class="content">
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true"
-            class="list-view list-view-news-video">
+        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-news-video">
             <?php
             if (!empty($videos))
                 foreach ($videos as $key => $value) {
                     ?>
                     <li>
                         <a href="<?php echo base_url('videos/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
-                            <img src="<?php echo base_url($value['image']); ?>"/>
-
+                            <img src="<?php echo base_url($value['image']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
-
                             <p id="descript-game"><?php echo $value['description'] ?></p>
                         </a>
 
@@ -265,13 +220,9 @@
     </div>
     <!------------------------------------------------------------->
 
-    <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content"
-         style="max-width:340px; padding-bottom:2em;">
+    <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
         <h3>Purchase Album?</h3>
-
         <p>Your download will begin immediately on your mobile device when you purchase.</p>
-        <a href="index.html" data-rel="back"
-           class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy:
-            $10.99</a>
+        <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy: $10.99</a>
         <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
     </div>

@@ -1,21 +1,12 @@
-<script>
-    $(function(){
-        $('li.click_home').click(function(){
-
-
-        });
-    })
-
-</script>
 <div>
 
     <div data-role="header" id="header" class="list-app">
         <div data-role="navbar">
             <ul>
-                <li class="click_home">
-                    <a href="./" data-direction="reverse">
+                <li>
+                    <a href="<?php echo base_url() ?>"  data-direction="reverse">
                         <img src="<?php echo base_url(); ?>wap/image/ico_back.png"/>
-                        <h1>VIDEOS</h1>
+                        <h1>APPS</h1>
                     </a>
                 </li>
                 <li>
@@ -30,22 +21,21 @@
     </div><!-- /header -->
 
     <div class="content">
-
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-news-video">
+        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
             <?php
-            if (!empty($video))
-                foreach ($video as $key => $value) {
+            if (!empty($app))
+                foreach ($app as $key => $value) {
                     ?>
                     <li>
-                        <a href="<?php echo base_url('videos/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
-                            <img src="<?php echo base_url($value['image']); ?>" />
+                        <a href="<?php echo base_url('ung-dung/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
+                            <img src="<?php echo base_url($value['icon']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
+                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
                             <p id="descript-game"><?php echo $value['description'] ?></p>
                         </a>
-
+                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
                     </li>
-                <?php } ?>           
-
+                <?php } ?>
         </ul>
     </div>
     <div class="content view-orther-block">
