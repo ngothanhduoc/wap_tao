@@ -17,8 +17,8 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->template->set_template('wap');
         $this->load->model('m_wap');
-        $this->cate['game_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'game', 'status' => 'active'), 'id_cate, title, alias');
-        $this->cate['app_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'app', 'status' => 'active'), 'id_cate, title, alias');
+        $this->cate['game_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'Game', 'status' => 'active'), 'id_cate, title, alias');
+        $this->cate['app_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'App', 'status' => 'active'), 'id_cate, title, alias');
     }
 
 
