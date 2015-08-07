@@ -180,7 +180,7 @@ div#header {
 .active-item{
     border-bottom: 2px solid #098cd6;
 }
-#slide-game-menu .ui-block-a:hover{
+#slide-game-menu .ui-block-a:hover, #slide-app-menu .ui-block-a:hover{
     border-bottom: 2px solid #098cd6;
 }
 .name-block{

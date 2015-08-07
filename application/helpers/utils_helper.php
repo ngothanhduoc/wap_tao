@@ -276,6 +276,8 @@ function check_id($params){
 
 function link_copy($link){
     $temp = explode('/', $link);
+    if($temp[0] == 'http:' or $temp[0] == 'https:')
+        return FALSE;
     array_pop($temp);
     $link = implode('/', $temp).'/';
     return $link;

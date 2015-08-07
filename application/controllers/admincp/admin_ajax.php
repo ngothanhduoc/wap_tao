@@ -522,7 +522,8 @@ class Admin_Ajax extends MY_Controller {
                 
                 $Params['content'] = $subject;
                 //Xu Ly file Plist
-                if (!empty($Params['download_url']['ios'])) {
+                $link_copy = link_copy($Params['download_url']['ios']);
+                if (!empty($Params['download_url']['ios']) and $link_copy !== FALSE) {
                     $paramsInfo = array(
                         'client' => 'https://'.$_SERVER['HTTP_HOST'].$Params['download_url']['ios'],
                         'image' => 'https://'.$_SERVER['HTTP_HOST'].$Params['icon'],
@@ -530,9 +531,11 @@ class Admin_Ajax extends MY_Controller {
                         'version' => '1.1.0',
                         'subtitle' => $Params['name'],
                         'title' => $Params['name'],
-                        'link_copy' => link_copy($Params['download_url']['ios']),
+                        'link_copy' => $link_copy,
                     );
                     $Params['download_url']['plist'] = $this->replaceInfo($paramsInfo);
+                }else{
+                    unset($Params['download_url']['plist']);
                 }
                 $Params['download_url'] = json_encode($Params['download_url']);
                 

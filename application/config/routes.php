@@ -49,11 +49,11 @@ $route['404_override'] = '';
 //$route['ajax/auto_create_sitemap_tag'] = "website/home/auto_create_sitemap_tag";
 /* --------End frontend------- */
 $route['danh-sach-game.html'] = "home/game";
-$route['game/(:any)'] = "home/game_detail/$1";
 $route['game/danh-muc/(:any)'] = "home/game_cate/$1";
+$route['game/(:any)'] = "home/game_detail/$1";
 $route['ung-dung.html'] = "home/app";
-$route['ung-dung/(:any)'] = "home/app_detail/$1";
 $route['ung-dung/danh-sach/(:any)'] = "home/app_cate/$1";
+$route['ung-dung/(:any)'] = "home/app_detail/$1";
 $route['videos.html'] = "home/video";
 $route['tin-tuc.html'] = "home/news";
 $route['videos/(:any)'] = "home/video_detail/$1";
