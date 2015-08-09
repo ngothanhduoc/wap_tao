@@ -282,3 +282,26 @@ function link_copy($link){
     $link = implode('/', $temp).'/';
     return $link;
 }
+function limit_text($text, $limit) {
+    if (str_word_count($text, 0) > $limit) {
+        $words = str_word_count($text, 2);
+        $pos = array_keys($words);
+        $text = substr($text, 0, $pos[$limit]) . '...';
+    }
+    return $text;
+}
+
+function check_offset($page, $limit){
+    if($page == 1){
+        $offset = 0;
+    }else{
+        $offset = $limit * $page - 1;
+    }
+    return $offset;
+
+}
+function check_last_page($offset, $num){
+    if(($offset + 1) <= $num)
+        return TRUE;
+    return FALSE;
+}

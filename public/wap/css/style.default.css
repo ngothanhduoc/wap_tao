@@ -64,10 +64,12 @@ div#header {
     height: 60px;
 }
 #title-wap img{
-    width: 90%;
+    width: 165px;
 }
 #form-search{
-    margin-top: 14px;
+    margin-top: 3px;
+    width: 75%;
+    float: right;
 }
 #form-search div:first-child{
     border-radius: 20px;
@@ -127,44 +129,52 @@ div#header {
     top: 2px;
 }
 #menu-wap .menu-game{
-    background-image: url('../image/ico_game_up.png');
+    background-image: url('../image/ico_game_up@2x.png');
     width: 22px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .ui-btn-active .menu-game{
-    background-image: url('../image/ico_game_down.png');
+    background-image: url('../image/ico_game_down@2x.png');
     width: 22px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .menu-app{
-    background-image: url('../image/ico_app_up.png');
+    background-image: url('../image/ico_app_up@2x.png');
     width: 14px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .ui-btn-active .menu-app{
-    background-image: url('../image/ico_app_down.png');
+    background-image: url('../image/ico_app_down@2x.png');
     width: 14px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .menu-video{
-    background-image: url('../image/ico_video_up.png');
+    background-image: url('../image/ico_video_up@2x.png');
     width: 14px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .ui-btn-active .menu-video{
-    background-image: url('../image/ico_video_down.png');
+    background-image: url('../image/ico_video_down@2x.png');
     width: 14px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .menu-news{
-    background-image: url('../image/ico_news_up.png');
+    background-image: url('../image/ico_news_up@2x.png');
     width: 16px;
     height: 14px;
+    background-size: contain;
 }
 #menu-wap .ui-btn-active .menu-news{
-    background-image: url('../image/ico_news_down.png');
+    background-image: url('../image/ico_news_down@2x.png');
     width: 16px;
     height: 14px;
+    background-size: contain;
 }
 #tabs .ui-bar-a{
     border: 0px;
@@ -184,9 +194,9 @@ div#header {
     border-bottom: 2px solid #098cd6;
 }
 .name-block{
-    height: 45px;
+    height: 35px;
     margin-left: 10px;
-    line-height: 60px;
+    line-height: 45px;
     border-bottom: 1px solid #c9c9c9;
     margin-bottom: 5px;
     color: #646464;
@@ -202,7 +212,7 @@ div#header {
     position: relative;
     display: block;
     height: 10px;
-    width: 160px;
+    width: 110px;
     text-align: center;
     top: 11px;
     margin: auto;
@@ -224,6 +234,7 @@ div#header {
     text-transform: uppercase;
     color: #494949;
     font-weight: normal;
+    font-size: 13px;
 }
 #block-game-item .des-game-item{
     font-weight: normal;
@@ -232,6 +243,7 @@ div#header {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
+    font-size: 13px;
 }
 #block-game-item img{
     width: 70%;
@@ -280,8 +292,13 @@ div#header {
     /* overflow: hidden; */
 }
 .list-view .ui-icon-gear:after{
-    background-image: url(../image/ico_down.png);
+    background-image: url(../image/ico_down@3x.png);
     background-color: #FFF;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    text-align: center;
+    margin: -16px;
 }
 .list-view #info-game{
     color: #c9c9c9;
@@ -308,7 +325,7 @@ div#header {
 }
 #footer{
     margin-top: 30px;
-    background-color: #1c1f21;
+    background-color: #efefef;
 }
 #footer ul{
     margin-left: -28px;
@@ -317,7 +334,7 @@ div#header {
     line-height: 30px;
 }
 #footer ul li a{
-    color: #7b8083;
+    color: #494949;
     text-decoration: none;
     text-shadow: none;
     font-weight: normal;
@@ -328,17 +345,17 @@ div#header {
     margin-right: 5px;
 }
 #footer ul li a:hover{
-    color: #fff;
+    color: #098cd6;
 }
 #footer .view-orther-block{
     height: 0px;
     background: #252626;
-    border-bottom: 1px solid #252626;
+    border-bottom: 1px solid #e0e0e0;
 }
 .list-app ul li.ui-block-a h1{
     color: #fff;
     font-weight: normal;
-    font-size: 22px;
+    font-size: 20px;
     position: relative;
     width: auto;
     float: left;
@@ -357,8 +374,9 @@ div#header {
     margin-top: -7px;
 }
 li.header-game a.ui-btn img{
-    max-width: 100% !important;
-    max-height: 100% !important;;
+    max-width: 110px !important;
+    max-height: 110px !important;
+    border-radius: 20% !important;
 }
 .detail-app-games .list-view h2{
     position: relative;
@@ -366,8 +384,8 @@ li.header-game a.ui-btn img{
     /*    text-overflow: ellipsis;
         overflow: hidden;*/
     white-space: initial;
-    top: -13px;
-    font-size: 20px;
+    top: -9px;
+    font-size: 18px;
 }
 .detail-app-games .list-view p{
     font-size: 15px;
@@ -384,8 +402,8 @@ li.header-game a.ui-btn img{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    padding-left: 10.25em !important;
-    min-height: 125px !important;
+    padding-left: 125px !important;
+    /*min-height: 125px !important;*/
 }
 .header-game{
     height: 145px;
@@ -400,6 +418,7 @@ li.header-game a.ui-btn img{
     float: right;
     border-radius: 8.3125em !important;
     padding: 1em 1em !important;
+    font-size: 12px;
 }
 .header-game a div input{
     color: #fff;
@@ -456,4 +475,113 @@ li.header-game-content.ui-li-static, .slide-game.ui-li-static, .comment-game.ui-
     color: #646464;
     font-size: 15px;
     white-space: initial;
+}
+.free-download {
+    position: absolute;
+    right: 2px;
+    top: 68%;
+    z-index: 100;
+    color: #646464;
+    font-size: 15px;
+
+}
+.over-play{
+    background: url("../image/ico_play@2x.png");
+    position: absolute;
+    z-index: 1000000;
+    width: 20px;
+    height: 16px;
+    background-size: contain;
+    margin: 32px;
+    margin-left: 60px;
+}
+.address li a{
+    color: #6b6b6b !important;
+}
+div.list-app #form-search{
+    margin-top: 13px;
+}
+.download-ontop{
+    position: fixed;
+    bottom: 0px;
+    height: 40px;
+    width: 100%;
+    background: rgba(35, 34, 34, 0.62);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    max-width: 640px;
+    z-index: 1000;
+}
+.download-ontop img{
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 1px;
+}
+.download-ontop span{
+    color: #fff;
+    text-shadow: none !important;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 60px;
+    line-height: 50px;
+}
+.dl-bnt{
+    background: url('../image/ico_down@3x.png');
+    width: 33px;
+    height: 33px;
+    background-size: contain;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+
+}
+.header-game-content div.ui-btn{
+    background-color: #F95E00 !important;
+    width: 30%;
+    margin: auto;
+    color: #fff;
+    font-weight: 100;
+    cursor: pointer;
+    max-width: 15%;
+}
+.header-game-content a.ui-btn{
+    display: inline !important;
+}
+@media screen and (max-width: 465px){
+    #title-wap img {
+        width: 100%;
+        position: relative;
+        margin-top: 5%;
+    }
+    div.ui-header ul li.ui-block-a {
+        width: 40%;
+    }
+    div.ui-header ul li.ui-block-b {
+        width: 57%;
+    }
+}
+@media screen and  (max-width: 355px){
+    #menu-wap .ui-btn{
+        padding: 7px;
+    }
+    #menu-wap .ui-btn-active .menu-game{
+        width: 15px;
+        height: 10px;
+        position: relative;
+        top: 0px;
+    }
+    #menu-wap .menu-app, #menu-wap .menu-video{
+        width: 10px;
+        height: 10px;
+        position: relative;
+        top: 0px;
+    }
+    #menu-wap .menu-news{
+        width: 12px;
+        height: 10px;
+        position: relative;
+        top: 0px;
+    }
+
 }

@@ -31,9 +31,10 @@
                             <img src="<?php echo base_url($value['icon']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'],20) ?></p>
                         </a>
                         <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                        <div class="free-download">FREE</div>
                     </li>
                 <?php } ?>
         </ul>
