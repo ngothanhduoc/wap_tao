@@ -38,10 +38,9 @@
                 <?php } ?>           
 
         </ul>
+        <div class="loadmore" offset="2" first-page="first"></div>
     </div>
-    <div class="content view-orther-block">
-        <span>XEM THÊM</span>
-    </div>
+
     <!------------------------------------------------------------->
 
 

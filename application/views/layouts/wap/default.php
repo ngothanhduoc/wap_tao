@@ -45,8 +45,12 @@
                         loadMoreGame('app');
                     }
 
-                    if (activePage['context'].URL == "<?php echo base_url('ung-dung.html') ?>" && ($(window).scrollTop() + $(window).height() > $(document).height() - 100)) {
-                        loadMoreNewsVideo('news');
+                    if (activePage['context'].URL == "<?php echo base_url('tin-tuc.html') ?>" && ($(window).scrollTop() + $(window).height() > $(document).height() - 100)) {
+                        loadMoreGame('news');
+                    }
+
+                    if (activePage['context'].URL == "<?php echo base_url('videos.html') ?>" && ($(window).scrollTop() + $(window).height() > $(document).height() - 100)) {
+                        loadMoreGame('videos');
                     }
                 }
 

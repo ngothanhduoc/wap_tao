@@ -238,6 +238,47 @@ class Home extends CI_Controller
                 }
         }
 
+        if ($params['menu'] == 'news') {
+            $data = $this->m_wap->jqxGetId('news_video', array('type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description', $this->limit, $offset);
+            $num_row = $this->m_wap->get_num_row('news_video', array('type' => 'news', 'status' => 'active'));
+
+
+            if (!empty($data))
+                foreach ($data as $key => $value) {
+                    $result .= '
+                            <li class="ui-li-has-thumb ui-first-child ui-last-child">
+                                <a href="'.base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']).'.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+                                    <img src="'.base_url($value['image']).'" />
+                                    <h2>'.$value['name'].'</h2>
+                                    <p id="descript-game">'.limit_text($value['description'],20).'</p>
+                                </a>
+
+                            </li>
+                    ';
+                }
+        }
+
+        if ($params['menu'] == 'videos') {
+            $data = $this->m_wap->jqxGetId('news_video', array('type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description', $this->limit, $offset);
+            $num_row = $this->m_wap->get_num_row('news_video', array('type' => 'video', 'status' => 'active'));
+
+
+            if (!empty($data))
+                foreach ($data as $key => $value) {
+                    $result .= '
+                            <li class="ui-li-has-thumb ui-first-child ui-last-child">
+                                <a href="'.base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']).'.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+                                    <img src="'.base_url($value['image']).'" />
+                                    <h2>'.$value['name'].'</h2>
+                                    <p id="descript-game">'.limit_text($value['description'],20).'</p>
+                                </a>
+
+                            </li>
+                    ';
+                }
+        }
+
+
 
         $array_result = array(
             'isLoadmore' => check_last_page($offset, $num_row),
