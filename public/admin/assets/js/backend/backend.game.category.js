@@ -96,7 +96,7 @@ var BACKEND = {
                 {text: 'TITLE', datafield: 'title', width: 150},
                 {text: 'CREATE TIME', datafield: 'create_time'},
                 {text: 'CREATE BY', datafield: 'userName', filterable: false, sortable: false},
-		{text: 'STATUS', datafield: 'idStatus', cellsrenderer: BACKEND.statuscolumnrender, width: 50,filterable: false, sortable: false},
+		        {text: 'STATUS', datafield: 'idStatus', cellsrenderer: BACKEND.statuscolumnrender, width: 50,filterable: false, sortable: false},
                 {text: 'CÔNG CỤ', datafield: 'id_game_category', cellsalign: 'center', align: 'center', cellsrenderer: BACKEND.toolscolumnrender, width: 80, sortable: false, filterable: false},
             ],
             virtualmode: true,
