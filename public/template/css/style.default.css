@@ -449,3 +449,10 @@ li.header-game-content.ui-li-static, .slide-game.ui-li-static, .comment-game.ui-
     font-size: 15px;
     white-space: initial;
 }
+.download-ontop{
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    background: #000000;
+}

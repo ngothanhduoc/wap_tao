@@ -83,7 +83,10 @@ class M_wap extends MY_Model {
             return $sql->result_array();
         }
     }
-
+    function get_num_row($table, $where){
+        $sql = $this->db_slave->get_where($table, $where);
+        return $sql->num_rows();
+    }
     function jqxGet($table, $field, $id) {
         $sql = $this->db_slave->select()
                 ->from($table)

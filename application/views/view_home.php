@@ -1,4 +1,4 @@
-<script>
+<script xmlns="http://www.w3.org/1999/html">
     $(document).ready(function () {
 
         var owl = $("#slide-game-menu");
@@ -33,7 +33,7 @@
             <ul>
                 <li>
                     <a href="./">
-                        <h1 id="title-wap"><img src="<?php echo base_url(); ?>wap/image/logo.png"/></h1>
+                        <h1 id="title-wap"><img src="<?php echo base_url(); ?>wap/image/_icon_logo@3x.png"/></h1>
                     </a>
                 </li>
                 <li>
@@ -110,11 +110,11 @@
         </div>
 
         <div id="three">
-           <a href="./videos.html" hidden class="click-videos">dkasl;dksal;d</a>
+            <a href="./videos.html" hidden class="click-videos">dkasl;dksal;d</a>
             <!-- /grid-c -->
         </div>
         <div id="four">
-           <a href="./tin-tuc.html" hidden class="click-news">dkasl;dksal;d</a>
+            <a href="./tin-tuc.html" hidden class="click-news">dkasl;dksal;d</a>
             <!-- /grid-c -->
         </div>
 
@@ -134,7 +134,7 @@
                         <div class="ui-bar ui-bar-a" id="block-game-item">
                             <img src="<?php echo base_url($value['icon']); ?>"/>
                             <span class="name-game-item"><?php echo $value['name'] ?></span>
-                            <span class="des-game-item"><?php echo $value['description'] ?></span>
+<!--                            <span class="des-game-item">--><?php //echo $value['description'] ?><!--</span>-->
                         </div>
                     </a>
                 </div>
@@ -155,6 +155,10 @@
             <?php
             if (!empty($game_new))
                 foreach ($game_new as $key => $value) {
+                    $temp = json_decode($value['download_url'], TRUE);
+                    unset($temp['plist']);
+                    $k = array_keys($temp);
+
                     ?>
                     <li>
                         <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
@@ -165,9 +169,13 @@
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
                                 kb</p>
 
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
+
                         </a>
-                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+
+                        <a href="#purchase" data-rel="popup" class="click-download" id-game="<?php echo $value['id_game_app']; ?>" download=' <?php echo json_encode($k); ?>' data-position-to="window" data-transition="pop">FREE</a>
+
+                        <div class="free-download">FREE</div>
                     </li>
                 <?php } ?>
         </ul>
@@ -185,6 +193,9 @@
             <?php
             if (!empty($app))
                 foreach ($app as $key => $value) {
+                    $temp = json_decode($value['download_url'], TRUE);
+                    unset($temp['plist']);
+                    $k = array_keys($temp);
                     ?>
                     <li>
                         <a href="<?php echo base_url('ung-dung/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
@@ -195,9 +206,10 @@
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
                                 kb</p>
 
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
                         </a>
-                        <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                        <a href="#purchase" data-rel="popup" class="click-download" id-game="<?php echo $value['id_game_app']; ?>" download=' <?php echo json_encode($k); ?>' data-position-to="window" data-transition="pop">FREE</a>
+                        <div class="free-download">FREE</div>
                     </li>
                 <?php } ?>
         </ul>
@@ -219,11 +231,12 @@
                     ?>
                     <li>
                         <a href="<?php echo base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
+
                             <img src="<?php echo base_url($value['image']); ?>"/>
 
                             <h2><?php echo $value['name'] ?></h2>
 
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
                         </a>
 
                     </li>
@@ -247,12 +260,14 @@
                 foreach ($videos as $key => $value) {
                     ?>
                     <li>
+                        <div class="over-play"></div>
                         <a href="<?php echo base_url('videos/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
+
                             <img src="<?php echo base_url($value['image']); ?>"/>
 
                             <h2><?php echo $value['name'] ?></h2>
 
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
                         </a>
 
                     </li>
@@ -265,13 +280,11 @@
     </div>
     <!------------------------------------------------------------->
 
-    <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content"
-         style="max-width:340px; padding-bottom:2em;">
-        <h3>Purchase Album?</h3>
-
-        <p>Your download will begin immediately on your mobile device when you purchase.</p>
-        <a href="index.html" data-rel="back"
-           class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy:
-            $10.99</a>
-        <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+    <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+        <h3>Tải Game</h3>
+        <div class="bnt-download">
+<!--            <a href="http://wapgame.local/tai-game?id=17&platform=android" data-ajax="false"><button class="ui-bnt">Android</button></a>-->
+<!--            <button class="ui-bnt">IOS</button>-->
+<!--            <button class="ui-bnt">JAVA</button>-->
+        </div>
     </div>

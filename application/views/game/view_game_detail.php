@@ -1,3 +1,9 @@
+<?php
+$temp = json_decode($game[0]['download_url'], TRUE);
+unset($temp['plist']);
+$k = array_keys($temp);
+$ran = rand(0,100);
+?>
  <script>
             $(document).ready(function () {
                 var owl = $("#slide-game-detail");
@@ -14,7 +20,7 @@
                             <li>
                                 <a href="#" onclick="window.history.back()" data-direction="reverse">
                                     <img src="<?php echo base_url(); ?>wap/image/ico_back.png"/>
-                                    <h1>Detail</h1>
+                                    <h1>Chi Tiết</h1>
                                 </a>
                             </li>
                             <li>
@@ -31,7 +37,7 @@
                 <div class="content detail-app-games">
                     <ul data-role="listview" class="list-view" data-icon="false">
                         <li class="header-game">
-                            <a href="#">
+                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop">
                                 <img src="<?php echo base_url($game[0]['icon']); ?>">
                                 <h2><?php echo $game[0]['name'] ?></h2>
                                 <p id="info-game"><?php echo $game[0]['count_download'] ?> tải | <?php echo $game[0]['size'] ?>kb</p>
@@ -64,7 +70,7 @@
                                 </br>
                                 <?php echo $game[0]['content'] ?>
                             </div>
-                            
+                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop"><input type="button" value="FREE" name="FREE" /></a>
                         </li>
                     </ul>
                     
@@ -104,11 +110,17 @@
 
 
 
-                <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-                    <h3>Purchase Album?</h3>
-                    <p>Your download will begin immediately on your mobile device when you purchase.</p>
-                    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy: $10.99</a>
-                    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+                <div data-role="popup" id="popup-dl-game-<?php echo $ran ?>" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                    <h3>Tải Game</h3>
+                    <div class="bnt-download bnt-download-game">
+                        <?php
+                        foreach($k as $i){
+                            ?>
+                            <a target="_blank" href="<?php echo base_url() ?>tai-game?id=<?php echo $game[0]['id_game_app']; ?>&platform=<?php echo $i; ?>" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase"><?php echo $i; ?></button></a>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- /content -->

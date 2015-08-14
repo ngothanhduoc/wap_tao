@@ -31,17 +31,16 @@
                         <a href="<?php echo base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']); ?>.html">
                             <img src="<?php echo base_url($value['image']); ?>" />
                             <h2><?php echo $value['name'] ?></h2>
-                            <p id="descript-game"><?php echo $value['description'] ?></p>
+                            <p id="descript-game"><?php echo limit_text($value['description'],20) ?></p>
                         </a>
 
                     </li>
                 <?php } ?>           
 
         </ul>
+        <div class="loadmore" offset="2" first-page="first"></div>
     </div>
-    <div class="content view-orther-block">
-        <span>XEM THÊM</span>
-    </div>
+
     <!------------------------------------------------------------->
 
 

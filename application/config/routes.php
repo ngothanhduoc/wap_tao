@@ -58,6 +58,8 @@ $route['videos.html'] = "home/video";
 $route['tin-tuc.html'] = "home/news";
 $route['videos/(:any)'] = "home/video_detail/$1";
 $route['tin-tuc/(:any)'] = "home/news_detail/$1";
+$route['loadmore'] = "home/loadmore";
+$route['tai-game'] = "home/download";
 
 
 /* --------route admincp------------------------------ */

@@ -1,3 +1,9 @@
+<?php
+$temp = json_decode($app[0]['download_url'], TRUE);
+unset($temp['plist']);
+$k = array_keys($temp);
+$ran = rand(0,100);
+?>
  <script>
             $(document).ready(function () {
                 var owl = $("#slide-game-detail");
@@ -14,7 +20,7 @@
                             <li>
                                 <a href="#" onclick="window.history.back()" data-direction="reverse">
                                     <img src="<?php echo base_url(); ?>wap/image/ico_back.png"/>
-                                    <h1>Detail Apps</h1>
+                                    <h1>Chi Tiết</h1>
                                 </a>
                             </li>
                             <li>
@@ -31,10 +37,11 @@
                 <div class="content detail-app-games">
                     <ul data-role="listview" class="list-view" data-icon="false">
                         <li class="header-game">
-                            <a href="#">
+                            <a href="#popup-dl-app-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop">
                                 <img src="<?php echo base_url($app[0]['icon']); ?>">
                                 <h2><?php echo $app[0]['name'] ?></h2>
                                 <p id="info-game"><?php echo $app[0]['count_download'] ?> tải | <?php echo $app[0]['size'] ?>kb</p>
+
                                 <input type="button" value="FREE" name="FREE" />
                             </a>
                         </li>
@@ -45,7 +52,6 @@
                                     if(!empty($app[0]['slide_image'])){
                                         $slide = json_decode($app[0]['slide_image'], TRUE);
                                         foreach ($slide as $key ) {
-
                                 ?>
                                 
                                 <div class="ui-block-a item">
@@ -67,6 +73,17 @@
                             
                         </li>
                     </ul>
-                    
 
+                </div>
+                <div data-role="popup" id="popup-dl-app-<?php echo $ran ?>" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                    <h3>Tải Game</h3>
+                    <div class="bnt-download bnt-download-game">
+                        <?php
+                        foreach($k as $i){
+                            ?>
+                            <a target="_blank" href="<?php echo base_url() ?>tai-game?id=<?php echo $app[0]['id_game_app']; ?>&platform=<?php echo $i; ?>" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase"><?php echo $i; ?></button></a>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
