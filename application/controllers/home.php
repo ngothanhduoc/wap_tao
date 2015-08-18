@@ -13,6 +13,7 @@ class Home extends CI_Controller
     public $limit = 10;
     public $fav;
     public $data;
+    public $platform = 'pc';
 
     public function __construct()
     {
@@ -23,10 +24,25 @@ class Home extends CI_Controller
         $this->cate['game_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'game', 'status' => 'active'), 'id_cate, title, alias');
         $this->cate['app_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'app', 'status' => 'active'), 'id_cate, title, alias');
         $this->fav = $this->m_wap->jqxGetId('game_app', array('favorite' => 'active', 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, download_url', 10);
-        $num = rand(0,9);
+        $num = rand(0, 9);
         $_SESSION['banner'] = $this->fav[$num];
         $this->template->set_template('wap');
-//        die(json_encode($this->data['banner']));
+
+        $this->load->library('Detect');
+        $this->Detect = new Detect();
+        $_SESSION['platform'] = 'pc';
+        if ($this->Detect->isMobile() || $this->Detect->isTablet()) {
+
+            if ($this->Detect->is('JavaOS') === true)
+                $_SESSION['platform'] = 'java';
+
+            if ($this->Detect->is('iOS') === true)
+                $_SESSION['platform'] = 'ios';
+
+            if ($this->Detect->is('AndroidOS') === true)
+                $_SESSION['platform'] = 'android';
+
+        }
     }
 
 
@@ -44,7 +60,6 @@ class Home extends CI_Controller
         $this->data['videos'] = $this->m_wap->jqxGetId('news_video', array('set_home' => 'active', 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description', 5);
 
         $this->data['cate'] = $this->cate;
-
 
 
         $this->template->write_view('content', 'view_home', $this->data);
@@ -247,10 +262,10 @@ class Home extends CI_Controller
                 foreach ($data as $key => $value) {
                     $result .= '
                             <li class="ui-li-has-thumb ui-first-child ui-last-child">
-                                <a href="'.base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']).'.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-                                    <img src="'.base_url($value['image']).'" />
-                                    <h2>'.$value['name'].'</h2>
-                                    <p id="descript-game">'.limit_text($value['description'],20).'</p>
+                                <a href="' . base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']) . '.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+                                    <img src="' . base_url($value['image']) . '" />
+                                    <h2>' . $value['name'] . '</h2>
+                                    <p id="descript-game">' . limit_text($value['description'], 20) . '</p>
                                 </a>
 
                             </li>
@@ -267,17 +282,16 @@ class Home extends CI_Controller
                 foreach ($data as $key => $value) {
                     $result .= '
                             <li class="ui-li-has-thumb ui-first-child ui-last-child">
-                                <a href="'.base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']).'.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-                                    <img src="'.base_url($value['image']).'" />
-                                    <h2>'.$value['name'].'</h2>
-                                    <p id="descript-game">'.limit_text($value['description'],20).'</p>
+                                <a href="' . base_url('tin-tuc/' . utf8_to_ascii($value['name']) . '-' . $value['id_news_video']) . '.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+                                    <img src="' . base_url($value['image']) . '" />
+                                    <h2>' . $value['name'] . '</h2>
+                                    <p id="descript-game">' . limit_text($value['description'], 20) . '</p>
                                 </a>
 
                             </li>
                     ';
                 }
         }
-
 
 
         $array_result = array(
@@ -296,7 +310,7 @@ class Home extends CI_Controller
         $db = $this->m_wap->jqxGetId('game_app', array('id_game_app' => $params['id'], 'status' => 'active'), 'id_game_app, download_url, count_download, count_install');
         $url = json_decode($db[0]['download_url'], TRUE);
         $link = base_url($url[$params['platform']]);
-        if(link_copy($url[$params['platform']]) === FALSE){
+        if (link_copy($url[$params['platform']]) === FALSE) {
             $link = $url[$params['platform']];
         }
         $data_update = array(
@@ -304,7 +318,7 @@ class Home extends CI_Controller
             'count_install' => $db[0]['count_install'] + 1,
         );
         $this->m_wap->jqxUpdate('game_app', 'id_game_app', $params['id'], $data_update);
-        header('Location: '. $link);
+        header('Location: ' . $link);
         die();
     }
 

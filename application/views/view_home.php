@@ -283,8 +283,5 @@
     <div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
         <h3>Tải Game</h3>
         <div class="bnt-download">
-<!--            <a href="http://wapgame.local/tai-game?id=17&platform=android" data-ajax="false"><button class="ui-bnt">Android</button></a>-->
-<!--            <button class="ui-bnt">IOS</button>-->
-<!--            <button class="ui-bnt">JAVA</button>-->
         </div>
     </div>
