@@ -25,6 +25,7 @@
         <script src="<?php echo base_url(); ?>wap/js/jquery.mobile-1.4.5.min.js"></script>
         <script src="<?php echo base_url(); ?>wap/owl-carousel/owl.carousel.min.js"></script>
         <script>
+            var platform = "<?php echo $_SESSION['platform'] ?>";
             $(function(){
                 $(document).on("scrollstop", checkScroll);
                 /* check scroll function */
@@ -85,14 +86,19 @@
                 }
 
                 $('.click-download').click(function(){
-                    var  _json = $(this).attr('download');
-                    var  _id_game = $(this).attr('id-game');
+                    var _json = $(this).attr('download');
+                    var _id_game = $(this).attr('id-game');
                     var _obj = JSON.parse(_json);
                     var _html = '';
-                    for (var key in _obj) {
+
+                    if(platform == 'pc') {
+                        for (var key in _obj) {
 //                        alert( _obj[key] );
-                        _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id='+_id_game+'&platform='+_obj[key]+'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">'+_obj[key]+'</button></a>';
-                        $('.bnt-download').html(_html);
+                            _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key] + '" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">' + _obj[key] + '</button></a>';
+                            $('.bnt-download').html(_html);
+                        }
+                    }else{
+                        $('#purchase').remove();
                     }
 
                 });
@@ -108,7 +114,6 @@
         <div class="content-wap">
             <?php
                 echo $content;
-                
             ?>
             
 

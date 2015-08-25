@@ -292,9 +292,6 @@ class Admin_Ajax extends MY_Controller {
         if ($data) {
             $response["code"] = 0;
             $response["message"] = "Set thành công.";
-            if ($ctr == 'admin_giftcode' and $table == 'codes_name' and $st == 1) {
-                $this->push_notify_giftcode($id);
-            }
         } else {
             $response["code"] = -1;
             $response["message"] = "Lỗi hệ thống. Vui lòng kiểm tra lại thông tin.";
