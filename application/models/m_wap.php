@@ -909,4 +909,16 @@ class M_wap extends MY_Model {
         }
     }
 
+    public function search($key){
+        $sql = $this->db_slave->select('id_game_app, name, icon, description, count_download, size, platform, download_url,type')
+            ->from('game_app')
+            ->where('status', 'active')
+            ->like('name', $key)
+            ->get();
+        if (is_object($sql)) {
+//            die($this->db_slave->last_query());
+            return $sql->result_array();
+        }
+    }
+
 }

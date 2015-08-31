@@ -307,9 +307,10 @@ class Admin_Ajax extends MY_Controller {
         $table = $this->check_security($table);
         $field = $this->check_security($field);
         //-- Check user have permission to delete ------------------------------
-        if (!isset($_SESSION[$ctr . '::' . $act . '::' . $table])) {
-            exit;
-        }
+//        if (!isset($_SESSION[$ctr . '::' . $act . '::' . $table])) {
+//            echo  'sdasda';
+//            exit;
+//        }
 
         $gameUser = $this->m_backend->jqxGetId('user_has_game', 'id_admin', $this->session->userdata['user_info']['id_admin']);
         $arr = array();

@@ -10,8 +10,8 @@
                     </a>
                 </li>
                 <li>
-                    <form class="ui-filterable" id="form-search">
-                        <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
+                    <form class="ui-filterable" id="form-search" action="<?php echo base_url() ?>tim-kiem" method="get">
+                        <input id="autocomplete-input" name="data" data-type="search" placeholder="Tìm kiếm...">
                     </form>
                 </li>
             </ul>
@@ -64,10 +64,23 @@
                 var  _id_game = $(this).attr('id-game');
                 var _obj = JSON.parse(_json);
                 var _html = '';
-                for (var key in _obj) {
+                if(platform == 'pc') {
+                    for (var key in _obj) {
 //                        alert( _obj[key] );
-                    _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id='+_id_game+'&platform='+_obj[key]+'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">'+_obj[key]+'</button></a>';
-                    $('.bnt-download-app').html(_html);
+                        _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key] + '" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">' + _obj[key] + '</button></a>';
+                        $('.bnt-download-app').html(_html);
+                    }
+                }else{
+                    $('#purchase-app').remove();
+                    for (var key in _obj) {
+                        if(_obj[key] == '<?php echo $_SESSION['platform'] ?>') {
+                            _html = '<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key];
+                            if (confirm('Bạn có tải game?')) {
+                                window.open(_html);
+                            }
+                        }
+
+                    }
                 }
 
             });

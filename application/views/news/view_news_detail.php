@@ -15,8 +15,8 @@
                     </a>
                 </li>
                 <li>
-                    <form class="ui-filterable" id="form-search">
-                        <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
+                    <form class="ui-filterable" id="form-search" action="<?php echo base_url() ?>tim-kiem" method="get">
+                        <input id="autocomplete-input" name="data" data-type="search" placeholder="Tìm kiếm...">
                     </form>
                 </li>
             </ul>
@@ -27,11 +27,8 @@
 
     <div class="content detail-app-games">
         <ul data-role="listview" class="list-view" data-icon="false">
-            <div class="video">
-                
-            </div>
-            <li class="header-game-content">
-                </br>
+
+            <li class="header-game-content" style="border: none;">
                 <h2><?php echo $news[0]['name'] ?></h2>
                 <div style="clear: both">
                     </br>

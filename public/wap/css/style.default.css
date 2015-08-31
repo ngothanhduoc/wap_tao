@@ -105,11 +105,12 @@ div#header {
     border-color: #FFF;
 }
 #height-menu-child{
-    height: 34px;
+	min-width: 90px;
     text-align: left;
-    line-height: 38px;
+    top: 10px;
     color: #098CD6;
     text-shadow: 0 0 #fff;
+	padding-left: 0;
 }
 .ui-grid-d>.ui-block-a, .ui-grid-d>.ui-block-b, .ui-grid-d>.ui-block-c, .ui-grid-d>.ui-block-d, .ui-grid-d>.ui-block-e{
     width: auto;
@@ -184,8 +185,9 @@ div#header {
     font-weight: normal;
 }
 .owl-item{
-    width: auto !important;
+    min-width: 90px;
     cursor: pointer;
+	margin-bottom: 5px;
 }
 .active-item{
     border-bottom: 2px solid #098cd6;
@@ -222,19 +224,19 @@ div#header {
     font-weight: normal;
 }
 #block-game-item{
-    width: 140px;
+    width: 120px;
     text-align: center;
     padding: .4em 0em;
 }
 #block-game-item .name-game-item{
-    white-space: nowrap;
+    
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
     text-transform: uppercase;
     color: #494949;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 12px;
 }
 #block-game-item .des-game-item{
     font-weight: normal;
@@ -436,10 +438,10 @@ li.slide-game.ui-li-static.ui-body-inherit.ui-last-child .owl-item{
     width: 100%;
 }
 #block-game-item-slide{
-    width: 200px;
+    padding-right: 0px;
 }
 li.slide-game .owl-item{
-    width: 200px !important;
+    
 }
 li.slide-game .owl-item a{
     padding-left: 0px !important;
@@ -543,10 +545,17 @@ div.list-app #form-search{
     color: #fff;
     font-weight: 100;
     cursor: pointer;
-    max-width: 15%;
+    max-width: 18%;
+	border-radius: 8.3125em !important;
+    padding: 1em 1em !important;
+    font-size: 12px;
 }
 .header-game-content a.ui-btn{
     display: inline !important;
+}
+.menu-tab-option{
+	width: 94%;
+    margin: auto;
 }
 @media screen and (max-width: 465px){
     #title-wap img {
