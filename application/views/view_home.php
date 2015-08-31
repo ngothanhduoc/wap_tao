@@ -4,15 +4,40 @@
         var owl = $("#slide-game-menu");
         owl.owlCarousel({
             pagination: false,
+			items : 4,
+			itemsDesktop : [1199,5],	
+			itemsDesktopSmall : [979,5],
+			itemsTablet: [768,5],
+			itemsTabletSmall: false,
+			itemsMobile : [460,4],
+			
         });
 
         var owl_app = $("#slide-app-menu");
         owl_app.owlCarousel({
             pagination: false,
+			items : 5,
+			itemsCustom : false,
+			itemsDesktop : [1199,5],
+			itemsDesktopSmall : [980,5],
+			itemsTablet: [768,5],
+			itemsTabletSmall: false,
+			itemsMobile : [479,5],
+			singleItem : false,
+			itemsScaleUp : false,
         });
         var owl_app = $("#game-fav");
         owl_app.owlCarousel({
             pagination: false,
+			items : 5,
+			itemsCustom : false,
+			itemsDesktop : [1199,4],
+			itemsDesktopSmall : [980,4],
+			itemsTablet: [768,4],
+			itemsTabletSmall: false,
+			itemsMobile : [479,3],
+			singleItem : false,
+			itemsScaleUp : false,
         });
         $('li.video-click').click(function () {
             $('a.click-videos').click();
@@ -37,8 +62,8 @@
                     </a>
                 </li>
                 <li>
-                    <form class="ui-filterable" id="form-search">
-                        <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
+                    <form class="ui-filterable" id="form-search" action="<?php echo base_url() ?>tim-kiem" method="get">
+                        <input id="autocomplete-input" name="data" data-type="search" placeholder="Tìm kiếm...">
                     </form>
                     <!--                                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
                                                         <li><a href="#">Acura</a></li>
@@ -74,7 +99,7 @@
 
             </ul>
         </div>
-        <div id="one">
+        <div id="one" class="menu-tab-option">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
 
                 <div class="ui-block-a item"><a href="<?php echo base_url(); ?>danh-sach-game.html">
@@ -92,7 +117,7 @@
             </div>
             <!-- /grid-c -->
         </div>
-        <div id="two">
+        <div id="two" class="menu-tab-option">
             <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">
                 <div class="ui-block-a item ">
                     <a href="<?php echo base_url(); ?>ung-dung.html">

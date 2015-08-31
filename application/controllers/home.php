@@ -24,7 +24,8 @@ class Home extends CI_Controller
         $this->cate['game_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'game', 'status' => 'active'), 'id_cate, title, alias');
         $this->cate['app_cate'] = $this->m_wap->jqxGetId('cate', array('type' => 'app', 'status' => 'active'), 'id_cate, title, alias');
         $this->fav = $this->m_wap->jqxGetId('game_app', array('favorite' => 'active', 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, download_url', 10);
-        $num = rand(0, 9);
+        $n = count($this->fav) - 1;
+        $num = rand(0, $n-1);
         $_SESSION['banner'] = $this->fav[$num];
         $this->template->set_template('wap');
 
@@ -73,7 +74,7 @@ class Home extends CI_Controller
     public function game()
     {
 
-        $this->data['game'] = $this->m_wap->jqxGetId('game_app', array('type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url', $this->limit);
+        $this->data['game'] = $this->m_wap->jqxGetId('game_app', array('type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url, platform', $this->limit);
 
 //        die(json_encode($this->data));
 
@@ -89,10 +90,14 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $this->data['game'] = $this->m_wap->jqxGetId('game_app', array('id_game_app' => $id, 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url');
+        $result = $this->m_wap->jqxGetId('game_app', array('id_game_app' => $id, 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url');
 
 //        die(json_encode($this->data));
-
+		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
+		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
+		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
+		$this->data['game'] = $result;
+		
         $this->template->write_view('content', 'game/view_game_detail', $this->data);
 
         $this->template->render();
@@ -103,10 +108,14 @@ class Home extends CI_Controller
     public function app()
     {
 
-        $this->data['app'] = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url', $this->limit);
+        $result = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url', $this->limit);
 
 //        die(json_encode($this->data));
-
+		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
+		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
+		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
+		$this->data['app'] = $result;
+		
         $this->template->write_view('content', 'game/view_app', $this->data);
 
         $this->template->render();
@@ -147,10 +156,14 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $this->data['video'] = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
+        $result = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
 
 //        die(json_encode($this->data));
-
+		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
+		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
+		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
+		$this->data['video'] = $result;
+		
         $this->template->write_view('content', 'video/view_video_detail', $this->data);
 
         $this->template->render();
@@ -177,10 +190,13 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $this->data['news'] = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
+        $result = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
 
 //        die(json_encode($this->data));
-
+		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
+		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
+		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
+		$this->data['news'] = $result;
         $this->template->write_view('content', 'news/view_news_detail', $this->data);
 
         $this->template->render();
@@ -211,13 +227,20 @@ class Home extends CI_Controller
         $params = $this->input->get(NULL, TRUE);
         $data = $result = '';
         $offset = check_offset($params['page'], $this->limit);
-        if ($params['menu'] == 'game') {
-            $data = $this->m_wap->jqxGetId('game_app', array('type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size', $this->limit, $offset);
+
+        if ($params['menu'] == 'game' and empty($params['cat'])) {
+            $data = $this->m_wap->jqxGetId('game_app', array('type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, platform, download_url', $this->limit, $offset);
             $num_row = $this->m_wap->get_num_row('game_app', array('type' => 'game', 'status' => 'active'));
+
 
 
             if (!empty($data))
                 foreach ($data as $key => $value) {
+
+                    $temp = json_decode($value['download_url'], TRUE);
+                    unset($temp['plist']);
+                    $k = array_keys($temp);
+                    $class = 'a.click-download-game-'.$value['id_game_app'];
                     $result .= '
                             <li class="ui-li-has-alt ui-li-has-thumb">
                                 <a href="' . base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
@@ -226,19 +249,112 @@ class Home extends CI_Controller
                                     <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
                                     <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
                                 </a>
-                                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a" title=""></a>
+                                <a href="#purchase-game" data-rel="popup" onclick="abc'.$value['id_game_app'].'();"  id-game="'.$value['id_game_app'].'" download=\''.json_encode($k).'\' data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a click-download-game" title=""></a>
                                 <div class="free-download">FREE</div>
                             </li>
+                            <script>
+                                function abc'.$value['id_game_app'].'(){
+                                        var _json = \''.json_encode($k).'\';
+                                        var _id_game = \''.$value['id_game_app'].'\'
+                                        var _obj = JSON.parse(_json);
+                                        var _html = "";
+                                        if (platform == "pc") {
+                                            for (var key in _obj) {
+                                                _html += \'<a target="_blank" href="'.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key] + \'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">\' + _obj[key] + \'</button></a>\';
+                                                $(\'.bnt-download-game\').html(_html);
+
+                                            }
+                                        }else{
+                                            $(\'#purchase-game\').remove();
+                                            for (var key in _obj) {
+                                                if (_obj[key] == \''.$_SESSION['platform'].'\') {
+                                                    _html = \''.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key];
+
+                                                    if (confirm(\'Bạn có tải game?\')) {
+                                                        window.open(_html);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                 }
+                            </script>
                     ';
                 }
+
         }
-        if ($params['menu'] == 'app') {
-            $data = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size', $this->limit, $offset);
-            $num_row = $this->m_wap->get_num_row('game_app', array('type' => 'app', 'status' => 'active'));
+
+        if ($params['menu'] == 'game' and !empty($params['cat'])) {
+
+            $data = $this->m_wap->jqxGetId('game_app', array('type' => 'game', 'status' => 'active', 'cate' => $params['cat']), 'id_game_app, name, icon, description, count_download, size, platform, download_url', $this->limit, $offset);
+            $num_row = $this->m_wap->get_num_row('game_app', array('type' => 'game', 'status' => 'active', 'cate' => $params['cat']));
 
 
             if (!empty($data))
                 foreach ($data as $key => $value) {
+
+                    $temp = json_decode($value['download_url'], TRUE);
+                    unset($temp['plist']);
+                    $k = array_keys($temp);
+                    $class = 'a.click-download-game-'.$value['id_game_app'];
+                    $result .= '
+                            <li class="ui-li-has-alt ui-li-has-thumb">
+                                <a href="' . base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
+                                    <img src="' . base_url($value["icon"]) . '" />
+                                    <h2>' . $value['name'] . '</h2>
+                                    <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
+                                    <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
+                                </a>
+                                <a href="#purchase-game" data-rel="popup" onclick="abc'.$value['id_game_app'].'();"  id-game="'.$value['id_game_app'].'" download=\''.json_encode($k).'\' data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a click-download-game" title=""></a>
+                                <div class="free-download">FREE</div>
+                            </li>
+                            <script>
+                                function abc'.$value['id_game_app'].'(){
+                                        var _json = \''.json_encode($k).'\';
+                                        var _id_game = \''.$value['id_game_app'].'\'
+                                        var _obj = JSON.parse(_json);
+                                        var _html = "";
+                                        if (platform == "pc") {
+                                            for (var key in _obj) {
+                                                _html += \'<a target="_blank" href="'.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key] + \'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">\' + _obj[key] + \'</button></a>\';
+                                                $(\'.bnt-download-game\').html(_html);
+
+                                            }
+                                        }else{
+                                            $(\'#purchase-game\').remove();
+                                            for (var key in _obj) {
+                                                if (_obj[key] == \''.$_SESSION['platform'].'\') {
+                                                    _html = \''.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key];
+
+                                                    if (confirm(\'Bạn có tải game?\')) {
+                                                        window.open(_html);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                 }
+                            </script>
+                    ';
+                }
+
+        }
+
+        if ($params['menu'] == 'app' and !empty($params['cat']) ) {
+
+            $data = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active', 'cate' => $params['cat']), 'id_game_app, name, icon, description, count_download, size, platform, download_url', $this->limit, $offset);
+            $num_row = $this->m_wap->get_num_row('game_app', array('type' => 'app', 'status' => 'active', 'cate' => $params['cat']));
+
+
+            if (!empty($data))
+
+                foreach ($data as $key => $value) {
+                    $temp = json_decode($value['download_url'], TRUE);
+                    unset($temp['plist']);
+                    $k = array_keys($temp);
+                    $class = 'a.click-download-game-'.$value['id_game_app'];
                     $result .= '
                             <li class="ui-li-has-alt ui-li-has-thumb">
                                 <a href="' . base_url('ung-dung/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
@@ -247,9 +363,36 @@ class Home extends CI_Controller
                                     <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
                                     <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
                                 </a>
-                                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a" title=""></a>
+                                <a href="#purchase-app" data-rel="popup" onclick="abc'.$value['id_game_app'].'();"  data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a" title=""></a>
                                 <div class="free-download">FREE</div>
                             </li>
+                        <script>
+                                function abc'.$value['id_game_app'].'(){
+                                        var _json = \''.json_encode($k).'\';
+                                        var _id_game = \''.$value['id_game_app'].'\'
+                                        var _obj = JSON.parse(_json);
+                                        var _html = "";
+                                        if (platform == "pc") {
+                                            for (var key in _obj) {
+                                                _html += \'<a target="_blank" href="'.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key] + \'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">\' + _obj[key] + \'</button></a>\';
+                                                $(\'.bnt-download-game\').html(_html);
+
+                                            }
+                                        }else{
+                                            $(\'#purchase-app\').remove();
+                                            for (var key in _obj) {
+                                                if (_obj[key] == \''.$_SESSION['platform'].'\') {
+                                                    _html = \''.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key];
+
+                                                    if (confirm(\'Bạn có tải ứng dụng?\')) {
+                                                        window.open(_html);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                 }
+                            </script>
                     ';
                 }
         }
@@ -323,6 +466,78 @@ class Home extends CI_Controller
         die();
     }
 
+    public function search(){
+        $this->template->write_view('content', 'search/view_app_game', $this->data);
+        $this->template->render();
+    }
+
+    public function action_search(){
+        $params = $this->input->get(NULL,TRUE);
+
+        $data = $this->m_wap->search($params['data']);
+        $num_row = $this->m_wap->get_num_row('game_app', array('type' => 'app', 'status' => 'active', 'cate' => $params['cat']));
+
+
+        if (!empty($data))
+
+            foreach ($data as $key => $value) {
+                $temp = json_decode($value['download_url'], TRUE);
+                unset($temp['plist']);
+                $k = array_keys($temp);
+                $class = 'a.click-download-game-'.$value['id_game_app'];
+                $sub = 'ung-dung';
+                if($value['type'] == 'game')
+                    $sub = 'game';
+
+                $result .= '
+                            <li class="ui-li-has-alt ui-li-has-thumb">
+                                <a href="' . base_url($sub.'/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
+                                    <img src="' . base_url($value["icon"]) . '" />
+                                    <h2>' . $value['name'] . '</h2>
+                                    <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
+                                    <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
+                                </a>
+                                <a href="#purchase-app" data-rel="popup" onclick="abc'.$value['id_game_app'].'();"  data-position-to="window" data-transition="pop" aria-haspopup="true" aria-owns="purchase" aria-expanded="false" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a" title=""></a>
+                                <div class="free-download">FREE</div>
+                            </li>
+                        <script>
+                                function abc'.$value['id_game_app'].'(){
+                                        var _json = \''.json_encode($k).'\';
+                                        var _id_game = \''.$value['id_game_app'].'\'
+                                        var _obj = JSON.parse(_json);
+                                        var _html = "";
+                                        if (platform == "pc") {
+                                            for (var key in _obj) {
+                                                _html += \'<a target="_blank" href="'.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key] + \'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">\' + _obj[key] + \'</button></a>\';
+                                                $(\'.bnt-download-game\').html(_html);
+
+                                            }
+                                        }else{
+                                            $(\'#purchase-app\').remove();
+                                            for (var key in _obj) {
+                                                if (_obj[key] == \''.$_SESSION['platform'].'\') {
+                                                    _html = \''.base_url().'tai-game?id=\' + _id_game + \'&platform=\' + _obj[key];
+
+                                                    if (confirm(\'Bạn có tải ứng dụng?\')) {
+                                                        window.open(_html);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                 }
+                            </script>
+                    ';
+            }
+
+        $array_result = array(
+            'isLoadmore' => check_last_page($offset, $num_row),
+            'html' => $result,
+            'page' => $params['page'] + 1,
+        );
+
+        die(json_encode($array_result));
+    }
 
 }
 

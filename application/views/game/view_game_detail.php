@@ -6,9 +6,17 @@ $ran = rand(0,100);
 ?>
  <script>
             $(document).ready(function () {
-                var owl = $("#slide-game-detail");
-                owl.owlCarousel({
+                var owl_detail = $("#slide-game-detail");
+                owl_detail.owlCarousel({
                     pagination: false,
+					items : 5,
+					itemsCustom : false,
+					itemsDesktop : [1199,5],
+					itemsDesktopSmall : [980,2],
+					itemsTablet: [768,2],
+					itemsTabletSmall: false,
+					itemsMobile : [479,2],
+					itemsScaleUp : true,
                 });
             });
         </script>
@@ -24,8 +32,8 @@ $ran = rand(0,100);
                                 </a>
                             </li>
                             <li>
-                                <form class="ui-filterable" id="form-search">
-                                    <input id="autocomplete-input" data-type="search" placeholder="Tìm kiếm...">
+                                <form class="ui-filterable" id="form-search" action="<?php echo base_url() ?>tim-kiem" method="get">
+                                    <input id="autocomplete-input" name="data" data-type="search" placeholder="Tìm kiếm...">
                                 </form>
                             </li>
                         </ul>
@@ -41,7 +49,7 @@ $ran = rand(0,100);
                                 <img src="<?php echo base_url($game[0]['icon']); ?>">
                                 <h2><?php echo $game[0]['name'] ?></h2>
                                 <p id="info-game"><?php echo $game[0]['count_download'] ?> tải | <?php echo $game[0]['size'] ?>kb</p>
-                                <input type="button" value="FREE" name="FREE" />
+                                <input class="down-game" type="button" value="FREE" name="FREE" />
                             </a>
                         </li>
                         <li class="slide-game">
@@ -70,46 +78,17 @@ $ran = rand(0,100);
                                 </br>
                                 <?php echo $game[0]['content'] ?>
                             </div>
-                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop"><input type="button" value="FREE" name="FREE" /></a>
+                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop"><input class="down-game" type="button" value="FREE" name="FREE" /></a>
                         </li>
                     </ul>
                     
-<!--                    <ul data-role="listview" class="comment-game" data-icon="false">
-                        <p>ĐÁNH GIÁ</p>
-                        <li>
-                            <a href="#">
-                                <img src="./image/14.jpg">
-                                <h2>Phúc Trần</h2>
-                                <p id="date-comment">2015-07-17</p>
-                                <p id="content-comment">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy.Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="./image/14.jpg">
-                                <h2>Phúc Trần</h2>
-                                <p id="date-comment">2015-07-17</p>
-                                <p id="content-comment">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="./image/14.jpg">
-                                <h2>Phúc Trần</h2>
-                                <p id="date-comment">2015-07-17</p>
-                                <p id="content-comment">Trở thành tỉ phú Tony Stark trong vai Iron Man trong game chạy ..</p>
-                            </a>
-                        </li>
-                        
-                        
 
-                    </ul>-->
                 </div>
 
                 <!------------------------------------------------------------->
 
 
-
+                <?php if($_SESSION['platform'] == 'pc') { ?>
                 <div data-role="popup" id="popup-dl-game-<?php echo $ran ?>" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
                     <h3>Tải Game</h3>
                     <div class="bnt-download bnt-download-game">
@@ -122,5 +101,30 @@ $ran = rand(0,100);
                         ?>
                     </div>
                 </div>
+                <?php
+                }else{
+                ?>
+                    <script>
+                        $(function(){
+                            $(".down-game").click(function(){
+                                <?php
+                                    foreach($k as $i){
+                                        if($_SESSION['platform'] == $i){
+                                ?>
+                                    if (confirm('Bạn có tải game?')) {
+                                        window.open('<?php echo base_url() ?>tai-game?id=<?php echo $game[0]['id_game_app']; ?>&platform=<?php echo $i; ?>');
+                                    }
+                                <?php
+                                  }}
+                                ?>
+                            })
+
+                        })
+
+
+                    </script>
+                    <?php
+                }
+                ?>
 
                 <!-- /content -->
