@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <title>Multi-page template</title>
+        <title>Tải Game Free</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>wap/css/themes/default/jquery.mobile-1.4.5.min.css">
         <!--<link rel="stylesheet" href="./css/style.default.css" type="text/css" />-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>wap/owl-carousel/owl.carousel.css" type="text/css" />
@@ -99,6 +99,17 @@
                         }
                     }else{
                         $('#purchase').remove();
+                        for (var key in _obj) {
+                            if(_obj[key] == '<?php echo $_SESSION['platform'] ?>') {
+                                _html = '<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key];
+                                if (confirm('Bạn có tải game?')) {
+                                    window.open(_html);
+                                }
+
+                            }
+
+                        }
+
                     }
 
                 });
@@ -106,7 +117,7 @@
 
             });
         </script>
-        <!--Start of Zopim Live Chat Script-->
+
 
     </head>
 

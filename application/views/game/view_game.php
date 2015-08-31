@@ -99,12 +99,24 @@
                 var  _json = $(this).attr('download');
                 var  _id_game = $(this).attr('id-game');
                 var _obj = JSON.parse(_json);
-                var _html = '';
-                for (var key in _obj) {
+                var _html = ''; alert(platform);
+                if(platform == 'pc') {
+                    for (var key in _obj) {
 //                        alert( _obj[key] );
-                    _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id='+_id_game+'&platform='+_obj[key]+'" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">'+_obj[key]+'</button></a>';
-                    $('.bnt-download-game').html(_html);
+                        _html += '<a target="_blank" href="<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key] + '" data-ajax="false"><button class="ui-bnt ui-btn ui-shadow ui-corner-all" style="text-transform: uppercase">' + _obj[key] + '</button></a>';
+                        $('.bnt-download-game').html(_html);
+                    }
+                }else{
+                    $('#purchase-game').remove();
+                    for (var key in _obj) {
+                        if(_obj[key] == '<?php echo $_SESSION['platform'] ?>') {
+                            _html = '<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key];
+                            window.open(_html);
+                        }
+
+                    }
                 }
+
 
             });
         })

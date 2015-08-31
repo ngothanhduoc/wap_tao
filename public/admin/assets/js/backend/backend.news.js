@@ -8,7 +8,7 @@ var arrCat = [];
 var BACKEND = {
     API_URL_LIST: '/backend/listnews',
     AJAX_URL_UPDATE: '/backend/ajax/updatestatus/admin_news_video/index_news/news_video/id_news_video',
-    AJAX_URL_DELETE: '/backend/ajax/deletegame/admin_game/index/game/id_game',
+    AJAX_URL_DELETE: '/backend/ajax/delete/admin_news_video/index_news/news_video/id_news_video',
     API_URL_BC: '/inside/ajax/updatebc/game',
     API_URL_CAT: '/inside/ajax/get_list_cat/game_category',
     API_URL_SORT: '/inside/ajax/updatesort/game',
@@ -69,7 +69,7 @@ var BACKEND = {
         return '<div style="overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px; text-align: left; margin:4px 2px 0px 4px;">' + index + '</div>';
     },
     toolscolumnrender: function(row, datafield, value) {
-        return '<div class="grid-tools"><a href="#" onclick="BACKEND.gridEdit(' + value + ');return false;" class="grid-tools"><span class="ui-icon ui-icon-pencil"></span></a><!--<a href="#" onclick="BACKEND.gridDelete(' + value + ');return false;"><span class="ui-icon ui-icon-trash"></span></a>--></div>';
+        return '<div class="grid-tools"><a href="#" onclick="BACKEND.gridEdit(' + value + ');return false;" class="grid-tools"><span class="ui-icon ui-icon-pencil"></span></a><a href="#" onclick="BACKEND.gridDelete(' + value + ');return false;"><span class="ui-icon ui-icon-trash"></span></a></div>';
     },
     statuscolumnrender: function(row, datafield, value) {
         var res = value.split(",");

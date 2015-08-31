@@ -43,6 +43,7 @@ class Home extends CI_Controller
                 $_SESSION['platform'] = 'android';
 
         }
+
     }
 
 
