@@ -75,9 +75,13 @@
                     for (var key in _obj) {
                         if(_obj[key] == '<?php echo $_SESSION['platform'] ?>') {
                             _html = '<?php echo base_url() ?>tai-game?id=' + _id_game + '&platform=' + _obj[key];
+<<<<<<< HEAD
+                            window.open(_html);
+=======
                             if (confirm('Bạn có tải game?')) {
                                 window.open(_html);
                             }
+>>>>>>> f0dba6ef3ee26dae89630438b0ede60bae39dbc0
                         }
 
                     }
