@@ -32,9 +32,9 @@
                     ?>
                     <li>
                         <a href="<?php echo base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app']); ?>.html">
-                            <img src="<?php echo base_url($value['icon']); ?>" />
+                            <img src="<?php echo base_url($value['icon']); ?>" class="img-list-game-app"/>
                             <h2><?php echo $value['name'] ?></h2>
-                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>kb</p>
+                            <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>MB</p>
                             <p id="descript-game"><?php echo limit_text($value['description'],20) ?></p>
                         </a>
                         <a href="#purchase-game" onclick='abc("a.click-download-game-<?php echo $value['id_game_app']; ?>");'  data-rel="popup"  class="click-download-game-<?php echo $value['id_game_app']; ?>" id-game="<?php echo $value['id_game_app']; ?>" download='<?php echo json_encode($k); ?>' data-position-to="window" data-transition="pop">FREE</a>

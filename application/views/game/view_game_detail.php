@@ -9,14 +9,7 @@ $ran = rand(0,100);
                 var owl_detail = $("#slide-game-detail");
                 owl_detail.owlCarousel({
                     pagination: false,
-					items : 5,
-					itemsCustom : false,
-					itemsDesktop : [1199,5],
-					itemsDesktopSmall : [980,2],
-					itemsTablet: [768,2],
-					itemsTabletSmall: false,
-					itemsMobile : [479,2],
-					itemsScaleUp : true,
+
                 });
             });
         </script>
@@ -48,7 +41,7 @@ $ran = rand(0,100);
                             <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop">
                                 <img src="<?php echo base_url($game[0]['icon']); ?>">
                                 <h2><?php echo $game[0]['name'] ?></h2>
-                                <p id="info-game"><?php echo $game[0]['count_download'] ?> tải | <?php echo $game[0]['size'] ?>kb</p>
+                                <p id="info-game"><?php echo $game[0]['count_download'] ?> tải | <?php echo $game[0]['size'] ?>MB</p>
                                 <input class="down-game" type="button" value="FREE" name="FREE" />
                             </a>
                         </li>
@@ -78,7 +71,7 @@ $ran = rand(0,100);
                                 </br>
                                 <?php echo $game[0]['content'] ?>
                             </div>
-                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop"><input class="down-game" type="button" value="FREE" name="FREE" /></a>
+                            <a href="#popup-dl-game-<?php echo $ran ?>" data-rel="popup" class="dl-bt-last" data-transition="pop"><input class="down-game" type="button" value="FREE" name="FREE" /></a>
                         </li>
                     </ul>
                     

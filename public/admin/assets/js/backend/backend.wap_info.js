@@ -6,8 +6,8 @@ $(document).ready(function() {
 
 var arrCat = [];
 var BACKEND = {
-    API_URL_LIST: '/backend/list/game_category',
-    AJAX_URL_DELETE: '/backend/ajax/delete/admin_game/category/game_category/id_game_category',
+    API_URL_LIST: '/backend/list/info_wap',
+    AJAX_URL_DELETE: '/backend/ajax/delete/wap_info/list_info/info_wap/id',
     AJAX_URL_UPDATE: '/backend/ajax/updatestatus/admin_game/category/game_category/id_game_category',
     API_URL_CAT: '/inside/ajax/get_list_cat/game_category',
     API_URL_SORT: '/inside/ajax/updatesort/game',
@@ -18,11 +18,10 @@ var BACKEND = {
         var source = {
             datatype: "jsonp",
             datafields: [
-                {name: 'id_game_category', type: 'int'},
+                {name: 'id', type: 'int'},
                 {name: 'title', type: 'string'},
-                {name: 'create_time', type: 'string'},
-                {name: 'status', type: 'int'},
-                {name: 'create_user', type: 'int'},
+                {name: 'date', type: 'string'},
+                {name: 'alias', type: 'string'},
             ],
             url: BACKEND.API_URL_LIST,
             sort: function() {
@@ -41,11 +40,9 @@ var BACKEND = {
 				
 				for (var i = j; i < records.length; i++) {
 					
-                    records[i].idCoppy = records[i].id_game_category;
-                    records[i].userName = users[records[i].create_user];
-					
-                    records[i].idsort = records[i].id_game_category + ',' + records[i].sort;
-                    records[i].idStatus = records[i].id_game_category + ',' + records[i].status;					
+                    records[i].idCoppy = records[i].id;
+                    records[i].idsort = records[i].id + ',' + records[i].sort;
+                    //records[i].idStatus = records[i].id + ',' + records[i].status;
 					
                 };
 				
@@ -94,10 +91,10 @@ var BACKEND = {
 			columns: [
                 {text: 'STT', cellsrenderer: BACKEND.sttcolumnrender, width: 40, filterable: false},
                 {text: 'TITLE', datafield: 'title', width: 150},
-                {text: 'CREATE TIME', datafield: 'create_time'},
-                {text: 'CREATE BY', datafield: 'userName', filterable: false, sortable: false},
-		        {text: 'STATUS', datafield: 'idStatus', cellsrenderer: BACKEND.statuscolumnrender, width: 50,filterable: false, sortable: false},
-                {text: 'CÔNG CỤ', datafield: 'id_game_category', cellsalign: 'center', align: 'center', cellsrenderer: BACKEND.toolscolumnrender, width: 80, sortable: false, filterable: false},
+
+                {text: 'ALIAS', datafield: 'alias', filterable: true, sortable: true},
+                {text: 'CREATE TIME', datafield: 'date'},
+                {text: 'CÔNG CỤ', datafield: 'id', cellsalign: 'center', align: 'center', cellsrenderer: BACKEND.toolscolumnrender, width: 80, sortable: false, filterable: false},
             ],
             virtualmode: true,
             rendergridrows: function() {
@@ -136,7 +133,7 @@ var BACKEND = {
     },
     gridEdit: function(id) {
         //loadPopup(id, false);
-        window.location.href = '/backend/game/addcategory?id=' + id;
+        window.location.href = '/backend/wap_info/add_info?id=' + id;
     },
     setBc: function(id){
         $.ajax({

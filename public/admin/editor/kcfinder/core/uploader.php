@@ -122,8 +122,11 @@ class uploader {
             $this->cms = $this->get['cms'];
 
 		// LINKING UPLOADED FILE
-        if (count($_FILES))
-            $this->file = &$_FILES[key($_FILES)];
+        if (count($_FILES)){
+           // $this->file = &$_FILES[key($_FILES)];  nguyen goc
+	    foreach($_FILES as $key => $value)
+		{ if($key) $this->file = &$_FILES[key($_FILES)]; }
+		}
 
         // LOAD DEFAULT CONFIGURATION
         require "config.php";

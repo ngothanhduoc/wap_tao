@@ -204,24 +204,25 @@ div#header {
     color: #646464;
 }
 .view-orther-block{
-    height: 20px;
-    border-bottom: 1px solid #c9c9c9;
+    height: 0px;
+    border-bottom: 1px solid #EAEAEA;
     margin-bottom: 5px;
     color: #646464;
     text-align: center;
 }
-.view-orther-block span{
+.view-orther-block span {
     position: relative;
     display: block;
     height: 10px;
-    width: 110px;
+    width: 85px;
     text-align: center;
-    top: 11px;
+    top: -7px;
     margin: auto;
     background-color: #fff;
     cursor: pointer;
-    color: #646464;
+    color: #949494;
     font-weight: normal;
+    font-size: 13px;
 }
 #block-game-item{
     width: 120px;
@@ -233,7 +234,7 @@ div#header {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: #494949;
     font-weight: normal;
     font-size: 12px;
@@ -261,6 +262,11 @@ div#header {
 .list-view li a, .list-view li a img{
     border: 0px !important;
     background-color: #fff !important;
+
+}
+.list-view-home li a img{
+    width: 84px;
+    height: 84px;
 }
 .list-view li a p#descript-game{
     color: #848484;
@@ -268,7 +274,7 @@ div#header {
 }
 .list-view li a h2{
     margin-top: -10px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: #494949;
     font-weight: normal;
 }
@@ -277,11 +283,11 @@ div#header {
 }
 
 .list-view li{
-    margin-top: 15px;
+    margin-top: 0px;
 }
 .list-view.ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
     min-height: 4.625em;
-    padding-left: 7.25em;
+    /*padding-left: 7.25em;*/
 }
 
 .list-view.ui-listview .ui-li-has-thumb>img:first-child, .ui-listview .ui-li-has-thumb>.ui-btn>img:first-child, .ui-listview .ui-li-has-thumb .ui-li-thumb{
@@ -301,9 +307,13 @@ div#header {
     background-size: contain;
     text-align: center;
     margin: -16px;
+    margin-top: -30px;
 }
 .list-view #info-game{
     color: #c9c9c9;
+}
+.list-view-news-video{
+    margin-bottom: 10px;
 }
 .list-view-news-video .ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb{
     min-height: 4.625em;
@@ -311,7 +321,10 @@ div#header {
 }
 .list-view-news-video li a img{
     max-width: 140px !important;
+    width: 140px !important;
     border-radius: 0 !important;
+    max-height: 83px !important;
+    height: 83px !important;
 }
 .list-view-news-video.ui-listview>li.ui-first-child, .ui-listview>li.ui-first-child>a.ui-btn{
     border-top-left-radius: initial !important;
@@ -328,6 +341,7 @@ div#header {
 #footer{
     margin-top: 30px;
     background-color: #efefef;
+    margin-bottom: 45px;
 }
 #footer ul{
     margin-left: -28px;
@@ -376,9 +390,12 @@ div#header {
     margin-top: -7px;
 }
 li.header-game a.ui-btn img{
-    max-width: 110px !important;
-    max-height: 110px !important;
+    max-width: 85px !important;
+    max-height: 85px !important;
     border-radius: 20% !important;
+}
+.detail-app-games{
+    margin-bottom: -40px;
 }
 .detail-app-games .list-view h2{
     position: relative;
@@ -404,23 +421,24 @@ li.header-game a.ui-btn img{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    padding-left: 125px !important;
+    padding-left: 100px !important;
     /*min-height: 125px !important;*/
 }
 .header-game{
-    height: 145px;
-    top: 10px;
+    height: 80px;
+    top: 0px;
 }
 .header-game a div{
     background-color: #f95e00 !important;
     border: 0;
     color: #fff !important;
     font-weight: normal;
-    width: 30%;
+    width: 20%;
     float: right;
     border-radius: 8.3125em !important;
     padding: 1em 1em !important;
-    font-size: 12px;
+    margin-top: -3px;
+    font-size: 10px;
 }
 .header-game a div input{
     color: #fff;
@@ -438,7 +456,7 @@ li.slide-game.ui-li-static.ui-body-inherit.ui-last-child .owl-item{
     width: 100%;
 }
 #block-game-item-slide{
-    padding-right: 0px;
+    padding: 0px;
 }
 li.slide-game .owl-item{
     
@@ -449,7 +467,7 @@ li.slide-game .owl-item a{
 .header-game-content{
     text-align: justify;
     line-height: 22px;
-    padding-top: 25px !important;
+    margin-top: -20px !important;
     border-bottom: 0px !important;
 }
 .slide-game{
@@ -481,7 +499,7 @@ li.header-game-content.ui-li-static, .slide-game.ui-li-static, .comment-game.ui-
 .free-download {
     position: absolute;
     right: 2px;
-    top: 68%;
+    top: 52%;
     z-index: 100;
     color: #646464;
     font-size: 15px;
@@ -537,6 +555,17 @@ div.list-app #form-search{
     top: 8px;
     right: 10px;
 
+}
+.dl-bt-last div{
+    margin-top: -20px;
+}
+.list-view-videos-news{
+    margin-top: 13px;
+    padding-top: 1px;
+}
+.img-list-game-app{
+    width: 84px;
+    height: 84px;
 }
 .header-game-content div.ui-btn{
     background-color: #F95E00 !important;

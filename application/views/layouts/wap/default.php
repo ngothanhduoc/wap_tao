@@ -161,7 +161,16 @@
             });
 
         </script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+		  ga('create', 'UA-67194175-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
 
     </head>
 
@@ -175,19 +184,25 @@
                 <!-- /content -->
 
                 <div data-role="footer" id="footer">
-                    <ul  >
-                        <li><a href="#"><img src="<?php echo base_url(); ?>wap/image/ten_de.png" /> Giới Thiệu </a></li>
-                        <li><a href="#"><img src="<?php echo base_url(); ?>wap/image/ten_de.png" /> Điều Khoản Sử Dụng</a></li>
-                        <li><a href="#"><img src="<?php echo base_url(); ?>wap/image/ten_de.png" /> Chính Sách Bảo mật</a></li>
-                        <li><a href="#"><img src="<?php echo base_url(); ?>wap/image/ten_de.png" /> Cài Đặt, Gỡ Bỏ</a></li>
-                        <li><a href="#"><img src="<?php echo base_url(); ?>wap/image/ten_de.png" /> Hỗ Trợ</a></li>
-                    </ul>
+                    <ul>
+                        <?php
+                            $info = $_SESSION['wap_info'];
+                            if(!empty($info))
+                                foreach ($info as $k => $v) {
+                                    echo '<li><a href="'.base_url().'thong-tin/'.$v['alias'].'.html"><img src="'.base_url().'wap/image/ten_de.png" /> '.$v['title'].' </a></li>';
+                                }
+
+                        ?>
+
+
                     <div class="content view-orther-block"></div>
                     <ul  class="address">
-                        <li><a href="#"> Hotline : 1900 6611 -  Hỗ trợ : hotro@iwin.vn  </a></li>
-                        <li><a href="#"> Bản quyền thuộc về Mecorp </a></li>
-                        <li><a href="#">Bản quyền thuộc về Mecorp </a></li>
-                        <li><a href="#">Địa chỉ: 141 Lý Chính Thắng, P.7, Q. 3, TP.HCM</a></li>
+                        <li>
+                            <a href="#">
+                                <?php echo $_SESSION['footer'][0]['content'] ?>
+                            </a>
+                        </li>
+
 
                     </ul>
                 </div><!-- /footer -->

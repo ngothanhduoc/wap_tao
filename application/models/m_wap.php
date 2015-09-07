@@ -920,5 +920,14 @@ class M_wap extends MY_Model {
             return $sql->result_array();
         }
     }
-
+    public function get_info(){
+        $sql = $this->db_slave->select('title, alias')
+            ->from('info_wap')
+            ->where('alias !=','footer')
+            ->get();
+        if (is_object($sql)) {
+//            die($this->db_slave->last_query());
+            return $sql->result_array();
+        }
+    }
 }

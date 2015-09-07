@@ -44,6 +44,9 @@ class Home extends CI_Controller
                 $_SESSION['platform'] = 'android';
 
         }
+        
+        $_SESSION['wap_info'] = $this->m_wap->get_info();
+        $_SESSION['footer'] = $this->m_wap->jqxGetId('info_wap', array('alias' => 'footer'), 'content');
 
     }
 
@@ -90,14 +93,10 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $result = $this->m_wap->jqxGetId('game_app', array('id_game_app' => $id, 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url');
+        $this->data['game'] = $this->m_wap->jqxGetId('game_app', array('id_game_app' => $id, 'type' => 'game', 'status' => 'active'), 'id_game_app, name, icon, slide_image, description, content, count_download, size, download_url');
 
 //        die(json_encode($this->data));
-		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
-		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
-		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
-		$this->data['game'] = $result;
-		
+
         $this->template->write_view('content', 'game/view_game_detail', $this->data);
 
         $this->template->render();
@@ -108,14 +107,10 @@ class Home extends CI_Controller
     public function app()
     {
 
-        $result = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url', $this->limit);
+        $this->data['app'] = $this->m_wap->jqxGetId('game_app', array('type' => 'app', 'status' => 'active'), 'id_game_app, name, icon, description, count_download, size, download_url', $this->limit);
 
 //        die(json_encode($this->data));
-		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
-		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
-		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
-		$this->data['app'] = $result;
-		
+
         $this->template->write_view('content', 'game/view_app', $this->data);
 
         $this->template->render();
@@ -156,14 +151,10 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $result = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
+        $this->data['video'] = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'video', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
 
 //        die(json_encode($this->data));
-		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
-		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
-		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
-		$this->data['video'] = $result;
-		
+
         $this->template->write_view('content', 'video/view_video_detail', $this->data);
 
         $this->template->render();
@@ -190,13 +181,10 @@ class Home extends CI_Controller
 
         $id = check_id($params);
 
-        $result = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
+        $this->data['news'] = $this->m_wap->jqxGetId('news_video', array('id_news_video' => $id, 'type' => 'news', 'status' => 'active'), 'id_news_video, name, image, description, content, youtube_id');
 
 //        die(json_encode($this->data));
-		$result[0]['content'] = str_replace('"/assets/', '"http://omga.vn/assets/', $result[0]['content']);
-		$result[0]['content'] = str_replace("<img", "<img width='100%'", $result[0]['content']);
-		$result[0]['content'] = str_replace("style=", "", $result[0]['content']);
-		$this->data['news'] = $result;
+
         $this->template->write_view('content', 'news/view_news_detail', $this->data);
 
         $this->template->render();
@@ -244,7 +232,7 @@ class Home extends CI_Controller
                     $result .= '
                             <li class="ui-li-has-alt ui-li-has-thumb">
                                 <a href="' . base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
-                                    <img src="' . base_url($value["icon"]) . '" />
+                                    <img src="' . base_url($value["icon"]) . '" class="img-list-game-app" />
                                     <h2>' . $value['name'] . '</h2>
                                     <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
                                     <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
@@ -301,7 +289,7 @@ class Home extends CI_Controller
                     $result .= '
                             <li class="ui-li-has-alt ui-li-has-thumb">
                                 <a href="' . base_url('game/' . utf8_to_ascii($value['name']) . '-' . $value['id_game_app'] . '.html') . '" class="ui-btn">
-                                    <img src="' . base_url($value["icon"]) . '" />
+                                    <img src="' . base_url($value["icon"]) . '" class="img-list-game-app"/>
                                     <h2>' . $value['name'] . '</h2>
                                     <p id="info-game"> ' . $value["count_download"] . 'tải | ' . $value['size'] . ' kb</p>
                                     <p id="descript-game">' . limit_text($value["description"], 20) . '</p>
@@ -538,6 +526,12 @@ class Home extends CI_Controller
 
         die(json_encode($array_result));
     }
+    public function info($alias){
+        $temp = explode('.html', $alias);
+        $this->data['data'] = $this->m_wap->jqxGetId('info_wap', array('alias' => $temp[0]), 'content, title');
 
+        $this->template->write_view('content', 'info_wap', $this->data);
+        $this->template->render();
+    }
 }
 

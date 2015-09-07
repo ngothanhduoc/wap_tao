@@ -40,7 +40,7 @@ $ran = rand(0,100);
                             <a href="#popup-dl-app-<?php echo $ran ?>" data-rel="popup" class="" data-transition="pop">
                                 <img src="<?php echo base_url($app[0]['icon']); ?>">
                                 <h2><?php echo $app[0]['name'] ?></h2>
-                                <p id="info-game"><?php echo $app[0]['count_download'] ?> tải | <?php echo $app[0]['size'] ?>kb</p>
+                                <p id="info-game"><?php echo $app[0]['count_download'] ?> tải | <?php echo $app[0]['size'] ?>MB</p>
 
                                 <input class="down-game" type="button" value="FREE" name="FREE" />
                             </a>

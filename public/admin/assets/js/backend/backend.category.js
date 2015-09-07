@@ -8,6 +8,7 @@ var arrCat = [];
 var BACKEND = {
     API_URL_LIST: '/backend/list/cate',
     AJAX_URL_UPDATE: '/backend/ajax/updatestatus/category/list_category/cate/id_cate',
+    AJAX_URL_DELETE: '/backend/ajax/delete/category/list_category/cate/id_cate',
     OBJ_GRID: null,
     dataAdapter: function () {
         //-- init grid view --------------------------------------------------------
@@ -55,7 +56,7 @@ var BACKEND = {
         return '<div style="overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px; text-align: left; margin:4px 2px 0px 4px;">' + index + '</div>';
     },
     toolscolumnrender: function (row, datafield, value) {
-        return '<div class="grid-tools"><a href="javascript:void(0)" onclick="BACKEND.gridEdit(' + value + ');return false;" class="grid-tools"><span class="ui-icon ui-icon-pencil"></span></a><!--<a href="javascript:void(0)" onclick="BACKEND.gridDelete(' + value + ');return false;"><span class="ui-icon ui-icon-trash"></span></a>--></div>';
+        return '<div class="grid-tools"><a href="javascript:void(0)" onclick="BACKEND.gridEdit(' + value + ');return false;" class="grid-tools"><span class="ui-icon ui-icon-pencil"></span></a><a href="javascript:void(0)" onclick="BACKEND.gridDelete(' + value + ');return false;"><span class="ui-icon ui-icon-trash"></span></a></div>';
     },
     ordercolumnrender: function (row, datafield, value) {
         var res = value.split(",");
@@ -133,6 +134,25 @@ var BACKEND = {
     },
     gridEdit: function (id) {
         window.location.href = '/backend/category/add_list_category/' + id;
+    },
+    gridDelete: function(id) {
+        if (confirm('Bạn có chắc muốn xóa ?')) {
+            $.ajax({
+                url: BACKEND.AJAX_URL_DELETE + '?id=' + id,
+                type: 'GET',
+                dataType: 'JSON',
+                data: {}
+            }).done(function(response) {
+                console.log(response);
+                if (response.code != 0) {
+                    alert(response.message);
+                } else {
+                    BACKEND.resetGrid();
+                }
+            }).fail(function() {
+                alert('Có lỗi ! Không kết nối đến dữ liệu được.');
+            });
+        }
     },
     setNumOrder: function (obj, id) {
         var s = $("#" + obj).val();

@@ -312,7 +312,7 @@ class Admin_Ajax extends MY_Controller {
 //            exit;
 //        }
 
-        $gameUser = $this->m_backend->jqxGetId('user_has_game', 'id_admin', $this->session->userdata['user_info']['id_admin']);
+//        $gameUser = $this->m_backend->jqxGetId('user_has_game', 'id_admin', $this->session->userdata['user_info']['id_admin']);
         $arr = array();
         if (empty($gameUser) === FALSE) {
             foreach ($gameUser as $val) {
@@ -3813,6 +3813,55 @@ class Admin_Ajax extends MY_Controller {
         $result .= "</select>";
         echo $result;
         die();
+    }
+
+    public function addinfo() {
+        $this->load->library('form_validation');
+        $response['code'] = -1;
+        $response['redirect'] = '/backend/wap_info/index';
+
+        $response['message']['title'] = '';
+//        $response['message']['type'] = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $arrParam = $this->input->post(NULL, TRUE);
+
+            $Id = @$arrParam['id'];
+
+
+            $this->form_validation->set_rules('title', 'title', 'callback_xss_check|trim|required');
+
+
+            $this->form_validation->set_message('required', 'Không được rỗng');
+
+            if ($this->form_validation->run() == TRUE) {
+//                die(json_encode($arrParam));
+                $Params = array();
+                $Params['title'] = $this->security->xss_clean($arrParam['title']);
+                $Params['alias'] = utf8_to_ascii($Params['title']);
+                $Params['content'] = $arrParam['content'];
+
+
+                if (empty($Id) === TRUE) {
+                    $this->load->library('session');
+
+                    $this->m_backend->jqxInsert('info_wap', $Params);
+                } else {
+                    $this->m_backend->jqxUpdate('info_wap', 'id', $Id, $Params);
+                }
+
+                $response['code'] = 0;
+            } else {
+                $badchars = array('<p>', '</p>');
+                $response['message']['title'] = trim(str_replace($badchars, '', form_error('title')));
+                $response['message']['content'] = trim(str_replace($badchars, '', form_error('type')));
+                $response['code'] = 1;
+            }
+        }
+
+        end:
+        echo json_encode($response);
+        exit;
     }
 
 }

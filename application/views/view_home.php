@@ -45,7 +45,16 @@
         $('li.news-click').click(function () {
             $('a.click-news').click();
         });
-
+        $('li.game-click').click(function () {
+            $('a.click-game').click();
+        });
+        $('li.app-click').click(function () {
+            $('a.click-app').click();
+        });
+        $('.logo-taigamefree').click(function(){
+            _url_home = $(this).attr('href');
+            location.href = _url_home;
+        })
     });
     // Fix for back buttons
 
@@ -57,8 +66,8 @@
         <div data-role="navbar">
             <ul>
                 <li>
-                    <a href="./">
-                        <h1 id="title-wap"><img src="<?php echo base_url(); ?>wap/image/_icon_logo@3x.png"/></h1>
+                    <a href="<?php echo base_url() ?>" class="logo-taigamefree">
+                        <h1 id="title-wap"><img  src="<?php echo base_url(); ?>wap/image/_icon_logo@3x.png"/></h1>
                     </a>
                 </li>
                 <li>
@@ -79,12 +88,12 @@
     <div data-role="tabs" id="tabs">
         <div data-role="navbar" id="menu-wap">
             <ul>
-                <li><a href="#one" data-ajax="false" class="ui-btn-active">
+                <li class="game-click"><a href="#one" data-ajax="false" class="ui-btn-active">
                         <div class="image-menu menu-game"></div>
                         Game
                     </a>
                 </li>
-                <li><a href="#two" data-ajax="false">
+                <li class="app-click"><a href="#two" data-ajax="false">
                         <div class="image-menu menu-app"></div>
                         App
                     </a></li>
@@ -100,37 +109,39 @@
             </ul>
         </div>
         <div id="one" class="menu-tab-option">
-            <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">
-
-                <div class="ui-block-a item"><a href="<?php echo base_url(); ?>danh-sach-game.html">
-                        <div class="ui-bar ui-bar-a" id="height-menu-child">Game</div>
-                    </a></div>
-                <?php
-                if (!empty($cate['game_cate'])) {
-                    foreach ($cate['game_cate'] as $key => $value) {
-                        echo '<div class="ui-block-a item"><a href="' . base_url('game/danh-muc/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
-                    }
-                }
-                ?>
-
-
-            </div>
+<!--            <div class="ui-grid-d owl-carousel owl-theme" id="slide-game-menu">-->
+<!---->
+<!--                <div class="ui-block-a item"><a href="--><?php //echo base_url(); ?><!--danh-sach-game.html">-->
+<!--                        <div class="ui-bar ui-bar-a" id="height-menu-child">Game</div>-->
+<!--                    </a></div>-->
+<!--                --><?php
+//                if (!empty($cate['game_cate'])) {
+//                    foreach ($cate['game_cate'] as $key => $value) {
+//                        echo '<div class="ui-block-a item"><a href="' . base_url('game/danh-muc/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
+//                    }
+//                }
+//                ?>
+<!---->
+<!---->
+<!--            </div>-->
+            <a href="./danh-sach-game.html" hidden class="click-game">dkasl;dksal;d</a>
             <!-- /grid-c -->
         </div>
         <div id="two" class="menu-tab-option">
-            <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">
-                <div class="ui-block-a item ">
-                    <a href="<?php echo base_url(); ?>ung-dung.html">
-                        <div class="ui-bar ui-bar-a" id="height-menu-child">Ứng Dụng</div>
-                    </a></div>
-                <?php
-                if (!empty($cate['app_cate'])) {
-                    foreach ($cate['app_cate'] as $key => $value) {
-                        echo '<div class="ui-block-a item"><a href="' . base_url('ung-dung/danh-sach/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
-                    }
-                }
-                ?>
-            </div>
+<!--            <div class="ui-grid-d owl-carousel owl-theme" id="slide-app-menu">-->
+<!--                <div class="ui-block-a item ">-->
+<!--                    <a href="--><?php //echo base_url(); ?><!--ung-dung.html">-->
+<!--                        <div class="ui-bar ui-bar-a" id="height-menu-child">Ứng Dụng</div>-->
+<!--                    </a></div>-->
+<!--                --><?php
+//                if (!empty($cate['app_cate'])) {
+//                    foreach ($cate['app_cate'] as $key => $value) {
+//                        echo '<div class="ui-block-a item"><a href="' . base_url('ung-dung/danh-sach/' . $value['alias'] . '-' . $value['id_cate'] . '.html') . '"><div class="ui-bar ui-bar-a" id="height-menu-child">' . $value['title'] . '</div></a></div>';
+//                    }
+//                }
+//                ?>
+<!--            </div>-->
+            <a href="./ung-dung.html" hidden class="click-app">dkasl;dksal;d</a>
             <!-- /grid-c -->
         </div>
 
@@ -176,7 +187,7 @@
         <span>GAME MỚI</span>
     </div>
     <div class="content">
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
+        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-home">
             <?php
             if (!empty($game_new))
                 foreach ($game_new as $key => $value) {
@@ -192,7 +203,7 @@
                             <h2><?php echo $value['name'] ?></h2>
 
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
-                                kb</p>
+                                MB</p>
 
                             <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
 
@@ -214,7 +225,7 @@
         <span>APP</span>
     </div>
     <div class="content">
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view">
+        <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="list-view list-view-home">
             <?php
             if (!empty($app))
                 foreach ($app as $key => $value) {
@@ -229,7 +240,7 @@
                             <h2><?php echo $value['name'] ?></h2>
 
                             <p id="info-game"><?php echo $value['count_download'] ?> tải | <?php echo $value['size'] ?>
-                                kb</p>
+                                MB</p>
 
                             <p id="descript-game"><?php echo limit_text($value['description'], 20); ?></p>
                         </a>

@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function () {
-        
+
     });
 </script>
 <div>
@@ -11,7 +11,7 @@
                 <li>
                     <a href="#" onclick="window.history.back()" data-direction="reverse">
                         <img src="<?php echo base_url(); ?>wap/image/ico_back.png"/>
-                        <h1>News</h1>
+                        <h1> &nbsp;</h1>
                     </a>
                 </li>
                 <li>
@@ -29,10 +29,10 @@
         <ul data-role="listview" class="list-view" data-icon="false">
 
             <li class="header-game-content" style="border: none;">
-                <h2><?php echo $news[0]['name'] ?></h2>
+                <h2><?php echo $data[0]['title'] ?></h2>
                 <div style="clear: both">
                     </br>
-                    <?php echo $news[0]['content'] ?>
+                    <?php echo $data[0]['content'] ?>
                 </div>
 
             </li>
